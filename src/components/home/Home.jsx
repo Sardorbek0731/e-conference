@@ -2,7 +2,7 @@
 import "./Home";
 
 function Home() {
-  return <div>Online Article</div>;
+  return <section className="container">Home</section>;
 }
 
 export default Home;

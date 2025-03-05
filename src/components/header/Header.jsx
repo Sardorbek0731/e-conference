@@ -2,7 +2,7 @@
 import "./Header";
 
 function Header() {
-  return <div>Header</div>;
+  return <header className="container">Header</header>;
 }
 
 export default Header;

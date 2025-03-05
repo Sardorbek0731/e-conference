@@ -2,7 +2,7 @@
 import "./Footer";
 
 function Footer() {
-  return <div>Footer</div>;
+  return <footer className="container">Footer</footer>;
 }
 
 export default Footer;
