@@ -1,0 +1,44 @@
+header {
+  position: absolute;
+  top: 2.5rem;
+  left: 0;
+  right: 0;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  z-index: 2;
+}
+
+.logo img {
+  width: 4rem;
+  border-radius: 50%;
+  box-shadow: 0 0 5rem rgba(0, 0, 0, 0.25);
+}
+
+nav {
+  display: flex;
+}
+
+nav a {
+  margin-right: 0.7rem;
+  padding: 0.9rem;
+  border-radius: 0.5rem;
+  transition: all 0.3s;
+  line-height: 1;
+}
+nav a:hover {
+  background-color: rgba(255, 255, 255, 0.2);
+}
+
+nav a h1 {
+  color: rgb(255, 255, 255);
+  font-size: 1.025rem;
+  font-family: "Titillium Web", sans-serif;
+  font-weight: 400;
+}
+
+nav a img {
+  width: 1.3rem;
+  height: 1.3rem;
+  margin-bottom: 0.7rem;
+}

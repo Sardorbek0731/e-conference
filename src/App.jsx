@@ -8,12 +8,23 @@ import Footer from "./components/footer/Footer";
 // Pages
 import Main from "./pages/main/Main";
 
+// React Router DOM
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+
 function App() {
   return (
     <>
-      <Header />
-      <Main />
-      <Footer />
+      <BrowserRouter
+        future={{ v7_relativeSplatPath: true, v7_startTransition: true }}
+      >
+        <Header />
+
+        <Routes>
+          <Route path="/" element={<Main />} />
+        </Routes>
+
+        <Footer />
+      </BrowserRouter>
     </>
   );
 }

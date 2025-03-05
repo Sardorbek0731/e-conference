@@ -1,6 +1,3 @@
-// CSS
-import "./Main";
-
 // Components
 import Home from "../../components/home/Home";
 
