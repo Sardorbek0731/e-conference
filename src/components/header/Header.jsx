@@ -18,7 +18,7 @@ import editorial from "../../assets/icons/editorial.png";
 function Header() {
   return (
     <header className="container">
-      <NavLink to={"/"} className="logo">
+      <NavLink to="/" className="logo">
         <img src={logo} alt="Logo Icon" />
       </NavLink>
 

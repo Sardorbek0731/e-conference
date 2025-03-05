@@ -1,20 +1,29 @@
-.homeBg {
+.home {
+  display: flex;
+  align-items: center;
   position: relative;
   width: 100%;
   height: 100vh;
+  background: url("../../assets/images/home-bg.webp");
+  background-size: cover;
 }
-.homeBg::before {
+
+.home::before {
   content: "";
   position: absolute;
   top: 0;
   left: 0;
   right: 0;
   bottom: 0;
-  background-color: rgba(50, 46, 64, 0.829);
+  background-color: rgba(70, 64, 96, 0.86);
+  z-index: 1;
 }
 
-.homeBg img {
-  width: 100%;
-  height: 100%;
-  object-fit: cover;
+.homeTitle {
+  position: relative;
+  z-index: 2;
+}
+
+.homeTitle h1 {
+  color: white;
 }

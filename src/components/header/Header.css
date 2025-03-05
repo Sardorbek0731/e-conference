@@ -1,6 +1,6 @@
 header {
   position: absolute;
-  top: 2.5rem;
+  top: 3rem;
   left: 0;
   right: 0;
   display: flex;
@@ -9,8 +9,13 @@ header {
   z-index: 2;
 }
 
+.logo {
+  display: flex;
+  align-items: center;
+}
+
 .logo img {
-  width: 4rem;
+  width: 3.8rem;
   border-radius: 50%;
   box-shadow: 0 0 5rem rgba(0, 0, 0, 0.25);
 }
@@ -21,8 +26,8 @@ nav {
 
 nav a {
   margin-right: 0.7rem;
-  padding: 0.9rem;
-  border-radius: 0.5rem;
+  padding: 1rem;
+  border-radius: 0.7rem;
   transition: all 0.3s;
   line-height: 1;
 }
@@ -40,5 +45,5 @@ nav a h1 {
 nav a img {
   width: 1.3rem;
   height: 1.3rem;
-  margin-bottom: 0.7rem;
+  margin-bottom: 0.8rem;
 }
