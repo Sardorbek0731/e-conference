@@ -41,7 +41,7 @@ function Header() {
         </NavLink>
         <NavLink to="/">
           <img src={arxiv} alt="Arxiv Icon" />
-          <h1>Arxivlar</h1>
+          <h1>Arxiv</h1>
         </NavLink>
         <NavLink to="/">
           <img src={contact} alt="Contact Icon" />
