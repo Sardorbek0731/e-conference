@@ -20,10 +20,44 @@
 }
 
 .homeTitle {
+  display: flex;
+  flex-direction: column;
+  align-items: start;
   position: relative;
   z-index: 2;
+  width: 45%;
 }
 
 .homeTitle h1 {
   color: white;
+  margin-bottom: 1rem;
+  font-size: 2.6rem;
+  font-family: "Poppins", sans-serif;
+}
+
+.homeTitle p {
+  font-size: 1.1rem;
+  color: rgba(255, 255, 255, 0.7);
+  margin-bottom: 4rem;
+}
+
+.detailBtn {
+  display: flex;
+  align-items: center;
+  background-color: white;
+  padding: 0.85rem 1.2rem;
+  transition: all 0.3s;
+  cursor: pointer;
+  color: black;
+  font-size: 1.07rem;
+  border: 2px solid white;
+}
+.detailBtn:hover {
+  color: white;
+  background-color: #8a2be1;
+}
+.detailBtn svg {
+  margin-left: 0.5rem;
+  width: 1.3rem;
+  height: 1.3rem;
 }
