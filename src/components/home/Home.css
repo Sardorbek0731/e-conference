@@ -6,6 +6,7 @@
   height: 100vh;
   background: url("../../assets/images/home-bg.webp");
   background-size: cover;
+  padding-top: 5rem;
 }
 
 .home::before {
@@ -56,4 +57,30 @@
   color: white;
   background-color: #8a2be1;
   box-shadow: 1rem 1rem 3rem rgba(0, 0, 0, 0.4);
+}
+
+.socialNetworks {
+  display: flex;
+  position: absolute;
+  z-index: 2;
+  bottom: 3rem;
+  left: 50%;
+  transform: translateX(-50%);
+  background-color: white;
+  padding: 0.95rem 1.25rem;
+  border-radius: 2.5rem;
+}
+
+.socialNetworks a {
+  display: flex;
+  align-items: center;
+  margin-right: 1.25rem;
+}
+.socialNetworks a:last-child {
+  margin-right: 0;
+}
+
+.socialNetworks img {
+  width: 1.4rem;
+  height: 1.4rem;
 }
