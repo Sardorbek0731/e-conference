@@ -7,6 +7,8 @@ import Footer from "./components/footer/Footer";
 
 // Pages
 import Main from "./pages/main/Main";
+import Articles from "./pages/articles/Articles";
+import Article from "./pages/article/Article";
 
 // React Router DOM
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -21,6 +23,8 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="/articles" element={<Articles />} />
+          <Route path="/articles/*" element={<Article />} />
         </Routes>
 
         <Footer />

@@ -12,7 +12,7 @@ import home from "../../assets/icons/home.png";
 import info from "../../assets/icons/info.png";
 import news from "../../assets/icons/news.png";
 import contact from "../../assets/icons/contact.png";
-import arxiv from "../../assets/icons/arxiv.png";
+import article from "../../assets/icons/article.png";
 import editorial from "../../assets/icons/editorial.png";
 
 function Header() {
@@ -31,6 +31,10 @@ function Header() {
           <img src={info} alt="Informations Icon" />
           <h1>Ma'lumotlar</h1>
         </NavLink>
+        <NavLink to="articles">
+          <img src={article} alt="Article Icon" />
+          <h1>Maqolalar</h1>
+        </NavLink>
         <NavLink to="/">
           <img src={news} alt="News Icon" />
           <h1>Yangiliklar</h1>
@@ -38,10 +42,6 @@ function Header() {
         <NavLink to="/">
           <img src={editorial} alt="Editorial Icon" />
           <h1>Tahririyat</h1>
-        </NavLink>
-        <NavLink to="/">
-          <img src={arxiv} alt="Arxiv Icon" />
-          <h1>Arxiv</h1>
         </NavLink>
         <NavLink to="/">
           <img src={contact} alt="Contact Icon" />

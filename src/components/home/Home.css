@@ -69,20 +69,20 @@
   left: 50%;
   transform: translateX(-50%);
   background-color: white;
-  padding: 0.9rem 1.1rem;
+  padding: 0.8rem 1rem;
   border-radius: 2.5rem;
 }
 
 .socialNetworks a {
   display: flex;
   align-items: center;
-  margin-right: 1.1rem;
+  margin-right: 1rem;
 }
 .socialNetworks a:last-child {
   margin-right: 0;
 }
 
 .socialNetworks img {
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.3rem;
+  height: 1.3rem;
 }
