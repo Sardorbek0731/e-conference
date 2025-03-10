@@ -2,7 +2,7 @@
 import "./Header.css";
 
 // React Router DOM
-import { NavLink } from "react-router-dom";
+import { NavLink, useLocation } from "react-router-dom";
 
 // Images
 import logo from "../../assets/logo/logo.png";
@@ -14,8 +14,14 @@ import news from "../../assets/icons/news.png";
 import contact from "../../assets/icons/contact.png";
 import article from "../../assets/icons/article.png";
 import editorial from "../../assets/icons/editorial.png";
+import { useEffect } from "react";
 
 function Header() {
+  const location = useLocation();
+  useEffect(() => {
+    localStorage.setItem("location", JSON.stringify(location));
+  }, [location]);
+
   return (
     <header className="container">
       <NavLink to="/" className="logo">

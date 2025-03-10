@@ -26,8 +26,6 @@ function App() {
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/*" element={<Article />} />
         </Routes>
-
-        <Footer />
       </BrowserRouter>
     </>
   );
