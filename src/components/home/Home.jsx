@@ -5,10 +5,10 @@ import "./Home.css";
 import { NavLink } from "react-router-dom";
 
 // Icons
-import telegram from "../../assets/icons/telegram.png";
-import twitter from "../../assets/icons/twitter.png";
-import instagram from "../../assets/icons/instagram.png";
-import facebook from "../../assets/icons/facebook.png";
+import telegram from "../../assets/icons/social-network/telegram.png";
+import twitter from "../../assets/icons/social-network/twitter.png";
+import instagram from "../../assets/icons/social-network/instagram.png";
+import facebook from "../../assets/icons/social-network/facebook.png";
 
 // Images
 import paperPen from "../../assets/images/paper-pen.png";
@@ -32,18 +32,18 @@ function Home() {
       <img className="penAndPaper" src={paperPen} alt="Paper And Pen Image" />
 
       <div className="socialNetworks">
-        <NavLink to="#">
+        <a href="#">
           <img src={telegram} alt="Telegram Icon" />
-        </NavLink>
-        <NavLink to="#">
+        </a>
+        <a href="#">
           <img src={twitter} alt="Twitter Icon" />
-        </NavLink>
-        <NavLink to="#">
+        </a>
+        <a href="#">
           <img src={instagram} alt="Instagram Icon" />
-        </NavLink>
-        <NavLink to="#">
+        </a>
+        <a href="#">
           <img src={facebook} alt="Facebook Icon" />
-        </NavLink>
+        </a>
       </div>
     </section>
   );
