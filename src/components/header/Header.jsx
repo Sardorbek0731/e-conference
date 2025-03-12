@@ -22,8 +22,14 @@ function Header() {
     localStorage.setItem("location", JSON.stringify(location));
   }, [location]);
 
+  console.log(location.pathname.length);
+
   return (
-    <header className="container">
+    <header
+      className={
+        location.pathname.length > 1 ? "container otherPage" : "container"
+      }
+    >
       <NavLink to="/" className="logo">
         <img src={logo} alt="Logo Icon" />
       </NavLink>

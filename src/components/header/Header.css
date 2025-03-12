@@ -8,6 +8,10 @@ header {
   justify-content: space-between;
   z-index: 2;
 }
+header.otherPage {
+  position: static;
+  background-color: blue;
+}
 
 .logo {
   display: flex;
