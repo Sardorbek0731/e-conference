@@ -1,40 +1,83 @@
-// Header Icons
-import home from "../assets/icons/header/home.png";
-import info from "../assets/icons/header/info.png";
-import articles from "../assets/icons/header/articles.png";
-import news from "../assets/icons/header/news.png";
-import editorial from "../assets/icons/header/editorial.png";
-import contact from "../assets/icons/header/contact.png";
+// Light Header Icons
+import lightHome from "../assets/icons/header/light/home.png";
+import lightInfo from "../assets/icons/header/light/info.png";
+import lightArticles from "../assets/icons/header/light/articles.png";
+import lightNews from "../assets/icons/header/light/news.png";
+import lightEditorial from "../assets/icons/header/light/editorial.png";
+import lightContact from "../assets/icons/header/light/contact.png";
 
-export const header = [
-  {
-    icon: home,
-    title: "Bosh sahifa",
-    to: "/",
-  },
-  {
-    icon: info,
-    title: "Ma'lumotlar",
-    to: "/",
-  },
-  {
-    icon: articles,
-    title: "Maqolalar",
-    to: "articles",
-  },
-  {
-    icon: news,
-    title: "Yangiliklar",
-    to: "/",
-  },
-  {
-    icon: editorial,
-    title: "Tahririyat",
-    to: "/",
-  },
-  {
-    icon: contact,
-    title: "Aloqa",
-    to: "/",
-  },
-];
+// Dark Header Icons
+import darkHome from "../assets/icons/header/dark/home.png";
+import darkInfo from "../assets/icons/header/dark/info.png";
+import darkArticles from "../assets/icons/header/dark/articles.png";
+import darkNews from "../assets/icons/header/dark/news.png";
+import darkEditorial from "../assets/icons/header/dark/editorial.png";
+import darkContact from "../assets/icons/header/dark/contact.png";
+
+export const header = {
+  light: [
+    {
+      icon: lightHome,
+      title: "Bosh sahifa",
+      to: "/",
+    },
+    {
+      icon: lightInfo,
+      title: "Ma'lumotlar",
+      to: "/",
+    },
+    {
+      icon: lightArticles,
+      title: "Maqolalar",
+      to: "articles",
+    },
+    {
+      icon: lightNews,
+      title: "Yangiliklar",
+      to: "/",
+    },
+    {
+      icon: lightEditorial,
+      title: "Tahririyat",
+      to: "/",
+    },
+    {
+      icon: lightContact,
+      title: "Aloqa",
+      to: "/",
+    },
+  ],
+
+  dark: [
+    {
+      icon: darkHome,
+      title: "Bosh sahifa",
+      to: "/",
+    },
+    {
+      icon: darkInfo,
+      title: "Ma'lumotlar",
+      to: "/",
+    },
+    {
+      icon: darkArticles,
+      title: "Maqolalar",
+      to: "articles",
+    },
+    {
+      icon: darkNews,
+      title: "Yangiliklar",
+      to: "/",
+    },
+    {
+      icon: darkEditorial,
+      title: "Tahririyat",
+      to: "/",
+    },
+    {
+      icon: darkContact,
+      title: "Aloqa",
+      to: "/",
+    },
+  ],
+};
