@@ -14,49 +14,41 @@ import darkNews from "../assets/icons/header/dark/news.png";
 import darkEditorial from "../assets/icons/header/dark/editorial.png";
 import darkContact from "../assets/icons/header/dark/contact.png";
 
-export const header = {
-  text: [
-    {
-      title: "Bosh sahifa",
-      to: "/",
-    },
-    {
-      title: "Ma'lumotlar",
-      to: "/",
-    },
-    {
-      title: "Maqolalar",
-      to: "articles",
-    },
-    {
-      title: "Yangiliklar",
-      to: "/",
-    },
-    {
-      title: "Tahririyat",
-      to: "/",
-    },
-    {
-      title: "Aloqa",
-      to: "/",
-    },
-  ],
-
-  lightIcon: [
-    lightHome,
-    lightInfo,
-    lightArticles,
-    lightNews,
-    lightEditorial,
-    lightContact,
-  ],
-
-  darkIcon: [
-    darkHome,
-    darkInfo,
-    darkArticles,
-    darkNews,
-    darkEditorial,
-    darkContact,
-  ],
-};
+export const header = [
+  {
+    lightIcon: lightHome,
+    darkIcon: darkHome,
+    title: "Bosh sahifa",
+    to: "/",
+  },
+  {
+    lightIcon: lightInfo,
+    darkIcon: darkInfo,
+    title: "Ma'lumotlar",
+    to: "/",
+  },
+  {
+    lightIcon: lightArticles,
+    darkIcon: darkArticles,
+    title: "Maqolalar",
+    to: "articles",
+  },
+  {
+    lightIcon: lightNews,
+    darkIcon: darkNews,
+    title: "Yangiliklar",
+    to: "/",
+  },
+  {
+    lightIcon: lightEditorial,
+    darkIcon: darkEditorial,
+    title: "Tahririyat",
+    to: "/",
+  },
+  {
+    lightIcon: lightContact,
+    darkIcon: darkContact,
+    title: "Aloqa",
+    to: "/",
+  },
+];

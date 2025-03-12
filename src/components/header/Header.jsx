@@ -19,34 +19,26 @@ function Header() {
     localStorage.setItem("location", JSON.stringify(location));
   }, [location]);
 
-  return location.pathname.length > 1 ? (
-    <header className="container otherPage">
+  return (
+    <header
+      className={
+        location.pathname.length > 1 ? "container otherPage" : "container"
+      }
+    >
       <NavLink to="/" className="logo">
         <img src={logo} alt="Logo Icon" />
       </NavLink>
 
       <nav>
-        {header.text.map((item, id) => {
+        {header.map((item, id) => {
           return (
             <NavLink to={item.to} key={id}>
-              <img src={header.darkIcon[id]} alt="Header Icon" />
-              <h1>{item.title}</h1>
-            </NavLink>
-          );
-        })}
-      </nav>
-    </header>
-  ) : (
-    <header className="container">
-      <NavLink to="/" className="logo">
-        <img src={logo} alt="Logo Icon" />
-      </NavLink>
-
-      <nav>
-        {header.text.map((item, id) => {
-          return (
-            <NavLink to={item.to} key={id}>
-              <img src={header.lightIcon[id]} alt="Header Icon" />
+              <img
+                src={
+                  location.pathname.length > 1 ? item.darkIcon : item.lightIcon
+                }
+                alt="Header Icon"
+              />
               <h1>{item.title}</h1>
             </NavLink>
           );
