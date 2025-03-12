@@ -15,69 +15,48 @@ import darkEditorial from "../assets/icons/header/dark/editorial.png";
 import darkContact from "../assets/icons/header/dark/contact.png";
 
 export const header = {
-  light: [
+  text: [
     {
-      icon: lightHome,
       title: "Bosh sahifa",
       to: "/",
     },
     {
-      icon: lightInfo,
       title: "Ma'lumotlar",
       to: "/",
     },
     {
-      icon: lightArticles,
       title: "Maqolalar",
       to: "articles",
     },
     {
-      icon: lightNews,
       title: "Yangiliklar",
       to: "/",
     },
     {
-      icon: lightEditorial,
       title: "Tahririyat",
       to: "/",
     },
     {
-      icon: lightContact,
       title: "Aloqa",
       to: "/",
     },
   ],
 
-  dark: [
-    {
-      icon: darkHome,
-      title: "Bosh sahifa",
-      to: "/",
-    },
-    {
-      icon: darkInfo,
-      title: "Ma'lumotlar",
-      to: "/",
-    },
-    {
-      icon: darkArticles,
-      title: "Maqolalar",
-      to: "articles",
-    },
-    {
-      icon: darkNews,
-      title: "Yangiliklar",
-      to: "/",
-    },
-    {
-      icon: darkEditorial,
-      title: "Tahririyat",
-      to: "/",
-    },
-    {
-      icon: darkContact,
-      title: "Aloqa",
-      to: "/",
-    },
+  lightIcon: [
+    lightHome,
+    lightInfo,
+    lightArticles,
+    lightNews,
+    lightEditorial,
+    lightContact,
+  ],
+
+  darkIcon: [
+    darkHome,
+    darkInfo,
+    darkArticles,
+    darkNews,
+    darkEditorial,
+    darkContact,
   ],
 };

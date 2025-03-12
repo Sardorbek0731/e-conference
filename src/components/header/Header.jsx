@@ -26,10 +26,10 @@ function Header() {
       </NavLink>
 
       <nav>
-        {header.dark.map((item, id) => {
+        {header.text.map((item, id) => {
           return (
             <NavLink to={item.to} key={id}>
-              <img src={item.icon} alt="Header Icon" />
+              <img src={header.darkIcon[id]} alt="Header Icon" />
               <h1>{item.title}</h1>
             </NavLink>
           );
@@ -43,10 +43,10 @@ function Header() {
       </NavLink>
 
       <nav>
-        {header.light.map((item, id) => {
+        {header.text.map((item, id) => {
           return (
             <NavLink to={item.to} key={id}>
-              <img src={item.icon} alt="Header Icon" />
+              <img src={header.lightIcon[id]} alt="Header Icon" />
               <h1>{item.title}</h1>
             </NavLink>
           );
