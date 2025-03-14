@@ -11,7 +11,7 @@ header {
 header.otherPage {
   position: static;
   padding: 0 5rem;
-  margin: 2rem 6rem 3rem 6rem;
+  margin: 3rem 6rem 3rem 6rem;
   align-items: center;
   background-color: white;
   border-radius: 0.2rem;
@@ -19,8 +19,8 @@ header.otherPage {
 }
 
 .logo {
-  width: 3.6rem;
-  height: 3.6rem;
+  width: 3.5rem;
+  height: 3.5rem;
 }
 header.otherPage .logo {
   width: 3rem;

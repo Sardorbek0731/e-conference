@@ -20,7 +20,7 @@ html {
 }
 
 body {
-  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), white);
+  background-color: rgba(0, 0, 0, 0.1);
   font-family: var(--main-fontfamily);
 }
 
@@ -38,7 +38,7 @@ a {
 }
 .sectionTitle h1 {
   font-family: "Averia Serif Libre", serif;
-  font-size: 2.5rem;
+  font-size: 2.4rem;
   margin: 1.2rem 0 1.2rem -0.15rem;
 }
 .sectionTitle p {
