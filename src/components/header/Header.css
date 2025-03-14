@@ -1,20 +1,20 @@
 header {
   position: absolute;
-  top: 3.5rem;
+  top: 4rem;
   left: 0;
   right: 0;
   z-index: 2;
   display: flex;
   justify-content: space-between;
-  padding: 0 11rem;
+  padding: 0 9rem;
 }
 header.otherPage {
   position: static;
-  padding: 0 5rem;
-  margin: 3rem 6rem 3rem 6rem;
+  padding: 0 1.3rem;
+  margin: 3rem 7.7rem 3rem 7.7rem;
   align-items: center;
   background-color: white;
-  border-radius: 0.2rem;
+  border-radius: 0.1rem;
   box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.12);
 }
 
@@ -38,7 +38,7 @@ nav {
   align-items: center;
 }
 header.otherPage nav {
-  height: 5rem;
+  height: 5.6rem;
 }
 
 nav a {
