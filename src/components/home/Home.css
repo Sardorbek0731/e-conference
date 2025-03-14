@@ -38,7 +38,7 @@
 }
 
 .homeTitle p {
-  font-size: 1.05rem;
+  font-size: 1rem;
   color: rgba(255, 255, 255, 0.6);
   margin-bottom: 4rem;
 }
@@ -51,7 +51,7 @@
   transition: all 0.3s;
   cursor: pointer;
   color: var(--main-color);
-  font-size: 1.05rem;
+  font-size: 1rem;
   font-weight: 400;
   box-shadow: 0 0 4rem white;
   border: 2px solid var(--main-color);
@@ -91,6 +91,6 @@
 }
 
 .socialNetworks img {
-  width: 1.22rem;
-  height: 1.22rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }

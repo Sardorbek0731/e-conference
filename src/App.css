@@ -19,7 +19,7 @@ html {
 }
 
 body {
-  background-color: #fff;
+  background: linear-gradient(to bottom, rgba(0, 0, 0, 0.2), white);
   font-family: var(--main-fontfamily);
 }
 
@@ -30,4 +30,8 @@ a {
 /* CSS Library Codes */
 .container {
   padding: 0 11rem;
+}
+
+.hidden {
+  display: none;
 }

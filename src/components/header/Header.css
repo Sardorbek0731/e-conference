@@ -1,61 +1,80 @@
 header {
   position: absolute;
-  top: 2.5rem;
+  top: 3.5rem;
   left: 0;
   right: 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
   z-index: 2;
+  display: flex;
+  justify-content: space-between;
+  padding: 0 11rem;
 }
 header.otherPage {
   position: static;
-  margin-top: 2.5rem;
-  margin-bottom: 2.5rem;
+  padding: 0 5rem;
+  margin: 2rem 6rem 3rem 6rem;
+  align-items: center;
+  background-color: white;
+  border-radius: 0.2rem;
+  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.12);
 }
 
 .logo {
-  display: flex;
-  align-items: center;
+  width: 3.6rem;
+  height: 3.6rem;
+}
+header.otherPage .logo {
+  width: 3rem;
+  height: 3rem;
 }
 
 .logo img {
-  width: 3.6rem;
-  height: 3.6rem;
-  border-radius: 1rem;
-  box-shadow: 0 0 5rem rgba(0, 0, 0, 0.25);
+  width: 100%;
+  height: 100%;
+  border-radius: 0.2rem;
 }
 
 nav {
   display: flex;
   align-items: center;
 }
+header.otherPage nav {
+  height: 5rem;
+}
 
 nav a {
-  margin-right: 0.8rem;
-  border-radius: 0.8rem;
-  transition: all 0.3s;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+  margin-right: 1.5rem;
+  padding-right: 1.5rem;
   line-height: 1;
-  padding: 1rem;
-}
-nav a:hover {
-  background-color: rgba(255, 255, 255, 0.2);
-}
-header.otherPage nav a:hover {
-  background-color: rgba(201, 201, 201, 0.2);
-}
-
-nav a h1 {
   color: rgb(255, 255, 255);
   font-size: 1rem;
   font-weight: 400;
 }
-header.otherPage nav a h1 {
+nav a:last-child {
+  margin-right: 0;
+  padding-right: 0;
+}
+header.otherPage nav a {
+  flex-direction: initial;
+  align-items: center;
   color: black;
+  border-right: 1px solid rgba(0, 0, 0, 0.1);
+  transition: all 0.3s;
+}
+header.otherPage nav a:last-child {
+  border-right: none;
+}
+header.otherPage nav a:hover {
+  color: var(--main-color);
+}
+header.otherPage nav a.active {
+  color: var(--main-color);
 }
 
 nav a img {
-  width: 1.2rem;
-  height: 1.2rem;
-  margin-bottom: 0.8rem;
+  width: 1.3rem;
+  height: 1.3rem;
 }
