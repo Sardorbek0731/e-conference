@@ -10,7 +10,14 @@ import image from "../../assets/logo/logo.png";
 // Icons
 import download from "../../assets/icons/articles/download.png";
 
+// Data
+import { articles } from "../../data/data";
+
 function Articles() {
+  const setItem = (id) => {
+    localStorage.setItem("articleID", JSON.stringify(id));
+  };
+
   return (
     <section className="articles">
       <div className="sectionTitle">
@@ -22,45 +29,35 @@ function Articles() {
         </p>
       </div>
       <div className="articleCards">
-        <NavLink className="articleCard" to="/articles/1">
-          <div className="articleHeader">
-            <img src={image} alt="Article Image" />
-            <h1>
-              Ftiziatriya fanini o‘qitishda tibbiyot talabalari klinik
-              fikrlashini oshirishda FILA jadvalining ahamiyati
-            </h1>
-          </div>
-          <div className="articleBody">
-            <h3>
-              <span>Muallif:</span> Matkurbonov Khamdambek Ilxambekovich
-            </h3>
+        {articles.map((item, id) => {
+          return (
+            <NavLink
+              className="articleCard"
+              to={"/articles/" + item.location}
+              key={id}
+              onClick={() => {
+                setItem(item.id);
+              }}
+            >
+              <div className="articleHeader">
+                <img src={image} alt="Article Image" />
+                <h1>{item.title}</h1>
+              </div>
+              <div className="articleBody">
+                <h3>
+                  <span>Muallif:</span> {item.author}
+                </h3>
 
-            <h5>01.01.2025, 00:00</h5>
+                <h5>{item.addedTime}</h5>
 
-            <span className="downloadPDF">
-              <img src={download} alt="Download Icon" />
-              PDF
-            </span>
-          </div>
-        </NavLink>
-        <NavLink className="articleCard" to="/articles/2">
-          <div className="articleHeader">
-            <img src={image} alt="Article Image" />
-            <h1>THE RELEVANCE OF MEASLES TODAY</h1>
-          </div>
-          <div className="articleBody">
-            <h3>
-              <span>Muallif:</span> Sadullaev Siroj Ernazarovich
-            </h3>
-
-            <h5>15.03.2025, 12:05</h5>
-
-            <span className="downloadPDF">
-              <img src={download} alt="Download Icon" />
-              PDF
-            </span>
-          </div>
-        </NavLink>
+                <span className="downloadPDF">
+                  <img src={download} alt="Download Icon" />
+                  PDF
+                </span>
+              </div>
+            </NavLink>
+          );
+        })}
       </div>
     </section>
   );

@@ -11,13 +11,22 @@ import logo from "../../assets/logo/logo.png";
 import { header } from "../../data/data";
 
 // React Hooks
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 
 function Header() {
   const location = useLocation();
+
+  const prevPage = useRef(
+    JSON.parse(localStorage.getItem("visitedPages"))?.[0] || "/"
+  );
+
   useEffect(() => {
-    localStorage.setItem("location", JSON.stringify(location));
-  }, [location]);
+    const visitedPages = [prevPage.current, location.pathname];
+
+    localStorage.setItem("visitedPages", JSON.stringify(visitedPages));
+
+    prevPage.current = location.pathname;
+  }, [location.pathname]);
 
   return (
     <header className={location.pathname.length > 1 ? "otherPage" : ""}>
