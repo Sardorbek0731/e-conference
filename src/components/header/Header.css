@@ -10,7 +10,7 @@ header {
 }
 header.otherPage {
   position: static;
-  padding: 0 1.3rem;
+  padding: 0 1.1rem;
   margin: 3rem 7.7rem 3rem 7.7rem;
   align-items: center;
   background-color: white;
@@ -23,8 +23,8 @@ header.otherPage {
   height: 3.5rem;
 }
 header.otherPage .logo {
-  width: 3rem;
-  height: 3rem;
+  width: 2.8rem;
+  height: 2.8rem;
 }
 
 .logo img {
@@ -38,7 +38,7 @@ nav {
   align-items: center;
 }
 header.otherPage nav {
-  height: 5.6rem;
+  height: 5rem;
 }
 
 nav a {
@@ -54,7 +54,7 @@ nav a {
   font-weight: 400;
 }
 nav a:last-child {
-  margin-right: 0;
+  margin-right: 0.4rem;
   padding-right: 0;
 }
 header.otherPage nav a {

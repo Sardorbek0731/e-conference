@@ -10,13 +10,17 @@
 }
 
 .articleCard {
+  position: relative;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
   margin-right: 1rem;
   color: black;
   background-color: white;
-  position: relative;
+  transition: all 0.3s;
+}
+.articleCard:hover {
+  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.2);
 }
 
 .articleCard img {
