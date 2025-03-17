@@ -10,10 +10,7 @@ import image from "../../assets/logo/logo.png";
 // Icons
 import download from "../../assets/icons/articles/download.png";
 
-// Data
-import { articles } from "../../data/data";
-
-function Articles() {
+function Articles({ data }) {
   const setItem = (id) => {
     localStorage.setItem("articleID", JSON.stringify(id));
   };
@@ -29,11 +26,11 @@ function Articles() {
         </p>
       </div>
       <div className="articleCards">
-        {articles.map((item, id) => {
+        {data.map((item, id) => {
           return (
             <NavLink
               className="articleCard"
-              to={"/articles/" + item.location}
+              to={"/articles/" + item.id}
               key={id}
               onClick={() => {
                 setItem(item.id);

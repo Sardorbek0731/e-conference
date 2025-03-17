@@ -2,14 +2,13 @@
 import "./Article.css";
 
 // Data
-import { articles } from "../../data/data";
 
-function Article() {
+function Article({ data }) {
   const articleID = JSON.parse(localStorage.getItem("articleID"));
 
   return (
     <section className="article container">
-      {articles.map((item, id) => {
+      {data.map((item, id) => {
         return (
           articleID === item.id && (
             <div className="articleItem" key={id}>

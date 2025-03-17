@@ -3,13 +3,13 @@ import { getFirestore } from "firebase/firestore";
 import { getAuth } from "firebase/auth";
 
 const firebaseConfig = {
-    apiKey: process.env.FIREBASE_API_KEY,
-    authDomain: process.env.FIREBASE_AUTH_DOMAIN,
-    projectId: process.env.FIREBASE_PROJECT_ID,
-    storageBucket: process.env.FIREBASE_STORAGE_BUCKET,
-    messagingSenderId: process.env.FIREBASE_MESSAGING_SENDER_ID,
-    appId: process.env.FIREBASE_APP_ID,
-    measurementId: process.env.FIREBASE_MEASUREMENT_ID
+  apiKey: "AIzaSyC8RPb3qckMuleM3IW_b_AfRq_hDeI8d18",
+  authDomain: "econference-e508a.firebaseapp.com",
+  projectId: "econference-e508a",
+  storageBucket: "econference-e508a.firebasestorage.app",
+  messagingSenderId: "628575634022",
+  appId: "1:628575634022:web:0a71f1ad3c75e9509923a7",
+  measurementId: "G-P5B2E27K9X",
 };
 
 const app = initializeApp(firebaseConfig);
