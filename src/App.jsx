@@ -43,7 +43,7 @@ function App() {
         <Routes>
           <Route path="/" element={<Main />} />
           <Route path="/articles" element={<Articles data={data} />} />
-          <Route path="/articles/*" element={<Article data={data} />} />
+          <Route path="/articles/:articleId" element={<Article />} />
           <Route path="/login" element={<Login />} />
           <Route path="/manage-articles" element={<ManageArticles />} />
         </Routes>
