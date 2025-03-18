@@ -15,7 +15,7 @@ function Article({ data }) {
             "@type": "Person",
             "name": data[0].author
         },
-        "datePublished": "2025-03-06",
+        "datePublished": data[0].createdAt,
         "dateModified": "2025-03-06",
         "mainEntityOfPage": {
             "@type": "WebPage",
@@ -23,7 +23,7 @@ function Article({ data }) {
         },
         "publisher": {
             "@type": "Organization",
-            "name": "Sizning sayt nomingiz",
+            "name": "E-Conference Online",
             "logo": {
                 "@type": "ImageObject",
                 "url": "https://online-article.netlify.app/logo.png"
