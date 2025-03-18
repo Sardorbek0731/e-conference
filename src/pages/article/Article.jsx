@@ -3,6 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById } from "../../services/articleService.js";
 import BackButton from "../../components/backButton/BackButton.jsx";
+import download from "../../assets/icons/articles/download.png";
 
 function Article() {
   const { articleId } = useParams();
@@ -18,6 +19,7 @@ function Article() {
       try {
         const data = await getArticleById(articleId);
         setArticle(data);
+        return data;
       } catch (err) {
         setError(err.message);
       } finally {
@@ -70,7 +72,14 @@ function Article() {
     <>
       <title>{article.title}</title>
       <section className="article container">
-        <BackButton to="/articles" />
+        <div className="articleButtons">
+          <BackButton to="/articles" />
+
+          <span className="articlePDF">
+            <img src={download} alt="Download Icon" />
+            PDF
+          </span>
+        </div>
         <div className="articleItem">
           <h1>{article.title}</h1>
           <p>{article.text}</p>

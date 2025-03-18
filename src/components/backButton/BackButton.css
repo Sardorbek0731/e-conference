@@ -1,10 +1,9 @@
 .backBtn {
   display: flex;
   align-items: center;
-  position: absolute;
-  right: 9rem;
   color: var(--main-color);
   font-size: 1rem;
+  margin-right: 2rem;
 }
 
 .backBtn img {

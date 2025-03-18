@@ -53,9 +53,11 @@ function Articles() {
 
   return (
     <section className="articles">
-      <BackButton to="/" />
       <div className="sectionTitle">
-        <span>Articles - Статьи</span>
+        <div className="sectionTitle_row">
+          <BackButton to="/" />
+          <span>Articles - Статьи</span>
+        </div>
         <h1>Maqolalar</h1>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem

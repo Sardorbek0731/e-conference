@@ -1,3 +1,18 @@
-.article {
-  height: 100vh;
+.articleButtons {
+  display: flex;
+  align-items: center;
+  margin-bottom: 2rem;
+}
+
+.articlePDF {
+  display: flex;
+  align-items: center;
+  color: var(--main-color);
+  font-size: 1.7rem;
+  line-height: 1;
+  cursor: pointer;
+}
+.articlePDF img {
+  width: 1.4rem;
+  margin-right: 0.2rem;
 }
