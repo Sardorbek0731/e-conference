@@ -1,13 +1,17 @@
 // CSS
 import "./Article.css";
+
+// React Hooks
 import { useEffect } from "react";
 
-// Data
+// React Router DOM
+import { NavLink } from "react-router-dom";
 
-function Article({ data }) {
-  const getData = JSON.parse(localStorage.getItem("data"))
-    ? JSON.parse(localStorage.getItem("data"))
-    : data;
+// Components
+import BackButton from "../../components/backButton/BackButton";
+
+function Article() {
+  const getData = JSON.parse(localStorage.getItem("data"));
 
   const articleData = {
     "@context": "https://schema.org",
@@ -53,6 +57,7 @@ function Article({ data }) {
     <>
       <title>{getData.title}</title>
       <section className="article container">
+        <BackButton to="/articles" />
         <div className="articleItem">
           <h1>{getData.title}</h1>
           <p>{getData.text}</p>

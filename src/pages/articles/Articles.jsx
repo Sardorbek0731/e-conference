@@ -10,13 +10,50 @@ import image from "../../assets/logo/logo.png";
 // Icons
 import download from "../../assets/icons/articles/download.png";
 
-function Articles({ data }) {
-  const setData = (data) => {
+// Components
+import BackButton from "../../components/backButton/BackButton";
+
+// React Hooks
+import { useEffect, useState } from "react";
+
+// Methods
+import { getArticles } from "../../services/articleService";
+
+function Articles() {
+  const [data, setData] = useState([]);
+
+  useEffect(() => {
+    const fetchArticles = async () => {
+      const data = await getArticles();
+
+      // data.map((item) => {
+      //   let newName = "";
+
+      //   item.title.split("").map((letter) => {
+      //     if (letter == " ") {
+      //       letter = "-";
+      //       newName += letter;
+      //     } else {
+      //       newName += letter;
+      //     }
+      //   });
+
+      //   item.location = newName;
+      // });
+
+      setData(data);
+    };
+
+    fetchArticles();
+  }, []);
+
+  const setStoreData = (data) => {
     localStorage.setItem("data", JSON.stringify(data));
   };
 
   return (
     <section className="articles">
+      <BackButton to="/" />
       <div className="sectionTitle">
         <span>Articles - Статьи</span>
         <h1>Maqolalar</h1>
@@ -33,7 +70,7 @@ function Articles({ data }) {
               to={"/articles/" + item.id}
               key={id}
               onClick={() => {
-                setData(item);
+                setStoreData(item);
               }}
             >
               <div className="articleHeader">
