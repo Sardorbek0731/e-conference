@@ -1,0 +1,12 @@
+.backBtn {
+  display: flex;
+  align-items: center;
+  color: var(--main-color);
+  font-size: 1rem;
+  margin-right: 2rem;
+}
+
+.backBtn img {
+  width: 1.5rem;
+  margin-right: 0.2rem;
+}

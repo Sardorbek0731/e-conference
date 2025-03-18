@@ -15,24 +15,7 @@ import ManageArticles from "./pages/manageArticles/ManageArticles";
 // React Router DOM
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
-// React Hooks
-import { useEffect, useState } from "react";
-
-// Methods
-import { getArticles } from "./services/articleService";
-
 function App() {
-  const [data, setData] = useState([]);
-
-  useEffect(() => {
-    const fetchArticles = async () => {
-      const data = await getArticles();
-      setData(data);
-    };
-
-    fetchArticles();
-  }, []);
-
   return (
     <>
       <BrowserRouter
@@ -42,7 +25,7 @@ function App() {
 
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="/articles" element={<Articles data={data} />} />
+          <Route path="/articles" element={<Articles />} />
           <Route path="/articles/:articleId" element={<Article />} />
           <Route path="/login" element={<Login />} />
           <Route path="/manage-articles" element={<ManageArticles />} />

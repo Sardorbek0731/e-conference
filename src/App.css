@@ -32,6 +32,10 @@ a {
   width: 40%;
   margin-bottom: 3rem;
 }
+.sectionTitle_row {
+  display: flex;
+  align-items: center;
+}
 .sectionTitle span {
   font-size: 1rem;
   color: var(--main-color);

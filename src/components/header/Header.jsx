@@ -10,23 +10,8 @@ import logo from "../../assets/logo/logo.png";
 // Data
 import { header } from "../../data/data";
 
-// React Hooks
-import { useEffect, useRef } from "react";
-
 function Header() {
   const location = useLocation();
-
-  const prevPage = useRef(
-    JSON.parse(localStorage.getItem("visitedPages"))?.[0] || "/"
-  );
-
-  useEffect(() => {
-    const visitedPages = [prevPage.current, location.pathname];
-
-    localStorage.setItem("visitedPages", JSON.stringify(visitedPages));
-
-    prevPage.current = location.pathname;
-  }, [location.pathname]);
 
   return (
     <header className={location.pathname.length > 1 ? "otherPage" : ""}>
