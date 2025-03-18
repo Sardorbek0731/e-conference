@@ -16,7 +16,7 @@ const Login = () => {
     try {
       const user = await login(email, password);
       if (user.accessToken) {
-        window.location = "/controlArticles";
+        window.location = "/manage-articles";
       }
     } catch (error) {
       alert("Parol xato kiritildi: " + error);

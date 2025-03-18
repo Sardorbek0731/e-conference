@@ -11,8 +11,8 @@ import image from "../../assets/logo/logo.png";
 import download from "../../assets/icons/articles/download.png";
 
 function Articles({ data }) {
-  const setItem = (id) => {
-    localStorage.setItem("articleID", JSON.stringify(id));
+  const setData = (data) => {
+    localStorage.setItem("data", JSON.stringify(data));
   };
 
   return (
@@ -33,7 +33,7 @@ function Articles({ data }) {
               to={"/articles/" + item.id}
               key={id}
               onClick={() => {
-                setItem(item.id);
+                setData(item);
               }}
             >
               <div className="articleHeader">

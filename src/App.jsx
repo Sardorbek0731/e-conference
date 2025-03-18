@@ -10,7 +10,7 @@ import Main from "./pages/main/Main";
 import Articles from "./pages/articles/Articles";
 import Article from "./pages/article/Article";
 import Login from "./pages/login/Login";
-import ControlArticles from "./pages/controlArticles/ControlArticles";
+import ManageArticles from "./pages/manageArticles/ManageArticles";
 
 // React Router DOM
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -45,7 +45,7 @@ function App() {
           <Route path="/articles" element={<Articles data={data} />} />
           <Route path="/articles/*" element={<Article data={data} />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/controlArticles" element={<ControlArticles />} />
+          <Route path="/manage-articles" element={<ManageArticles />} />
         </Routes>
       </BrowserRouter>
     </>
