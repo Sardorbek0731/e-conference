@@ -1,6 +1,5 @@
 // CSS
 import "./Article.css";
-import { Helmet } from "react-helmet-async";
 
 // Data
 
@@ -10,7 +9,6 @@ function Article({ data }) {
   return (
       <>
         <div>
-          <Helmet>
             <title>{data[0].title}</title>
             <meta name="description" content={data[0].title} />
             <script type="application/ld+json">
@@ -30,7 +28,6 @@ function Article({ data }) {
                 "url": window.location.href
               })}
             </script>
-          </Helmet>
         </div>
         <section className="article container">
           {data.map((item, id) => {
