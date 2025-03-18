@@ -1,22 +1,9 @@
-// CSS
 import "./Articles.css";
-
-// React Router DOM
 import { NavLink } from "react-router-dom";
-
-// Images
 import image from "../../assets/logo/logo.png";
-
-// Icons
 import download from "../../assets/icons/articles/download.png";
-
-// Components
 import BackButton from "../../components/backButton/BackButton";
-
-// React Hooks
 import { useEffect, useState } from "react";
-
-// Methods
 import { getArticles } from "../../services/articleService";
 
 function Articles() {
@@ -25,22 +12,6 @@ function Articles() {
   useEffect(() => {
     const fetchArticles = async () => {
       const data = await getArticles();
-
-      // data.map((item) => {
-      //   let newName = "";
-
-      //   item.title.split("").map((letter) => {
-      //     if (letter == " ") {
-      //       letter = "-";
-      //       newName += letter;
-      //     } else {
-      //       newName += letter;
-      //     }
-      //   });
-
-      //   item.location = newName;
-      // });
-
       setData(data);
     };
 
