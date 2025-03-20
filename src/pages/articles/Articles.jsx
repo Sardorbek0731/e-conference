@@ -1,7 +1,7 @@
 import "./Articles.css";
 import { NavLink } from "react-router-dom";
 import image from "../../assets/logo/logo.png";
-import download from "../../assets/icons/articles/download.png";
+import download from "../../assets/icons/download.png";
 import BackButton from "../../components/backButton/BackButton";
 import Loading from "../../components/loading/Loading.jsx";
 import { useEffect, useState } from "react";
@@ -10,23 +10,30 @@ import { getArticles } from "../../services/articleService";
 function Articles() {
   const [data, setData] = useState([]);
   const [isPending, setIsPending] = useState(true);
+  const [error, setError] = useState(null);
 
   useEffect(() => {
     const fetchArticles = async () => {
-      const data = await getArticles();
-      data.map((item) => {
-        const date = new Date(item.createdAt.seconds * 1000);
+      try {
+        const data = await getArticles();
+        data.map((item) => {
+          const date = new Date(item.createdAt.seconds * 1000);
 
-        return (item.addedTime = date.toLocaleString([], {
-          year: "numeric",
-          month: "2-digit",
-          day: "2-digit",
-          hour: "2-digit",
-          minute: "2-digit",
-        }));
-      });
-      setData(data);
-      setIsPending(false);
+          return (item.addedTime = date.toLocaleString([], {
+            year: "numeric",
+            month: "2-digit",
+            day: "2-digit",
+            hour: "2-digit",
+            minute: "2-digit",
+          }));
+        });
+        setData(data);
+        return data;
+      } catch (err) {
+        setError(err.message);
+      } finally {
+        setIsPending(false);
+      }
     };
 
     fetchArticles();
@@ -37,16 +44,12 @@ function Articles() {
   };
 
   if (isPending) return <Loading isPending={isPending} />;
-
-  console.log(data);
+  if (error) return <p>Xatolik: {error}</p>;
 
   return (
     <section className="articles">
       <div className="sectionTitle">
-        <div className="sectionTitle_row">
-          <BackButton to="/" />
-          <span>Articles - Статьи</span>
-        </div>
+        <BackButton to="/" />
         <h1>Maqolalar</h1>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem
@@ -56,31 +59,30 @@ function Articles() {
       <div className="articleCards">
         {data.map((item, id) => {
           return (
-            <NavLink
-              className="articleCard"
-              to={"/articles/" + item.id}
-              key={id}
-              onClick={() => {
-                setStoreData(item);
-              }}
-            >
-              <div className="articleHeader">
-                <img src={image} alt="Article Image" />
-                <h1>{item.title}</h1>
-              </div>
-              <div className="articleBody">
-                <h3>
-                  <span>Muallif:</span> {item.author}
-                </h3>
+            <div className="articleCard" key={id}>
+              <NavLink
+                to={"/articles/" + item.id}
+                onClick={() => {
+                  setStoreData(item);
+                }}
+              >
+                <div className="articleHeader">
+                  <img src={image} alt="Article Image" />
+                  <h3>{item.title}</h3>
+                </div>
+                <div className="articleBody">
+                  <h4>
+                    <span>Muallif:</span> {item.author}
+                  </h4>
 
-                <h5>{item.addedTime}</h5>
+                  <h5>{item.addedTime}</h5>
+                </div>
+              </NavLink>
 
-                <span className="downloadPDF">
-                  <img src={download} alt="Download Icon" />
-                  PDF
-                </span>
-              </div>
-            </NavLink>
+              <span className="downloadPDF">
+                <img src={download} alt="Download Icon" />
+              </span>
+            </div>
           );
         })}
       </div>

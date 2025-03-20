@@ -3,7 +3,7 @@ import { useEffect, useState } from "react";
 import { useParams } from "react-router-dom";
 import { getArticleById } from "../../services/articleService.js";
 import BackButton from "../../components/backButton/BackButton.jsx";
-import download from "../../assets/icons/articles/download.png";
+import download from "../../assets/icons/arrows/down.png";
 import Loading from "../../components/loading/Loading.jsx";
 
 function Article() {
@@ -29,7 +29,9 @@ function Article() {
     };
 
     fetchArticle().then((article) => {
-      const publishedDate = new Date(article.createdAt.seconds * 1000 + article.createdAt.nanoseconds / 1e6).toISOString()
+      const publishedDate = new Date(
+        article.createdAt.seconds * 1000 + article.createdAt.nanoseconds / 1e6
+      ).toISOString();
       metaDescription.name = "description";
       metaDescription.content = article.title;
       script.type = "application/ld+json";
@@ -45,8 +47,7 @@ function Article() {
         dateModified: publishedDate,
         mainEntityOfPage: {
           "@type": "WebPage",
-          "@id":
-            `http://e-conference-online.com/articles/${article.id}`,
+          "@id": `http://e-conference-online.com/articles/${article.id}`,
         },
         publisher: {
           "@type": "Organization",
@@ -78,8 +79,10 @@ function Article() {
           <BackButton to="/articles" />
 
           <span className="articlePDF">
-            <img src={download} alt="Download Icon" />
-            PDF
+            <span className="downloadArticleIcon">
+              <img src={download} alt="Download Icon" />
+            </span>
+            Download (PDF)
           </span>
         </div>
         <div className="articleItem">

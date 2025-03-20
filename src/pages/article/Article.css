@@ -1,6 +1,7 @@
 .articleButtons {
   display: flex;
   align-items: center;
+  justify-content: space-between;
   margin-bottom: 2rem;
 }
 
@@ -8,11 +9,28 @@
   display: flex;
   align-items: center;
   color: var(--main-color);
-  font-size: 1.7rem;
-  line-height: 1;
   cursor: pointer;
+  font-size: 1rem;
+  font-weight: 500;
+  background-color: rgba(255, 255, 255, 0.8);
+  padding: 0.75rem;
+  border-radius: 0.1rem;
+  transition: all 0.3s;
+}
+.articlePDF:hover {
+  background-color: white;
+  box-shadow: 1rem 1rem 3rem rgba(0, 0, 0, 0.12);
+}
+.downloadArticleIcon {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 1.5rem;
+  height: 1.5rem;
+  background-color: var(--main-color);
+  margin-right: 0.5rem;
+  border-radius: 0.1rem;
 }
 .articlePDF img {
-  width: 1.4rem;
-  margin-right: 0.2rem;
+  width: 1.2rem;
 }
