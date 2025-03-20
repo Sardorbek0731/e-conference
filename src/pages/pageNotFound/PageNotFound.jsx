@@ -4,7 +4,7 @@ import BackButton from "../../components/backButton/BackButton";
 
 function PageNotFound() {
   return (
-    <section className="pageNotFound">
+    <section className="pageNotFound container">
       <BackButton to="/" />
       <div className="pageNotFound-img">
         <img src={pageNotFoundImg} alt="Page Not Found Image" />

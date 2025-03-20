@@ -43,7 +43,6 @@ function Articles() {
     localStorage.setItem("data", JSON.stringify(data));
   };
 
-  if (isPending) return <Loading isPending={isPending} />;
   if (error) return <p>Xatolik: {error}</p>;
 
   return (
@@ -56,36 +55,40 @@ function Articles() {
           molestias nulla odit esse.
         </p>
       </div>
-      <div className="articleCards">
-        {data.map((item, id) => {
-          return (
-            <div className="articleCard" key={id}>
-              <NavLink
-                to={"/articles/" + item.id}
-                onClick={() => {
-                  setStoreData(item);
-                }}
-              >
-                <div className="articleHeader">
-                  <img src={image} alt="Article Image" />
-                  <h3>{item.title}</h3>
-                </div>
-                <div className="articleBody">
-                  <h4>
-                    <span>Muallif:</span> {item.author}
-                  </h4>
+      {isPending ? (
+        <Loading isPending={isPending} />
+      ) : (
+        <div className="articleCards">
+          {data.map((item, id) => {
+            return (
+              <div className="articleCard" key={id}>
+                <NavLink
+                  to={"/articles/" + item.id}
+                  onClick={() => {
+                    setStoreData(item);
+                  }}
+                >
+                  <div className="articleHeader">
+                    <img src={image} alt="Article Image" />
+                    <h3>{item.title}</h3>
+                  </div>
+                  <div className="articleBody">
+                    <h4>
+                      <span>Muallif:</span> {item.author}
+                    </h4>
 
-                  <h5>{item.addedTime}</h5>
-                </div>
-              </NavLink>
+                    <h5>{item.addedTime}</h5>
+                  </div>
+                </NavLink>
 
-              <span className="downloadPDF">
-                <img src={download} alt="Download Icon" />
-              </span>
-            </div>
-          );
-        })}
-      </div>
+                <span className="downloadPDF">
+                  <img src={download} alt="Download Icon" />
+                </span>
+              </div>
+            );
+          })}
+        </div>
+      )}
     </section>
   );
 }

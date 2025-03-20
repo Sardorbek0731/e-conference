@@ -68,27 +68,32 @@ function Article() {
     };
   }, [articleId]);
 
-  if (isPending) return <Loading isPending={isPending} />;
   if (error) return <p>Xatolik: {error}</p>;
 
   return (
     <>
-      <title>{article.title}</title>
+      {!isPending && <title>{article.title}</title>}
       <section className="article container">
         <div className="articleButtons">
           <BackButton to="/articles" />
 
-          <span className="articlePDF">
-            <span className="downloadArticleIcon">
-              <img src={download} alt="Download Icon" />
+          {!isPending && (
+            <span className="articlePDF">
+              <span className="downloadArticleIcon">
+                <img src={download} alt="Download Icon" />
+              </span>
+              Download (PDF)
             </span>
-            Download (PDF)
-          </span>
+          )}
         </div>
-        <div className="articleItem">
-          <h1>{article.title}</h1>
-          <p>{article.text}</p>
-        </div>
+        {isPending ? (
+          <Loading isPending={isPending} />
+        ) : (
+          <div className="articleItem">
+            <h1>{article.title}</h1>
+            <p>{article.text}</p>
+          </div>
+        )}
       </section>
     </>
   );

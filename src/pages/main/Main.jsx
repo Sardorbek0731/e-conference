@@ -11,7 +11,18 @@ function Main() {
 
   return (
     <main>
-      <Loading isPending={isPending} />
+      <div className={isPending ? "main-loader" : "hidden"}>
+        <div className="lds-roller">
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+          <div></div>
+        </div>
+      </div>
       <Home />
     </main>
   );
