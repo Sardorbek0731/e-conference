@@ -2,7 +2,9 @@
 import "./ManageArticles";
 
 function ManageArticles() {
-  return <div>Manage-Articles</div>;
+  return (
+    <section className="manageArticles container">Manage-Articles</section>
+  );
 }
 
 export default ManageArticles;

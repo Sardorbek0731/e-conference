@@ -1,11 +1,7 @@
-// CSS
-import "./Login";
-
-// React Hooks
+import "./Login.css";
 import { useState } from "react";
-
-// Methods
 import { login } from "../../services/authService";
+import logo from "../../assets/logo/logo.png";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -18,29 +14,40 @@ const Login = () => {
       if (user.accessToken) {
         window.location = "/manage-articles";
       }
-    } catch (error) {
-      alert("Parol xato kiritildi: " + error);
+    } catch (err) {
+      alert("Email yoki parol xato kiritildi, iltimos qaytadan tekshiring !");
+      console.log(err);
     }
   };
 
   return (
-    <form onSubmit={handleSubmit}>
-      <input
-        type="email"
-        value={email}
-        onChange={(e) => setEmail(e.target.value)}
-        placeholder="Email"
-        required
-      />
-      <input
-        type="password"
-        value={password}
-        onChange={(e) => setPassword(e.target.value)}
-        placeholder="Parol"
-        required
-      />
-      <button type="submit">Sign In</button>
-    </form>
+    <section className="login">
+      <div className="loginLogo">
+        <img src={logo} alt="Logo Image" />
+      </div>
+      <div className="loginForm">
+        <form onSubmit={handleSubmit}>
+          <h1>Sign In</h1>
+          <input
+            className="email"
+            type="email"
+            value={email}
+            onChange={(e) => setEmail(e.target.value)}
+            placeholder="Email"
+            required
+          />
+          <input
+            className="password"
+            type="password"
+            value={password}
+            onChange={(e) => setPassword(e.target.value)}
+            placeholder="Password"
+            required
+          />
+          <button type="submit">Next</button>
+        </form>
+      </div>
+    </section>
   );
 };
 
