@@ -5,6 +5,7 @@ import Articles from "./pages/articles/Articles";
 import Article from "./pages/article/Article";
 import Login from "./pages/login/Login";
 import ManageArticles from "./pages/manageArticles/ManageArticles";
+import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
 
 function App() {
@@ -16,6 +17,7 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
+          <Route path="*" element={<PageNotFound />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/:articleId" element={<Article />} />
           <Route path="/login" element={<Login />} />

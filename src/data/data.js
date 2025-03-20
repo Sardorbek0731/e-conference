@@ -9,32 +9,32 @@ import contact from "../assets/icons/header/contact.png";
 export const header = [
   {
     icon: home,
-    title: "Bosh sahifa",
+    title: "Home",
     to: "/",
   },
   {
     icon: info,
-    title: "Ma'lumotlar",
+    title: "Information",
     to: "/",
   },
   {
     icon: articles,
-    title: "Maqolalar",
+    title: "Articles",
     to: "articles",
   },
   {
     icon: news,
-    title: "Yangiliklar",
+    title: "News",
     to: "/",
   },
   {
     icon: editorial,
-    title: "Tahririyat",
+    title: "Editorship",
     to: "/",
   },
   {
     icon: contact,
-    title: "Bog'lanish",
+    title: "Contact",
     to: "/",
   },
 ];

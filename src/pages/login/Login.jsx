@@ -39,7 +39,7 @@ const Login = () => {
         placeholder="Parol"
         required
       />
-      <button type="submit">Kirish</button>
+      <button type="submit">Sign In</button>
     </form>
   );
 };

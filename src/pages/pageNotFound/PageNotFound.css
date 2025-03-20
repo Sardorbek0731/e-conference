@@ -1,0 +1,17 @@
+.pageNotFound {
+  display: flex;
+  justify-content: center;
+  align-items: flex-start;
+  flex-direction: column;
+  height: 100vh;
+  padding: 0 9rem;
+}
+
+.pageNotFound-img {
+  display: flex;
+  width: 100%;
+  justify-content: center;
+}
+.pageNotFound-img img {
+  width: 38rem;
+}

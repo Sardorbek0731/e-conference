@@ -50,7 +50,7 @@ function Articles() {
     <section className="articles">
       <div className="sectionTitle">
         <BackButton to="/" />
-        <h1>Maqolalar</h1>
+        <h1>Articles</h1>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem
           molestias nulla odit esse.
