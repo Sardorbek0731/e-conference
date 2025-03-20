@@ -85,6 +85,10 @@
   display: flex;
   align-items: center;
   margin-right: 1rem;
+  transition: all 1s;
+}
+.socialNetworks a:hover {
+  transform: rotate(360deg);
 }
 .socialNetworks a:last-child {
   margin-right: 0;

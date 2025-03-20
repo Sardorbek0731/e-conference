@@ -16,18 +16,16 @@ function Articles() {
     const fetchArticles = async () => {
       try {
         const data = await getArticles();
-        data.map((item) => {
-          const date = new Date(item.createdAt.seconds * 1000);
 
-          return (item.addedTime = date.toLocaleString([], {
-            year: "numeric",
-            month: "2-digit",
-            day: "2-digit",
-            hour: "2-digit",
-            minute: "2-digit",
-          }));
+        data.map((item) => {
+          const date = new Date(
+            item.createdAt.seconds * 1000 + item.createdAt.nanoseconds / 1e6
+          ).toLocaleString();
+
+          return (item.addedTime = date);
         });
         setData(data);
+
         return data;
       } catch (err) {
         setError(err.message);

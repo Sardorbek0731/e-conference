@@ -7,7 +7,11 @@ function Header() {
   const location = useLocation();
 
   return (
-    location.pathname !== "/login" && (
+    location.pathname !== "/login" &&
+    (location.pathname === "/" ||
+      location.pathname === "/articles" ||
+      location.pathname === "/manage-articles" ||
+      location.pathname.startsWith("/articles")) && (
       <header className={location.pathname.length > 1 ? "otherPage" : ""}>
         <NavLink to="/" className="logo">
           <img src={logo} alt="Logo Icon" />

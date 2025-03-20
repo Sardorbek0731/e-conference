@@ -5,6 +5,7 @@ import { getArticleById } from "../../services/articleService.js";
 import BackButton from "../../components/backButton/BackButton.jsx";
 import download from "../../assets/icons/arrows/down.png";
 import Loading from "../../components/loading/Loading.jsx";
+import PageNotFound from "../pageNotFound/PageNotFound.jsx";
 
 function Article() {
   const { articleId } = useParams();
@@ -20,8 +21,10 @@ function Article() {
       try {
         const data = await getArticleById(articleId);
         setArticle(data);
+
         return data;
       } catch (err) {
+        console.error("Fetch error:", err);
         setError(err.message);
       } finally {
         setIsPending(false);
