@@ -29,6 +29,7 @@ function Article() {
     };
 
     fetchArticle().then((article) => {
+      const publishedDate = new Date(article.createdAt.seconds * 1000 + article.createdAt.nanoseconds / 1e6).toISOString()
       metaDescription.name = "description";
       metaDescription.content = article.title;
       script.type = "application/ld+json";
@@ -40,19 +41,19 @@ function Article() {
           "@type": "Person",
           name: article.author,
         },
-        datePublished: article.createdAt,
-        dateModified: "2025-03-06",
+        datePublished: publishedDate,
+        dateModified: publishedDate,
         mainEntityOfPage: {
           "@type": "WebPage",
           "@id":
-            "https://online-article.netlify.app/articles/IWZohXfB6DclUZmDQm6J",
+            `http://e-conference-online.com/articles/${article.id}`,
         },
         publisher: {
           "@type": "Organization",
           name: "E-Conference Online",
           logo: {
             "@type": "ImageObject",
-            url: "https://online-article.netlify.app/logo.png",
+            url: "https://e-conference-online.com/assets/logo-Dzx-hfE_.png",
           },
         },
       });
