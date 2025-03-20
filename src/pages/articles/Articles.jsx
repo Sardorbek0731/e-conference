@@ -14,6 +14,17 @@ function Articles() {
   useEffect(() => {
     const fetchArticles = async () => {
       const data = await getArticles();
+      data.map((item) => {
+        const date = new Date(item.createdAt.seconds * 1000);
+
+        return (item.addedTime = date.toLocaleString([], {
+          year: "numeric",
+          month: "2-digit",
+          day: "2-digit",
+          hour: "2-digit",
+          minute: "2-digit",
+        }));
+      });
       setData(data);
       setIsPending(false);
     };
@@ -26,6 +37,8 @@ function Articles() {
   };
 
   if (isPending) return <Loading isPending={isPending} />;
+
+  console.log(data);
 
   return (
     <section className="articles">
