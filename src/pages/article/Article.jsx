@@ -4,11 +4,12 @@ import { useParams } from "react-router-dom";
 import { getArticleById } from "../../services/articleService.js";
 import BackButton from "../../components/backButton/BackButton.jsx";
 import download from "../../assets/icons/articles/download.png";
+import Loading from "../../components/loading/Loading.jsx";
 
 function Article() {
   const { articleId } = useParams();
   const [article, setArticle] = useState(null);
-  const [loading, setLoading] = useState(true);
+  const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
 
   useEffect(() => {
@@ -23,7 +24,7 @@ function Article() {
       } catch (err) {
         setError(err.message);
       } finally {
-        setLoading(false);
+        setIsPending(false);
       }
     };
 
@@ -65,7 +66,7 @@ function Article() {
     };
   }, [articleId]);
 
-  if (loading) return <p>Yuklanmoqda...</p>;
+  if (isPending) return <Loading isPending={isPending} />;
   if (error) return <p>Xatolik: {error}</p>;
 
   return (
