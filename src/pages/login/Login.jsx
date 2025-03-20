@@ -6,6 +6,9 @@ import logo from "../../assets/logo/logo.png";
 const Login = () => {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
+  const setLogin = (boolean) => {
+    localStorage.setItem("logined", JSON.stringify(boolean));
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -13,6 +16,7 @@ const Login = () => {
       const user = await login(email, password);
       if (user.accessToken) {
         window.location = "/manage-articles";
+        setLogin(true);
       }
     } catch (err) {
       alert("Email yoki parol xato kiritildi, iltimos qaytadan tekshiring !");
