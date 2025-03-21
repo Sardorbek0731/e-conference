@@ -14,7 +14,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
+  padding: 0 1.5rem;
   margin-bottom: 1.5rem;
 }
 .articlesCount {
@@ -48,7 +48,7 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 1rem;
+  padding: 1.5rem;
   padding-bottom: 1.5rem;
   background-color: rgba(0, 0, 0, 0.1);
   margin-bottom: 1.5rem;
@@ -59,10 +59,24 @@
   width: 4%;
   height: 1.05rem;
 }
-.allArticle-selected input,
-.articleSelected input {
+
+.allArticle-selectedInput,
+.articleSelected-input {
   width: 1.05rem;
   height: 1.05rem;
+  border-radius: 50%;
+  transition: all 0.2s;
+}
+.allArticle-selectedInput:hover,
+.articleSelected-input:hover {
+  box-shadow: 0 0 0 0.7rem rgba(62, 94, 255, 0.2);
+}
+
+.allArticle-selected input,
+.articleSelected input {
+  width: 100%;
+  height: 100%;
+  cursor: pointer;
 }
 
 .manageArticles-navbar h3 {
@@ -72,7 +86,7 @@
 }
 
 .manageArticles-body {
-  padding: 0 1rem;
+  padding: 0 1.5rem;
 }
 
 .manageArticles-navbarTitle {

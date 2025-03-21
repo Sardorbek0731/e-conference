@@ -27,7 +27,9 @@ function ManageArticles() {
         </div>
         <div className="manageArticles-navbar">
           <div className="allArticle-selected">
-            <input type="checkbox" />
+            <div className="allArticle-selectedInput">
+              <input type="checkbox" />
+            </div>
           </div>
           <h3 className="manageArticles-navbarTitle">Sarlavha</h3>
           <h3 className="manageArticles-navbarAuthor">Muallif</h3>
@@ -42,7 +44,9 @@ function ManageArticles() {
               return (
                 <div className="manageArticles-item" key={id}>
                   <div className="articleSelected">
-                    <input type="checkbox" />
+                    <div className="articleSelected-input">
+                      <input type="checkbox" />
+                    </div>
                   </div>
                   <h1 className="manageArticle-title">{item.title}</h1>
                   <h1 className="manageArticle-author">{item.author}</h1>
