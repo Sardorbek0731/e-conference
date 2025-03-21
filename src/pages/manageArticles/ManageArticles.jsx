@@ -2,6 +2,8 @@ import "./ManageArticles.css";
 import plus from "../../assets/icons/plus.png";
 import Loading from "../../components/loading/Loading";
 import { useFetch } from "../../hooks/useFetch";
+import editIcon from "../../assets/icons/edit.png";
+import deleteIcon from "../../assets/icons/delete.png";
 
 function ManageArticles() {
   const { data, isPending, error } = useFetch();
@@ -30,6 +32,7 @@ function ManageArticles() {
           <h3 className="manageArticles-navbarTitle">Sarlavha</h3>
           <h3 className="manageArticles-navbarAuthor">Muallif</h3>
           <h3 className="manageArticles-navbarCreatedAt">Qo'shilgan vaqt</h3>
+          <h3 className="manageArticles-navbarEdit">Tahrirlash</h3>
         </div>
         {isPending ? (
           <Loading isPending={isPending} />
@@ -44,6 +47,14 @@ function ManageArticles() {
                   <h1 className="manageArticle-title">{item.title}</h1>
                   <h1 className="manageArticle-author">{item.author}</h1>
                   <h1 className="manageArticle-createdAt">{item.addedTime}</h1>
+                  <div className="manageArticle-Buttons">
+                    <button className="manageArticle-editButton">
+                      <img src={editIcon} alt="Edit Icon" />
+                    </button>
+                    <button className="manageArticle-deleteButton">
+                      <img src={deleteIcon} alt="Delete Icon" />
+                    </button>
+                  </div>
                 </div>
               );
             })}
