@@ -4,38 +4,10 @@ import image from "../../assets/logo/logo.png";
 import download from "../../assets/icons/download.png";
 import BackButton from "../../components/backButton/BackButton";
 import Loading from "../../components/loading/Loading.jsx";
-import { useEffect, useState } from "react";
-import { getArticles } from "../../services/articleService";
+import { useFetch } from "../../hooks/useFetch.jsx";
 
 function Articles() {
-  const [data, setData] = useState([]);
-  const [isPending, setIsPending] = useState(true);
-  const [error, setError] = useState(null);
-
-  useEffect(() => {
-    const fetchArticles = async () => {
-      try {
-        const data = await getArticles();
-
-        data.map((item) => {
-          const date = new Date(
-            item.createdAt.seconds * 1000 + item.createdAt.nanoseconds / 1e6
-          ).toLocaleString();
-
-          return (item.addedTime = date);
-        });
-        setData(data);
-
-        return data;
-      } catch (err) {
-        setError(err.message);
-      } finally {
-        setIsPending(false);
-      }
-    };
-
-    fetchArticles();
-  }, []);
+  const { data, isPending, error } = useFetch();
 
   const setStoreData = (data) => {
     localStorage.setItem("data", JSON.stringify(data));

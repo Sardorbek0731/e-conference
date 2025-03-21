@@ -1,0 +1,106 @@
+.manageArticles-container {
+  position: relative;
+  padding: 0 7.7rem;
+  margin-bottom: 3rem;
+}
+.manageArticles {
+  background-color: white;
+  border-radius: 0.1rem;
+  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.12);
+  padding: 1.5rem 1rem;
+  min-height: 70vh;
+}
+.manageArticles-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  margin-bottom: 1.5rem;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+}
+.articlesCount {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+.articlesAdd-button {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #15c756;
+  color: white;
+  border-radius: 0.1rem;
+  line-height: 1;
+  transition: all 0.3s;
+}
+.articlesAdd-button:hover {
+  background-color: #149c46;
+}
+.articlesAdd-button img {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+
+.manageArticles-navbar {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding-bottom: 1.5rem;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.3);
+  margin-bottom: 1.5rem;
+}
+
+.allArticle-selected,
+.articleSelected {
+  width: 5%;
+  height: 1.05rem;
+}
+.allArticle-selected input,
+.articleSelected input {
+  width: 1.05rem;
+  height: 1.05rem;
+}
+
+.manageArticles-navbar h3 {
+  font-size: 1.05rem;
+  font-weight: 500;
+  line-height: 1;
+  color: rgba(69, 69, 87, 0.8);
+}
+
+.manageArticles-navbarTitle {
+  width: 45%;
+}
+.manageArticles-navbarAuthor {
+  width: 30%;
+}
+.manageArticles-navbarCreatedAt {
+  width: 20%;
+}
+
+.manageArticles-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.manageArticles-item h1 {
+  font-size: 1.05rem;
+  font-weight: 500;
+}
+
+.manageArticle-title {
+  width: 45%;
+}
+
+.manageArticle-author {
+  width: 30%;
+}
+
+.manageArticle-createdAt {
+  width: 20%;
+}

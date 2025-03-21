@@ -5,7 +5,6 @@ import { getArticleById } from "../../services/articleService.js";
 import BackButton from "../../components/backButton/BackButton.jsx";
 import download from "../../assets/icons/arrows/down.png";
 import Loading from "../../components/loading/Loading.jsx";
-import PageNotFound from "../pageNotFound/PageNotFound.jsx";
 
 function Article() {
   const { articleId } = useParams();
