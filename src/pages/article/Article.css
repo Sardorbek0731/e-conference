@@ -1,3 +1,7 @@
+.article {
+  margin-bottom: 3rem;
+}
+
 .articleButtons {
   display: flex;
   align-items: center;

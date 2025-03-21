@@ -11,6 +11,7 @@ function Header() {
     (location.pathname === "/" ||
       location.pathname === "/articles" ||
       location.pathname === "/manage-articles" ||
+      location.pathname === "/contact" ||
       location.pathname.startsWith("/articles")) && (
       <header className={location.pathname.length > 1 ? "otherPage" : ""}>
         <NavLink to="/" className="logo">

@@ -4,6 +4,7 @@ import Main from "./pages/main/Main";
 import Articles from "./pages/articles/Articles";
 import Article from "./pages/article/Article";
 import Login from "./pages/login/Login";
+import Contact from "./pages/contact/Contact";
 import ManageArticles from "./pages/manageArticles/ManageArticles";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import { BrowserRouter, Routes, Route } from "react-router-dom";
@@ -22,6 +23,7 @@ function App() {
           <Route path="/articles/:articleId" element={<Article />} />
           <Route path="/login" element={<Login />} />
           <Route path="/manage-articles" element={<ManageArticles />} />
+          <Route path="/contact" element={<Contact />} />
         </Routes>
       </BrowserRouter>
     </>

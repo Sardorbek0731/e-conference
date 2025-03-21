@@ -35,6 +35,6 @@ export const header = [
   {
     icon: contact,
     title: "Contact",
-    to: "/",
+    to: "contact",
   },
 ];
