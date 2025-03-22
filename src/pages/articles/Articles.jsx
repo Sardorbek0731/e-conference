@@ -27,15 +27,7 @@ function Articles() {
         <div className="articleCards">
           {data.map(({ id, title, author, addedTime }) => (
             <div className="articleCard" key={id}>
-              <NavLink
-                to={`/articles/${id}`}
-                onClick={() =>
-                  localStorage.setItem(
-                    "data",
-                    JSON.stringify({ id, title, author, addedTime })
-                  )
-                }
-              >
+              <NavLink to={`/articles/${id}`}>
                 <div className="articleHeader">
                   <img src={image} alt="Article Image" />
                   <h3>{title}</h3>
