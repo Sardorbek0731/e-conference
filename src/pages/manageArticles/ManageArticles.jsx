@@ -9,8 +9,8 @@ import { useFetch } from "../../hooks/useFetch";
 import { deleteArticle } from "../../services/articleService";
 
 function ManageArticles() {
+  const { data, isPending, error, fetchArticles } = useFetch();
   const [isModalOpen, setIsModalOpen] = useState(false);
-  const { data, isPending, error, refetch } = useFetch();
 
   if (!JSON.parse(localStorage.getItem("logined"))) {
     window.location = "/login";
@@ -20,7 +20,7 @@ function ManageArticles() {
   const handleDelete = async (id) => {
     try {
       await deleteArticle(id);
-      refetch();
+      await fetchArticles();
     } catch (error) {
       console.error("Maqolani o‘chirishda xatolik:", error);
     }
@@ -73,7 +73,12 @@ function ManageArticles() {
           </div>
         )}
       </div>
-      {isModalOpen && <AddArticle closeModal={() => setIsModalOpen(false)} />}
+      {isModalOpen && (
+        <AddArticle
+          setIsModalOpen={setIsModalOpen}
+          fetchArticles={fetchArticles}
+        />
+      )}
     </section>
   );
 }

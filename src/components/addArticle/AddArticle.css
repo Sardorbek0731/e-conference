@@ -96,3 +96,32 @@
 .addArticle-button {
   margin-top: 5rem;
 }
+
+.loading {
+  width: 1rem;
+  height: 1rem;
+  border: 0.15rem solid rgba(255, 255, 255, 0);
+  border-top-color: rgb(255, 255, 255);
+  border-right-color: rgb(255, 255, 255);
+  border-bottom-color: rgb(255, 255, 255);
+  border-radius: 50%;
+  animation: spin 1s linear infinite;
+  margin-right: 0.5rem;
+}
+
+@keyframes spin {
+  0% {
+    transform: rotate(0deg);
+  }
+  100% {
+    transform: rotate(360deg);
+  }
+}
+
+.disabledButton {
+  cursor: no-drop;
+  background-color: #1be88c;
+}
+.disabledButton:hover {
+  background-color: #1be88c;
+}

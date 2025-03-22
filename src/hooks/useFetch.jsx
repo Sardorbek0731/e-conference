@@ -31,11 +31,7 @@ export function useFetch() {
 
   useEffect(() => {
     fetchArticles();
-  });
+  }, []);
 
-  const refetch = () => {
-    fetchArticles();
-  };
-
-  return { data, isPending, error, refetch };
+  return { data, isPending, error, fetchArticles };
 }
