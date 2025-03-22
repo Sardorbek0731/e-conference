@@ -4,9 +4,15 @@ import Loading from "../../components/loading/Loading";
 import { useFetch } from "../../hooks/useFetch";
 import editIcon from "../../assets/icons/edit.png";
 import deleteIcon from "../../assets/icons/delete.png";
+import AddArticle from "../../components/addArticle/AddArticle";
+import { useState } from "react";
 
 function ManageArticles() {
   const { data, isPending, error } = useFetch();
+  const [isModalOpen, setIsModalOpen] = useState(false);
+
+  const openModal = () => setIsModalOpen(true);
+  const closeModal = () => setIsModalOpen(false);
 
   const logined = JSON.parse(localStorage.getItem("logined"));
   if (!logined) {
@@ -20,7 +26,7 @@ function ManageArticles() {
       <div className="manageArticles">
         <div className="manageArticles-header">
           <h3 className="articlesCount">1 ta maqola</h3>
-          <button className="articlesAdd-button">
+          <button className="openAddArticle-modal" onClick={openModal}>
             <img src={plus} alt="Plus Icon" />
             Qo'shish
           </button>
@@ -65,6 +71,7 @@ function ManageArticles() {
           </div>
         )}
       </div>
+      {isModalOpen && <AddArticle closeModal={closeModal} />}
     </section>
   );
 }

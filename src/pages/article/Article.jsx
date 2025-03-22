@@ -91,10 +91,14 @@ function Article() {
         {isPending ? (
           <Loading isPending={isPending} />
         ) : (
-          <div className="articleItem">
+          <>
             <h1>{article.title}</h1>
-            <p>{article.text}</p>
-          </div>
+            <h1>{article.author}</h1>
+            <div
+              className="articleItem"
+              dangerouslySetInnerHTML={{ __html: article.content }}
+            ></div>
+          </>
         )}
       </section>
     </>

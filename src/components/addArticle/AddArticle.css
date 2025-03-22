@@ -1,0 +1,98 @@
+.overlay {
+  position: fixed;
+  left: 0;
+  top: 0;
+  bottom: 0;
+  right: 0;
+  background-color: rgba(255, 255, 255, 0.2);
+  backdrop-filter: blur(7px);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.addArticle {
+  background-color: white;
+  padding: 2.6rem;
+  border-radius: 0.1rem;
+  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.3);
+}
+
+.modalTitle {
+  font-size: 1.9rem;
+  font-family: "Averia Serif Libre", serif;
+}
+
+.modalHeader {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 2.6rem;
+  padding-bottom: 2.6rem;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.25);
+}
+
+.modalBody {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-end;
+}
+
+.closeModal {
+  background-color: rgb(255, 74, 74);
+  border: none;
+  outline: none;
+  width: 2.7rem;
+  height: 2.7rem;
+  border-radius: 0.8rem;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.closeModal:hover {
+  background-color: rgb(231, 11, 11);
+  box-shadow: 0.5rem 0.5rem 2.5rem rgba(0, 0, 0, 0.2);
+}
+.closeModal img {
+  width: 1.4rem;
+  height: 1.4rem;
+}
+
+.addArticle-simpleInputs {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  width: 100%;
+  margin-bottom: 1.3rem;
+}
+.addArticle-simpleInputs label {
+  display: flex;
+  flex-direction: column;
+  width: 45%;
+  font-size: 1.1rem;
+}
+
+.addArticle-simpleInputs input {
+  padding: 0.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.2);
+  outline: none;
+  margin-top: 0.5rem;
+  border-radius: 0.1rem;
+  transition: all 0.3s;
+  font-size: 1rem;
+}
+.addArticle-simpleInputs input:hover,
+.addArticle-simpleInputs input:focus {
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.reactQuill {
+  width: 40rem;
+  height: 17rem;
+}
+
+.addArticle-button {
+  margin-top: 5rem;
+}
