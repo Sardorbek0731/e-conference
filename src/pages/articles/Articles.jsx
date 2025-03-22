@@ -1,7 +1,7 @@
 import "./Articles.css";
 import { NavLink } from "react-router-dom";
 import image from "../../assets/logo/logo.png";
-import download from "../../assets/icons/download.png";
+import download from "../../assets/icons/arrows/down-mainColor.png";
 import BackButton from "../../components/backButton/BackButton";
 import Loading from "../../components/loading/Loading.jsx";
 import { useFetch } from "../../hooks/useFetch.jsx";
