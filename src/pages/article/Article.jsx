@@ -20,10 +20,8 @@ function Article() {
       try {
         const data = await getArticleById(articleId);
         setArticle(data);
-
         return data;
       } catch (err) {
-        console.error("Fetch error:", err);
         setError(err.message);
       } finally {
         setIsPending(false);

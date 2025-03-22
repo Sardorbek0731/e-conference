@@ -9,10 +9,6 @@ import { useFetch } from "../../hooks/useFetch.jsx";
 function Articles() {
   const { data, isPending, error } = useFetch();
 
-  const setStoreData = (data) => {
-    localStorage.setItem("data", JSON.stringify(data));
-  };
-
   if (error) return <p>Xatolik: {error}</p>;
 
   return (
@@ -29,34 +25,33 @@ function Articles() {
         <Loading isPending={isPending} />
       ) : (
         <div className="articleCards">
-          {data.map((item, id) => {
-            return (
-              <div className="articleCard" key={id}>
-                <NavLink
-                  to={"/articles/" + item.id}
-                  onClick={() => {
-                    setStoreData(item);
-                  }}
-                >
-                  <div className="articleHeader">
-                    <img src={image} alt="Article Image" />
-                    <h3>{item.title}</h3>
-                  </div>
-                  <div className="articleBody">
-                    <h4>
-                      <span>Muallif:</span> {item.author}
-                    </h4>
-
-                    <h5>{item.addedTime}</h5>
-                  </div>
-                </NavLink>
-
-                <span className="downloadPDF">
-                  <img src={download} alt="Download Icon" />
-                </span>
-              </div>
-            );
-          })}
+          {data.map(({ id, title, author, addedTime }) => (
+            <div className="articleCard" key={id}>
+              <NavLink
+                to={`/articles/${id}`}
+                onClick={() =>
+                  localStorage.setItem(
+                    "data",
+                    JSON.stringify({ id, title, author, addedTime })
+                  )
+                }
+              >
+                <div className="articleHeader">
+                  <img src={image} alt="Article Image" />
+                  <h3>{title}</h3>
+                </div>
+                <div className="articleBody">
+                  <h4>
+                    <span>Muallif:</span> {author}
+                  </h4>
+                  <h5>{addedTime}</h5>
+                </div>
+              </NavLink>
+              <span className="downloadPDF">
+                <img src={download} alt="Download Icon" />
+              </span>
+            </div>
+          ))}
         </div>
       )}
     </section>
