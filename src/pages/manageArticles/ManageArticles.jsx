@@ -1,16 +1,18 @@
 import "./ManageArticles.css";
-import plus from "../../assets/icons/plus.png";
+import plusIcon from "../../assets/icons/plus.png";
 import editIcon from "../../assets/icons/edit.png";
 import deleteIcon from "../../assets/icons/delete.png";
 import Loading from "../../components/loading/Loading";
 import AddArticle from "../../components/addArticle/AddArticle";
+import EditArticle from "../../components/editArticle/EditArticle";
 import { useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { deleteArticle } from "../../services/articleService";
 
 function ManageArticles() {
   const { data, isPending, error, fetchArticles } = useFetch();
-  const [isModalOpen, setIsModalOpen] = useState(false);
+  const [openAddArticle, setOpenAddArticle] = useState(false);
+  const [openEditArticle, setOpenEditArticle] = useState(false);
 
   if (!JSON.parse(localStorage.getItem("logined"))) {
     window.location = "/login";
@@ -26,6 +28,13 @@ function ManageArticles() {
     }
   };
 
+  const handleEdit = (id, title, author, content) => {
+    localStorage.setItem(
+      "editArticle",
+      JSON.stringify({ id, title, author, content })
+    );
+  };
+
   if (error) return <p>Xatolik: {error}</p>;
 
   return (
@@ -35,9 +44,9 @@ function ManageArticles() {
           <h3 className="articlesCount">{data.length} ta maqola</h3>
           <button
             className="openAddArticle-modal"
-            onClick={() => setIsModalOpen(true)}
+            onClick={() => setOpenAddArticle(true)}
           >
-            <img src={plus} alt="Plus Icon" /> Qo'shish
+            <img src={plusIcon} alt="Plus Icon" /> Qo'shish
           </button>
         </div>
         <div className="manageArticles-navbar">
@@ -55,7 +64,7 @@ function ManageArticles() {
           <Loading isPending={isPending} />
         ) : (
           <div className="manageArticles-body">
-            {data.map(({ id, title, author, addedTime }) => (
+            {data.map(({ id, title, author, addedTime, content }) => (
               <div className="manageArticles-item" key={id}>
                 <div className="articleSelected">
                   <div className="articleSelected-input">
@@ -66,7 +75,13 @@ function ManageArticles() {
                 <h1 className="manageArticle-author">{author}</h1>
                 <h1 className="manageArticle-createdAt">{addedTime}</h1>
                 <div className="manageArticle-Buttons">
-                  <button className="manageArticle-editButton">
+                  <button
+                    className="manageArticle-editButton"
+                    onClick={() => {
+                      handleEdit(id, title, author, content);
+                      setOpenEditArticle(true);
+                    }}
+                  >
                     <img src={editIcon} alt="Edit Icon" />
                   </button>
                   <button
@@ -81,10 +96,18 @@ function ManageArticles() {
           </div>
         )}
       </div>
-      {isModalOpen && (
+      {openAddArticle && (
         <AddArticle
-          setIsModalOpen={setIsModalOpen}
+          setOpenAddArticle={setOpenAddArticle}
           fetchArticles={fetchArticles}
+          plusIcon={plusIcon}
+        />
+      )}
+      {openEditArticle && (
+        <EditArticle
+          setOpenEditArticle={setOpenEditArticle}
+          fetchArticles={fetchArticles}
+          editIcon={editIcon}
         />
       )}
     </section>

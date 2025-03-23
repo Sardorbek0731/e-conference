@@ -11,7 +11,7 @@
   justify-content: center;
 }
 
-.addArticle {
+.modalArticle {
   background-color: white;
   padding: 2.6rem;
   border-radius: 0.1rem;
@@ -70,7 +70,7 @@
 .addArticle-simpleInputs label {
   display: flex;
   flex-direction: column;
-  width: 45%;
+  width: 48%;
   font-size: 1.1rem;
 }
 
@@ -91,10 +91,6 @@
 .reactQuill {
   width: 40rem;
   height: 17rem;
-}
-
-.addArticle-button {
-  margin-top: 5rem;
 }
 
 .loading {
@@ -118,10 +114,30 @@
   }
 }
 
-.disabledButton {
+.addDisabledButton {
   cursor: no-drop;
   background-color: #1be88c;
 }
-.disabledButton:hover {
+.addDisabledButton:hover {
   background-color: #1be88c;
+}
+
+.addArticle-button {
+  margin-top: 5rem;
+}
+
+.editArticle-button {
+  margin-top: 5rem;
+  background-color: #9a36f7;
+}
+.editArticle-button:hover {
+  background-color: var(--main-color);
+}
+
+.editDisabledButton {
+  cursor: no-drop;
+  background-color: #9a36f7;
+}
+.editDisabledButton:hover {
+  background-color: #9a36f7;
 }

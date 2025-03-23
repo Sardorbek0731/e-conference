@@ -2,44 +2,24 @@ import "./Modal.css";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import closeIcon from "../../assets/icons/close.png";
-import plus from "../../assets/icons/plus.png";
-import { addArticle } from "../../services/articleService";
-import { useState } from "react";
 
-const Modal = ({ setIsModalOpen, fetchArticles }) => {
-  const [author, setAuthor] = useState("");
-  const [articleTitle, setArticleTitle] = useState("");
-  const [content, setContent] = useState("");
-  const [isPending, setIsPending] = useState(false);
-  const [disabledButton, setDisabledButton] = useState(true);
-
-  const handleSubmit = async (e) => {
-    e.preventDefault();
-    if (!author || !articleTitle || !content) {
-      return;
-    }
-
-    setIsPending(true);
-
-    try {
-      await addArticle({
-        author,
-        title: articleTitle,
-        photo: "",
-        createdAt: new Date(),
-        content,
-      });
-      await fetchArticles();
-      setIsModalOpen(false);
-      setIsPending(false);
-    } catch (err) {
-      console.error("Maqolani qo'shishda xatolik:", err);
-    }
-  };
-
+const Modal = ({
+  modalTitle,
+  modalBtnType,
+  setIsOpenModal,
+  handeledButton,
+  isPending,
+  author,
+  setAuthor,
+  articleTitle,
+  setArticleTitle,
+  content,
+  setContent,
+  disabledButton,
+  setDisabledButton,
+  iconType,
+}) => {
   const okButton = (author, articleTitle, content) => {
-    console.log(author, articleTitle, content);
-
     if (author.length && articleTitle.length && content.length) {
       setDisabledButton(false);
     } else {
@@ -49,10 +29,18 @@ const Modal = ({ setIsModalOpen, fetchArticles }) => {
 
   return (
     <div className="overlay">
-      <div className="addArticle">
+      <div className="modalArticle">
         <div className="modalHeader">
-          <span className="modalTitle">Maqola qo'shish</span>
-          <button className="closeModal" onClick={() => setIsModalOpen(false)}>
+          <span className="modalTitle">{modalTitle}</span>
+          <button
+            className="closeModal"
+            onClick={() => {
+              setIsOpenModal(false);
+              modalTitle === "Maqolani tahrirlash"
+                ? localStorage.removeItem("editArticle")
+                : "";
+            }}
+          >
             <img src={closeIcon} alt="Close Icon" />
           </button>
         </div>
@@ -93,27 +81,35 @@ const Modal = ({ setIsModalOpen, fetchArticles }) => {
           />
           {isPending ? (
             <button
-              className="openAddArticle-modal addArticle-button disabledButton"
+              className={
+                modalTitle === "Maqolani tahrirlash"
+                  ? "openAddArticle-modal editArticle-button editDisabledButton"
+                  : "openAddArticle-modal addArticle-button addDisabledButton"
+              }
               type="submit"
-              onClick={handleSubmit}
+              onClick={handeledButton}
               disabled="true"
             >
               <span className="loading"></span>
-              Qo'shish
+              {modalBtnType}
             </button>
           ) : (
             <button
               className={
                 disabledButton
-                  ? "openAddArticle-modal addArticle-button disabledButton"
+                  ? modalTitle === "Maqolani tahrirlash"
+                    ? "openAddArticle-modal editArticle-button editDisabledButton"
+                    : "openAddArticle-modal addArticle-button addDisabledButton"
+                  : modalTitle === "Maqolani tahrirlash"
+                  ? "openAddArticle-modal editArticle-button"
                   : "openAddArticle-modal addArticle-button"
               }
               type="submit"
-              onClick={handleSubmit}
+              onClick={handeledButton}
               disabled={disabledButton}
             >
-              <img src={plus} alt="Plus Icon" />
-              Qo'shish
+              <img src={iconType} alt="Plus Icon" />
+              {modalBtnType}
             </button>
           )}
         </form>
