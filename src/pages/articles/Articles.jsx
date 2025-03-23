@@ -1,7 +1,6 @@
 import "./Articles.css";
 import { NavLink } from "react-router-dom";
 import image from "../../assets/logo/logo.png";
-import download from "../../assets/icons/arrows/down-mainColor.png";
 import BackButton from "../../components/backButton/BackButton";
 import Loading from "../../components/loading/Loading.jsx";
 import { useFetch } from "../../hooks/useFetch.jsx";
@@ -26,8 +25,8 @@ function Articles() {
       ) : (
         <div className="articleCards">
           {data.map(({ id, title, author, addedTime }) => (
-            <div className="articleCard" key={id}>
-              <NavLink to={`/articles/${id}`}>
+            <div className="articleCard">
+              <NavLink to={`/articles/${id}`} key={id}>
                 <div className="articleHeader">
                   <img src={image} alt="Article Image" />
                   <h3>{title}</h3>
@@ -36,12 +35,19 @@ function Articles() {
                   <h4>
                     <span>Muallif:</span> {author}
                   </h4>
-                  <h5>{addedTime}</h5>
                 </div>
               </NavLink>
-              <span className="downloadPDF">
-                <img src={download} alt="Download Icon" />
-              </span>
+
+              <div className="articleFooter">
+                <div className="articleDownload-buttons">
+                  <span className="downloadPDF">Download (PDF)</span>
+                  <NavLink to="/" className="zenodo">
+                    ZENODO
+                  </NavLink>
+                </div>
+
+                <h5>{addedTime}</h5>
+              </div>
             </div>
           ))}
         </div>
