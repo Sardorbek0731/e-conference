@@ -143,11 +143,12 @@
 }
 .manageArticle-Buttons button.disabledDeleteButton:hover {
   background-color: rgb(255, 76, 76);
+  box-shadow: none;
 }
 
 .manageArticle-editButton {
   background-color: #af59ff;
-  margin-right: 0.75rem;
+  margin-right: 1rem;
 }
 .manageArticle-editButton:hover {
   background-color: var(--main-color);

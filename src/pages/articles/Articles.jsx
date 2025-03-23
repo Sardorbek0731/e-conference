@@ -1,8 +1,8 @@
 import "./Articles.css";
-import { NavLink } from "react-router-dom";
 import image from "../../assets/logo/logo.png";
 import BackButton from "../../components/backButton/BackButton";
 import Loading from "../../components/loading/Loading.jsx";
+import { NavLink } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch.jsx";
 
 function Articles() {
@@ -25,8 +25,8 @@ function Articles() {
       ) : (
         <div className="articleCards">
           {data.map(({ id, title, author, addedTime }) => (
-            <div className="articleCard">
-              <NavLink to={`/articles/${id}`} key={id}>
+            <div className="articleCard" key={id}>
+              <NavLink to={`/articles/${id}`}>
                 <div className="articleHeader">
                   <img src={image} alt="Article Image" />
                   <h3>{title}</h3>
