@@ -135,6 +135,12 @@
   border-radius: 0.5rem;
   transition: all 0.3s;
 }
+.manageArticle-Buttons button.disabledDeleteButton {
+  cursor: no-drop;
+}
+.manageArticle-Buttons button.disabledDeleteButton:hover {
+  background-color: rgb(255, 45, 45);
+}
 
 .manageArticle-editButton {
   background-color: #9a36f7;

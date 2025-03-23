@@ -1,5 +1,5 @@
 .articles {
-  padding: 0 8rem 3rem 9rem;
+  padding: 0 8rem 2rem 9rem;
 }
 
 .articleCards {
@@ -9,14 +9,16 @@
 }
 
 .articleCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: relative;
   margin-right: 1rem;
   background-color: white;
-  transition: all 0.3s;
   padding-bottom: 1.4rem;
-}
-.articleCard:hover {
-  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.2);
+  margin-bottom: 1rem;
+  border-radius: 0.1rem;
+  overflow: hidden;
 }
 
 .articleBody span {
@@ -36,9 +38,10 @@
   font-size: 1.1rem;
   font-weight: 600;
   padding: 1.3rem 1.3rem 0 1.3rem;
-  margin-bottom: 1rem;
   overflow: hidden;
   color: black;
+  height: 4.1rem;
+  margin-bottom: 0.9rem;
 }
 
 .articleBody {

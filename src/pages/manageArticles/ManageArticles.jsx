@@ -13,6 +13,7 @@ function ManageArticles() {
   const { data, isPending, error, fetchArticles } = useFetch();
   const [openAddArticle, setOpenAddArticle] = useState(false);
   const [openEditArticle, setOpenEditArticle] = useState(false);
+  const [clickedDelete, setClickedDelete] = useState([]);
 
   if (!JSON.parse(localStorage.getItem("logined"))) {
     window.location = "/login";
@@ -23,6 +24,7 @@ function ManageArticles() {
     try {
       await deleteArticle(id);
       await fetchArticles();
+      setClickedDelete([false, id]);
     } catch (error) {
       console.error("Maqolani o‘chirishda xatolik:", error);
     }
@@ -75,10 +77,22 @@ function ManageArticles() {
                     <img src={editIcon} alt="Edit Icon" />
                   </button>
                   <button
-                    className="manageArticle-deleteButton"
-                    onClick={() => handleDelete(id)}
+                    className={
+                      clickedDelete[0] && id === clickedDelete[1]
+                        ? "manageArticle-deleteButton disabledDeleteButton"
+                        : "manageArticle-deleteButton"
+                    }
+                    onClick={() => {
+                      handleDelete(id);
+                      setClickedDelete([true, id]);
+                    }}
+                    disabled={clickedDelete[0] && id === clickedDelete[1]}
                   >
-                    <img src={deleteIcon} alt="Delete Icon" />
+                    {clickedDelete[0] && id === clickedDelete[1] ? (
+                      <span className="loading centreLoading"></span>
+                    ) : (
+                      <img src={deleteIcon} alt="Delete Icon" />
+                    )}
                   </button>
                 </div>
               </div>
