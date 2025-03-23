@@ -15,7 +15,7 @@
   background-color: white;
   padding: 2.6rem;
   border-radius: 0.1rem;
-  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0 0 6rem rgba(0, 0, 0, 0.2);
 }
 
 .modalTitle {
@@ -39,7 +39,7 @@
 }
 
 .closeModal {
-  background-color: rgb(255, 74, 74);
+  background-color: rgb(255, 76, 76);
   border: none;
   outline: none;
   width: 2.7rem;
@@ -52,12 +52,19 @@
   transition: all 0.3s;
 }
 .closeModal:hover {
-  background-color: rgb(231, 11, 11);
+  background-color: rgb(234, 4, 4);
   box-shadow: 0.5rem 0.5rem 2.5rem rgba(0, 0, 0, 0.2);
 }
 .closeModal img {
   width: 1.4rem;
   height: 1.4rem;
+}
+.disabledCloseModal {
+  cursor: no-drop;
+}
+.disabledCloseModal:hover {
+  background-color: rgb(255, 76, 76);
+  box-shadow: none;
 }
 
 .addArticle-simpleInputs {
@@ -123,6 +130,7 @@
 }
 .addDisabledButton:hover {
   background-color: #1be88c;
+  box-shadow: none;
 }
 
 .addArticle-button {
@@ -131,16 +139,17 @@
 
 .editArticle-button {
   margin-top: 5rem;
-  background-color: #9a36f7;
+  background-color: #af59ff;
 }
 .editArticle-button:hover {
   background-color: var(--main-color);
+  box-shadow: 1rem 1rem 3rem rgba(0, 0, 0, 0.2);
 }
 
 .editDisabledButton {
   cursor: no-drop;
-  background-color: #9a36f7;
 }
 .editDisabledButton:hover {
-  background-color: #9a36f7;
+  background-color: #af59ff;
+  box-shadow: none;
 }

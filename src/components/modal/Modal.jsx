@@ -33,7 +33,10 @@ const Modal = ({
         <div className="modalHeader">
           <span className="modalTitle">{modalTitle}</span>
           <button
-            className="closeModal"
+            className={
+              isPending ? "closeModal disabledCloseModal" : "closeModal"
+            }
+            disabled={isPending}
             onClick={() => {
               setIsOpenModal(false);
               modalTitle === "Maqolani tahrirlash"
