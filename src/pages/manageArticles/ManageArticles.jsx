@@ -50,11 +50,6 @@ function ManageArticles() {
           </button>
         </div>
         <div className="manageArticles-navbar">
-          <div className="allArticle-selected">
-            <div className="allArticle-selectedInput">
-              <input type="checkbox" />
-            </div>
-          </div>
           <h3 className="manageArticles-navbarTitle">Sarlavha</h3>
           <h3 className="manageArticles-navbarAuthor">Muallif</h3>
           <h3 className="manageArticles-navbarCreatedAt">Qo'shilgan vaqt</h3>
@@ -66,11 +61,6 @@ function ManageArticles() {
           <div className="manageArticles-body">
             {data.map(({ id, title, author, addedTime, content }) => (
               <div className="manageArticles-item" key={id}>
-                <div className="articleSelected">
-                  <div className="articleSelected-input">
-                    <input type="checkbox" />
-                  </div>
-                </div>
                 <h1 className="manageArticle-title">{title}</h1>
                 <h1 className="manageArticle-author">{author}</h1>
                 <h1 className="manageArticle-createdAt">{addedTime}</h1>
