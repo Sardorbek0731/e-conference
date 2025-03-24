@@ -41,7 +41,7 @@ function Article() {
       const metaDescription = createMetaTag("description", article.title);
       const metaTitle = createMetaTag("citation_title", article.title);
       const metaAuthor = createMetaTag("citation_author", article.author);
-      const metaDate = createMetaTag("citation_publication_date", publishedDate);
+      const metaDate = createMetaTag("citation_publication_date", publishedDate.slice(0, 10));
       const metaJournal = createMetaTag("citation_journal_title", "E-Conference-Online");
       const metaPdfUrl = createMetaTag("citation_pdf_url", "https://e-conference-online.com/");
 
