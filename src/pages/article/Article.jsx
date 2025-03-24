@@ -34,10 +34,14 @@ function Article() {
     };
 
     fetchArticle().then((article) => {
+      const publishedDate = article.createdAt
+          ? new Date(article.createdAt.seconds * 1000 + article.createdAt.nanoseconds / 1e6).toISOString()
+          : new Date().toISOString();
+
       const metaDescription = createMetaTag("description", article.title);
       const metaTitle = createMetaTag("citation_title", article.title);
       const metaAuthor = createMetaTag("citation_author", article.author);
-      const metaDate = createMetaTag("citation_publication_date", article.createdAt);
+      const metaDate = createMetaTag("citation_publication_date", publishedDate);
       const metaJournal = createMetaTag("citation_journal_title", "E-Conference-Online");
       const metaPdfUrl = createMetaTag("citation_pdf_url", "https://e-conference-online.com/");
 
@@ -48,10 +52,6 @@ function Article() {
       document.head.appendChild(metaJournal);
       document.head.appendChild(metaPdfUrl);
       addedElements.push(metaDescription, metaTitle, metaAuthor, metaDate, metaJournal, metaPdfUrl);
-
-      const publishedDate = article.createdAt
-          ? new Date(article.createdAt.seconds * 1000 + article.createdAt.nanoseconds / 1e6).toISOString()
-          : new Date().toISOString();
 
       const script = document.createElement("script");
       script.type = "application/ld+json";
