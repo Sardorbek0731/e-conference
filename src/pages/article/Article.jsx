@@ -71,7 +71,6 @@ function Article() {
           },
         },
       });
-      document.head.appendChild(metaGSDOM)
       document.head.appendChild(metaDescription);
       document.head.appendChild(script);
     });
