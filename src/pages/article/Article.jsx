@@ -29,6 +29,15 @@ function Article() {
     };
 
     fetchArticle().then((article) => {
+      const metaGS = `
+      <meta name="citation_title" content="${article.title}">
+      <meta name="citation_author" content="${article.author}">
+      <meta name="citation_publication_date" content="${article.createdAt}">
+      <meta name="citation_journal_title" content="E-Conference-Online">
+      <meta name="citation_pdf_url" content="https://e-conference-online.com/">
+    `
+      const parser = new DOMParser();
+      const metaGSDOM = parser.parseFromString(metaGS, "text/html");
       const publishedDate = new Date(
         article.createdAt.seconds * 1000 + article.createdAt.nanoseconds / 1e6
       ).toISOString();
@@ -58,6 +67,7 @@ function Article() {
           },
         },
       });
+      document.head.appendChild(metaGSDOM)
       document.head.appendChild(metaDescription);
       document.head.appendChild(script);
     });
