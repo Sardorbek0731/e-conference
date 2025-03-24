@@ -6,7 +6,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  margin-bottom: 2rem;
+  margin-bottom: 3rem;
 }
 
 .articePageDownload-buttons {
@@ -62,4 +62,33 @@
 .articlePage-zenodo:hover {
   background-color: white;
   color: #ff3700;
+}
+
+.arrticleItem {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+}
+
+.articleTitle {
+  width: 70%;
+  text-align: center;
+  font-size: 2.2rem;
+  font-weight: 600;
+  margin-bottom: 1.5rem;
+  color: var(--main-color);
+}
+
+.articleAuther {
+  width: 50%;
+  text-align: center;
+  font-size: 1.5rem;
+  margin-bottom: 2rem;
+  font-weight: 500;
+}
+
+.articleContent p {
+  font-size: 1.25rem;
+  font-weight: 400;
+  text-align: justify;
 }

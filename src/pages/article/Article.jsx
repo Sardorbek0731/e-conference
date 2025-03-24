@@ -35,15 +35,27 @@ function Article() {
 
     fetchArticle().then((article) => {
       const publishedDate = article.createdAt
-          ? new Date(article.createdAt.seconds * 1000 + article.createdAt.nanoseconds / 1e6).toISOString()
-          : new Date().toISOString();
+        ? new Date(
+            article.createdAt.seconds * 1000 +
+              article.createdAt.nanoseconds / 1e6
+          ).toISOString()
+        : new Date().toISOString();
 
       const metaDescription = createMetaTag("description", article.title);
       const metaTitle = createMetaTag("citation_title", article.title);
       const metaAuthor = createMetaTag("citation_author", article.author);
-      const metaDate = createMetaTag("citation_publication_date", publishedDate.slice(0, 10));
-      const metaJournal = createMetaTag("citation_journal_title", "E-Conference-Online");
-      const metaPdfUrl = createMetaTag("citation_pdf_url", "https://e-conference-online.com/");
+      const metaDate = createMetaTag(
+        "citation_publication_date",
+        publishedDate.slice(0, 10)
+      );
+      const metaJournal = createMetaTag(
+        "citation_journal_title",
+        "E-Conference-Online"
+      );
+      const metaPdfUrl = createMetaTag(
+        "citation_pdf_url",
+        "https://e-conference-online.com/"
+      );
 
       document.head.appendChild(metaDescription);
       document.head.appendChild(metaTitle);
@@ -51,7 +63,14 @@ function Article() {
       document.head.appendChild(metaDate);
       document.head.appendChild(metaJournal);
       document.head.appendChild(metaPdfUrl);
-      addedElements.push(metaDescription, metaTitle, metaAuthor, metaDate, metaJournal, metaPdfUrl);
+      addedElements.push(
+        metaDescription,
+        metaTitle,
+        metaAuthor,
+        metaDate,
+        metaJournal,
+        metaPdfUrl
+      );
 
       const script = document.createElement("script");
       script.type = "application/ld+json";
@@ -119,14 +138,14 @@ function Article() {
         {isPending ? (
           <Loading isPending={isPending} />
         ) : (
-          <>
-            <h1>{article.title}</h1>
-            <h1>{article.author}</h1>
+          <div className="arrticleItem">
+            <h1 className="articleTitle">{article.title}</h1>
+            <h3 className="articleAuther">{article.author}</h3>
             <div
-              className="articleItem"
+              className="articleContent"
               dangerouslySetInnerHTML={{ __html: article.content }}
             ></div>
-          </>
+          </div>
         )}
       </section>
     </>
