@@ -1,5 +1,5 @@
 .articles {
-  padding: 0 8rem 3rem 9rem;
+  padding: 0 8rem 2rem 9rem;
 }
 
 .articleCards {
@@ -9,17 +9,20 @@
 }
 
 .articleCard {
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
   position: relative;
   margin-right: 1rem;
   background-color: white;
-  transition: all 0.3s;
   padding-bottom: 1.4rem;
+  margin-bottom: 1rem;
+  border-radius: 0.1rem;
+  overflow: hidden;
 }
-.articleCard:hover {
-  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.2);
-}
-.articleCard a {
-  color: black;
+
+.articleBody span {
+  color: var(--main-color);
 }
 
 .articleCard img {
@@ -35,8 +38,10 @@
   font-size: 1.1rem;
   font-weight: 600;
   padding: 1.3rem 1.3rem 0 1.3rem;
-  margin-bottom: 1rem;
   overflow: hidden;
+  color: black;
+  height: 4.1rem;
+  margin-bottom: 0.9rem;
 }
 
 .articleBody {
@@ -47,33 +52,49 @@
   font-weight: 500;
   font-size: 1.07rem;
   height: 4rem;
+  color: black;
 }
 
-.articleBody span {
+.articleFooter {
+  padding: 0 1.3rem;
+  text-align: right;
+}
+
+.articleDownload-buttons {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+}
+
+.downloadPDF,
+.zenodo {
+  border-radius: 0.1rem;
+  cursor: pointer;
+  margin-bottom: 1.4rem;
+  font-size: 0.92rem;
+  font-weight: 500;
+  background-color: var(--main-color);
+  padding: 0.55rem 0.7rem;
+  transition: all 0.3s;
+  border: 2px solid var(--main-color);
+  color: white;
+}
+.downloadPDF:hover {
+  background-color: white;
   color: var(--main-color);
 }
 
-.articleBody h5 {
+.zenodo {
+  background-color: #ff3700;
+  border: 2px solid #ff3700;
+}
+.zenodo:hover {
+  background-color: white;
+  color: #ff3700;
+}
+
+.articleFooter h5 {
   font-size: 0.9rem;
   font-weight: 400;
   color: rgba(0, 0, 0, 0.6);
-}
-
-.downloadPDF {
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  position: absolute;
-  width: 2.3rem;
-  height: 2.3rem;
-  bottom: 1.4rem;
-  right: 1.3rem;
-  border: 2px solid var(--main-color);
-  border-radius: 50%;
-  background-color: white;
-  cursor: pointer;
-}
-.downloadPDF img {
-  width: 1.2rem;
-  height: 1.2rem;
 }

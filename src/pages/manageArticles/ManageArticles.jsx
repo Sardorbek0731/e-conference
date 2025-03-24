@@ -13,6 +13,7 @@ function ManageArticles() {
   const { data, isPending, error, fetchArticles } = useFetch();
   const [openAddArticle, setOpenAddArticle] = useState(false);
   const [openEditArticle, setOpenEditArticle] = useState(false);
+  const [clickedDelete, setClickedDelete] = useState([]);
 
   if (!JSON.parse(localStorage.getItem("logined"))) {
     window.location = "/login";
@@ -23,6 +24,7 @@ function ManageArticles() {
     try {
       await deleteArticle(id);
       await fetchArticles();
+      setClickedDelete([false, id]);
     } catch (error) {
       console.error("Maqolani o‘chirishda xatolik:", error);
     }
@@ -50,11 +52,6 @@ function ManageArticles() {
           </button>
         </div>
         <div className="manageArticles-navbar">
-          <div className="allArticle-selected">
-            <div className="allArticle-selectedInput">
-              <input type="checkbox" />
-            </div>
-          </div>
           <h3 className="manageArticles-navbarTitle">Sarlavha</h3>
           <h3 className="manageArticles-navbarAuthor">Muallif</h3>
           <h3 className="manageArticles-navbarCreatedAt">Qo'shilgan vaqt</h3>
@@ -66,11 +63,6 @@ function ManageArticles() {
           <div className="manageArticles-body">
             {data.map(({ id, title, author, addedTime, content }) => (
               <div className="manageArticles-item" key={id}>
-                <div className="articleSelected">
-                  <div className="articleSelected-input">
-                    <input type="checkbox" />
-                  </div>
-                </div>
                 <h1 className="manageArticle-title">{title}</h1>
                 <h1 className="manageArticle-author">{author}</h1>
                 <h1 className="manageArticle-createdAt">{addedTime}</h1>
@@ -85,10 +77,22 @@ function ManageArticles() {
                     <img src={editIcon} alt="Edit Icon" />
                   </button>
                   <button
-                    className="manageArticle-deleteButton"
-                    onClick={() => handleDelete(id)}
+                    className={
+                      clickedDelete[0] && id === clickedDelete[1]
+                        ? "manageArticle-deleteButton disabledDeleteButton"
+                        : "manageArticle-deleteButton"
+                    }
+                    onClick={() => {
+                      handleDelete(id);
+                      setClickedDelete([true, id]);
+                    }}
+                    disabled={clickedDelete[0] && id === clickedDelete[1]}
                   >
-                    <img src={deleteIcon} alt="Delete Icon" />
+                    {clickedDelete[0] && id === clickedDelete[1] ? (
+                      <span className="loading centreLoading"></span>
+                    ) : (
+                      <img src={deleteIcon} alt="Delete Icon" />
+                    )}
                   </button>
                 </div>
               </div>

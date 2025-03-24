@@ -1,9 +1,8 @@
 import "./Articles.css";
-import { NavLink } from "react-router-dom";
 import image from "../../assets/logo/logo.png";
-import download from "../../assets/icons/arrows/down-mainColor.png";
 import BackButton from "../../components/backButton/BackButton";
 import Loading from "../../components/loading/Loading.jsx";
+import { NavLink } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch.jsx";
 
 function Articles() {
@@ -36,12 +35,19 @@ function Articles() {
                   <h4>
                     <span>Muallif:</span> {author}
                   </h4>
-                  <h5>{addedTime}</h5>
                 </div>
               </NavLink>
-              <span className="downloadPDF">
-                <img src={download} alt="Download Icon" />
-              </span>
+
+              <div className="articleFooter">
+                <div className="articleDownload-buttons">
+                  <span className="downloadPDF">Download (PDF)</span>
+                  <NavLink to="/" className="zenodo">
+                    ZENODO
+                  </NavLink>
+                </div>
+
+                <h5>{addedTime}</h5>
+              </div>
             </div>
           ))}
         </div>

@@ -1,6 +1,6 @@
 import "./Article.css";
 import { useEffect, useState } from "react";
-import { useParams } from "react-router-dom";
+import { useParams, NavLink } from "react-router-dom";
 import { getArticleById } from "../../services/articleService.js";
 import BackButton from "../../components/backButton/BackButton.jsx";
 import download from "../../assets/icons/arrows/down.png";
@@ -83,12 +83,18 @@ function Article() {
           <BackButton to="/articles" />
 
           {!isPending && (
-            <span className="articlePDF">
-              <span className="downloadArticleIcon">
-                <img src={download} alt="Download Icon" />
+            <div className="articePageDownload-buttons">
+              <span className="articlePDF">
+                <span className="downloadArticleIcon">
+                  <img src={download} alt="Download Icon" />
+                </span>
+                Download (PDF)
               </span>
-              Download (PDF)
-            </span>
+
+              <NavLink to="/" className="articlePage-zenodo">
+                ZENODO
+              </NavLink>
+            </div>
           )}
         </div>
         {isPending ? (
