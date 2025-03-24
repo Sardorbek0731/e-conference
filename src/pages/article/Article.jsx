@@ -71,11 +71,6 @@ function Article() {
       document.head.appendChild(metaDescription);
       document.head.appendChild(script);
     });
-
-    return () => {
-      document.head.removeChild(metaDescription);
-      document.head.removeChild(script);
-    };
   }, [articleId]);
 
   if (error) return <p>Xatolik: {error}</p>;
