@@ -39,7 +39,7 @@
 }
 
 .closeModal {
-  background-color: rgb(255, 76, 76);
+  background-color: rgb(255, 91, 91);
   border: none;
   outline: none;
   width: 2.7rem;
@@ -51,37 +51,38 @@
   cursor: pointer;
   transition: all 0.3s;
 }
+.closeModal:disabled {
+  cursor: not-allowed;
+}
 .closeModal:hover {
-  background-color: rgb(234, 4, 4);
+  background-color: rgb(255, 0, 0);
   box-shadow: 0.5rem 0.5rem 2.5rem rgba(0, 0, 0, 0.2);
 }
+.closeModal:disabled:hover {
+  background-color: rgb(255, 91, 91);
+  box-shadow: none;
+}
+
 .closeModal img {
   width: 1.4rem;
   height: 1.4rem;
 }
-.disabledCloseModal {
-  cursor: no-drop;
-}
-.disabledCloseModal:hover {
-  background-color: rgb(255, 76, 76);
-  box-shadow: none;
-}
 
-.addArticle-simpleInputs {
+.addArticle-inputs {
   display: flex;
   align-items: center;
   justify-content: space-between;
   width: 100%;
   margin-bottom: 1.3rem;
 }
-.addArticle-simpleInputs label {
+.addArticle-inputs label {
   display: flex;
   flex-direction: column;
   width: 48%;
   font-size: 1.1rem;
 }
 
-.addArticle-simpleInputs input {
+.addArticle-inputs input {
   padding: 0.8rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
   outline: none;
@@ -90,14 +91,66 @@
   transition: all 0.3s;
   font-size: 1rem;
 }
-.addArticle-simpleInputs input:hover,
-.addArticle-simpleInputs input:focus {
+.addArticle-inputs input:hover,
+.addArticle-inputs input:focus {
   border: 1px solid rgb(0, 0, 0);
 }
 
 .reactQuill {
   width: 40rem;
   height: 17rem;
+}
+
+.modalEdit-or-AddButton {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 1rem;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: white;
+  border-radius: 0.1rem;
+  line-height: 1;
+  transition: all 0.3s;
+  margin-top: 5rem;
+}
+.modalEdit-or-AddButton:hover {
+  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.3);
+}
+.modalEdit-or-AddButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.modalEdit-or-AddButton:disabled:hover {
+  box-shadow: none;
+}
+
+.modalEdit-or-AddButton img {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+
+.addArticle-button {
+  background-color: #15c756;
+}
+.addArticle-button:disabled:hover {
+  background-color: #15c756;
+}
+
+.editArticle-button {
+  background-color: #af59ff;
+}
+.editArticle-button:disabled:hover {
+  background-color: #af59ff;
+}
+
+.addArticle-button:hover {
+  background-color: #149c46;
+}
+.editArticle-button:hover {
+  background-color: var(--main-color);
 }
 
 .loading {
@@ -122,34 +175,4 @@
   100% {
     transform: rotate(360deg);
   }
-}
-
-.addDisabledButton {
-  cursor: no-drop;
-  background-color: #1be88c;
-}
-.addDisabledButton:hover {
-  background-color: #1be88c;
-  box-shadow: none;
-}
-
-.addArticle-button {
-  margin-top: 5rem;
-}
-
-.editArticle-button {
-  margin-top: 5rem;
-  background-color: #af59ff;
-}
-.editArticle-button:hover {
-  background-color: var(--main-color);
-  box-shadow: 1rem 1rem 3rem rgba(0, 0, 0, 0.2);
-}
-
-.editDisabledButton {
-  cursor: no-drop;
-}
-.editDisabledButton:hover {
-  background-color: #af59ff;
-  box-shadow: none;
 }

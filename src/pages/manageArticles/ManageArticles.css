@@ -17,11 +17,13 @@
   padding: 0 1rem;
   margin-bottom: 1rem;
 }
+
 .articlesCount {
   font-size: 1.3rem;
   font-weight: 500;
 }
-.openAddArticle-modal {
+
+.openAddArticle-button {
   display: flex;
   align-items: center;
   padding: 0.8rem 1rem;
@@ -35,11 +37,11 @@
   line-height: 1;
   transition: all 0.3s;
 }
-.openAddArticle-modal:hover {
+.openAddArticle-button:hover {
   background-color: #149c46;
-  box-shadow: 0.5rem 0.5rem 2.5rem rgba(0, 0, 0, 0.2);
+  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.3);
 }
-.openAddArticle-modal img {
+.openAddArticle-button img {
   width: 1rem;
   height: 1rem;
   margin-right: 0.5rem;
@@ -138,32 +140,32 @@
   border-radius: 0.55rem;
   transition: all 0.3s;
 }
-.manageArticle-Buttons button.disabledDeleteButton {
-  cursor: no-drop;
-}
-.manageArticle-Buttons button.disabledDeleteButton:hover {
-  background-color: rgb(255, 76, 76);
-  box-shadow: none;
+.manageArticle-Buttons button:hover {
+  box-shadow: 0.5rem 0.5rem 2.5rem rgba(0, 0, 0, 0.2);
 }
 
 .manageArticle-editButton {
   background-color: #af59ff;
   margin-right: 1rem;
 }
+.manageArticle-deleteButton {
+  background-color: rgb(255, 91, 91);
+}
+.manageArticle-deleteButton:disabled {
+  cursor: not-allowed;
+}
 .manageArticle-editButton:hover {
   background-color: var(--main-color);
-  box-shadow: 0.5rem 0.5rem 2.5rem rgba(0, 0, 0, 0.2);
-}
-
-.manageArticle-deleteButton {
-  background-color: rgb(255, 76, 76);
 }
 .manageArticle-deleteButton:hover {
-  background-color: rgb(234, 4, 4);
-  box-shadow: 0.5rem 0.5rem 2.5rem rgba(0, 0, 0, 0.2);
+  background-color: rgb(255, 0, 0);
+}
+.manageArticle-deleteButton:disabled:hover {
+  background-color: rgb(255, 91, 91);
+  box-shadow: none;
 }
 
 .manageArticle-Buttons button img {
-  width: 1.3rem;
-  height: 1.3rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }

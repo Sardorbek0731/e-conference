@@ -45,7 +45,7 @@ function ManageArticles() {
         <div className="manageArticles-header">
           <h3 className="articlesCount">{data.length} ta maqola</h3>
           <button
-            className="openAddArticle-modal"
+            className="openAddArticle-button"
             onClick={() => setOpenAddArticle(true)}
           >
             <img src={plusIcon} alt="Plus Icon" /> Qo'shish
@@ -77,11 +77,7 @@ function ManageArticles() {
                     <img src={editIcon} alt="Edit Icon" />
                   </button>
                   <button
-                    className={
-                      clickedDelete[0] && id === clickedDelete[1]
-                        ? "manageArticle-deleteButton disabledDeleteButton"
-                        : "manageArticle-deleteButton"
-                    }
+                    className="manageArticle-deleteButton"
                     onClick={() => {
                       handleDelete(id);
                       setClickedDelete([true, id]);

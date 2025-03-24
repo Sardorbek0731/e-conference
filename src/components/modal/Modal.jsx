@@ -19,7 +19,7 @@ const Modal = ({
   setDisabledButton,
   iconType,
 }) => {
-  const okButton = (author, articleTitle, content) => {
+  const checkButton = (author, articleTitle, content) => {
     if (author.length && articleTitle.length && content.length) {
       setDisabledButton(false);
     } else {
@@ -27,28 +27,28 @@ const Modal = ({
     }
   };
 
+  console.log(content.replace(/<[^>]+>/g, ""));
+
   return (
     <div className="overlay">
       <div className="modalArticle">
         <div className="modalHeader">
           <span className="modalTitle">{modalTitle}</span>
           <button
-            className={
-              isPending ? "closeModal disabledCloseModal" : "closeModal"
-            }
-            disabled={isPending}
+            className="closeModal"
             onClick={() => {
               setIsOpenModal(false);
               modalTitle === "Maqolani tahrirlash"
                 ? localStorage.removeItem("editArticle")
                 : "";
             }}
+            disabled={isPending}
           >
             <img src={closeIcon} alt="Close Icon" />
           </button>
         </div>
         <form className="modalBody">
-          <div className="addArticle-simpleInputs">
+          <div className="addArticle-inputs">
             <label>
               Muallif
               <input
@@ -57,7 +57,7 @@ const Modal = ({
                 value={author}
                 onChange={(e) => {
                   setAuthor(e.target.value);
-                  okButton(e.target.value, articleTitle, content);
+                  checkButton(e.target.value, articleTitle, content);
                 }}
               />
             </label>
@@ -69,7 +69,7 @@ const Modal = ({
                 value={articleTitle}
                 onChange={(e) => {
                   setArticleTitle(e.target.value);
-                  okButton(author, e.target.value, content);
+                  checkButton(author, e.target.value, content);
                 }}
               />
             </label>
@@ -79,42 +79,30 @@ const Modal = ({
             value={content}
             onChange={(value) => {
               setContent(value);
-              okButton(author, articleTitle, value.replace(/<[^>]+>/g, ""));
+              checkButton(
+                author,
+                articleTitle,
+                value.replace(/<[^>]+>/g, "").trim()
+              );
             }}
           />
-          {isPending ? (
-            <button
-              className={
-                modalTitle === "Maqolani tahrirlash"
-                  ? "openAddArticle-modal editArticle-button editDisabledButton"
-                  : "openAddArticle-modal addArticle-button addDisabledButton"
-              }
-              type="submit"
-              onClick={handeledButton}
-              disabled="true"
-            >
+          <button
+            className={
+              modalTitle === "Maqolani tahrirlash"
+                ? "modalEdit-or-AddButton editArticle-button"
+                : "modalEdit-or-AddButton addArticle-button"
+            }
+            type="submit"
+            onClick={handeledButton}
+            disabled={isPending || disabledButton}
+          >
+            {isPending ? (
               <span className="loading"></span>
-              {modalBtnType}
-            </button>
-          ) : (
-            <button
-              className={
-                disabledButton
-                  ? modalTitle === "Maqolani tahrirlash"
-                    ? "openAddArticle-modal editArticle-button editDisabledButton"
-                    : "openAddArticle-modal addArticle-button addDisabledButton"
-                  : modalTitle === "Maqolani tahrirlash"
-                  ? "openAddArticle-modal editArticle-button"
-                  : "openAddArticle-modal addArticle-button"
-              }
-              type="submit"
-              onClick={handeledButton}
-              disabled={disabledButton}
-            >
+            ) : (
               <img src={iconType} alt="Plus Icon" />
-              {modalBtnType}
-            </button>
-          )}
+            )}
+            {modalBtnType}
+          </button>
         </form>
       </div>
     </div>
