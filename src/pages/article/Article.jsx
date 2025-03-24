@@ -11,35 +11,16 @@ function Article() {
   const [article, setArticle] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
-  const [metaTags, setMetaTags] = useState([]);
 
   const createMetaTag = (name, content) => {
     const meta = document.createElement("meta");
     meta.name = name;
-    meta.content = content;
+    meta.content = content || " ";
     return meta;
   };
 
-  const addMetaTags = (article) => {
-    const metaDescription = createMetaTag("description", article.title);
-    const metaTitle = createMetaTag("citation_title", article.title);
-    const metaAuthor = createMetaTag("citation_author", article.author);
-    const metaDate = createMetaTag("citation_publication_date", article.createdAt);
-    const metaJournal = createMetaTag("citation_journal_title", "E-Conference-Online");
-    const metaPdfUrl = createMetaTag("citation_pdf_url", "https://e-conference-online.com/");
-    document.head.appendChild(metaDescription);
-    document.head.appendChild(metaTitle);
-    document.head.appendChild(metaAuthor);
-    document.head.appendChild(metaDate);
-    document.head.appendChild(metaJournal);
-    document.head.appendChild(metaPdfUrl);
-
-    setMetaTags([metaTitle, metaAuthor, metaDate, metaJournal, metaPdfUrl]);
-  };
-
   useEffect(() => {
-    const script = document.createElement("script");
-
+    const addedElements = [];
     const fetchArticle = async () => {
       try {
         const data = await getArticleById(articleId);
@@ -53,10 +34,26 @@ function Article() {
     };
 
     fetchArticle().then((article) => {
-      addMetaTags(article);
-      const publishedDate = new Date(
-        article.createdAt.seconds * 1000 + article.createdAt.nanoseconds / 1e6
-      ).toISOString();
+      const metaDescription = createMetaTag("description", article.title);
+      const metaTitle = createMetaTag("citation_title", article.title);
+      const metaAuthor = createMetaTag("citation_author", article.author);
+      const metaDate = createMetaTag("citation_publication_date", article.createdAt);
+      const metaJournal = createMetaTag("citation_journal_title", "E-Conference-Online");
+      const metaPdfUrl = createMetaTag("citation_pdf_url", "https://e-conference-online.com/");
+
+      document.head.appendChild(metaDescription);
+      document.head.appendChild(metaTitle);
+      document.head.appendChild(metaAuthor);
+      document.head.appendChild(metaDate);
+      document.head.appendChild(metaJournal);
+      document.head.appendChild(metaPdfUrl);
+      addedElements.push(metaDescription, metaTitle, metaAuthor, metaDate, metaJournal, metaPdfUrl);
+
+      const publishedDate = article.createdAt
+          ? new Date(article.createdAt.seconds * 1000 + article.createdAt.nanoseconds / 1e6).toISOString()
+          : new Date().toISOString();
+
+      const script = document.createElement("script");
       script.type = "application/ld+json";
       script.textContent = JSON.stringify({
         "@context": "https://schema.org",
@@ -81,11 +78,17 @@ function Article() {
           },
         },
       });
+
       document.head.appendChild(script);
+      addedElements.push(script);
     });
 
     return () => {
-      metaTags.forEach((tag) => document.head.removeChild(tag));
+      addedElements.forEach((el) => {
+        if (document.head.contains(el)) {
+          document.head.removeChild(el);
+        }
+      });
     };
   }, [articleId]);
 
