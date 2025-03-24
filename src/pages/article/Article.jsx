@@ -11,9 +11,33 @@ function Article() {
   const [article, setArticle] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
+  const [metaTags, setMetaTags] = useState([]);
+
+  const createMetaTag = (name, content) => {
+    const meta = document.createElement("meta");
+    meta.name = name;
+    meta.content = content;
+    return meta;
+  };
+
+  const addMetaTags = (article) => {
+    const metaDescription = createMetaTag("description", article.title);
+    const metaTitle = createMetaTag("citation_title", article.title);
+    const metaAuthor = createMetaTag("citation_author", article.author);
+    const metaDate = createMetaTag("citation_publication_date", article.createdAt);
+    const metaJournal = createMetaTag("citation_journal_title", "E-Conference-Online");
+    const metaPdfUrl = createMetaTag("citation_pdf_url", "https://e-conference-online.com/");
+    document.head.appendChild(metaDescription);
+    document.head.appendChild(metaTitle);
+    document.head.appendChild(metaAuthor);
+    document.head.appendChild(metaDate);
+    document.head.appendChild(metaJournal);
+    document.head.appendChild(metaPdfUrl);
+
+    setMetaTags([metaTitle, metaAuthor, metaDate, metaJournal, metaPdfUrl]);
+  };
 
   useEffect(() => {
-    const metaDescription = document.createElement("meta");
     const script = document.createElement("script");
 
     const fetchArticle = async () => {
@@ -29,24 +53,10 @@ function Article() {
     };
 
     fetchArticle().then((article) => {
-      const parser = new DOMParser();
-      const metaGS = `
-        <meta name="citation_title" content="${article.title}">
-        <meta name="citation_author" content="${article.author}">
-        <meta name="citation_publication_date" content="${article.createdAt}">
-        <meta name="citation_journal_title" content="E-Conference-Online">
-        <meta name="citation_pdf_url" content="https://e-conference-online.com/">
-      `;
-      const parsedDocument = parser.parseFromString(metaGS, "text/html");
-      const metaElements = parsedDocument.head.children;
-      Array.from(metaElements).forEach((element) => {
-        document.head.appendChild(element);
-      });
+      addMetaTags(article);
       const publishedDate = new Date(
         article.createdAt.seconds * 1000 + article.createdAt.nanoseconds / 1e6
       ).toISOString();
-      metaDescription.name = "description";
-      metaDescription.content = article.title;
       script.type = "application/ld+json";
       script.textContent = JSON.stringify({
         "@context": "https://schema.org",
@@ -71,9 +81,12 @@ function Article() {
           },
         },
       });
-      document.head.appendChild(metaDescription);
       document.head.appendChild(script);
     });
+
+    return () => {
+      metaTags.forEach((tag) => document.head.removeChild(tag));
+    };
   }, [articleId]);
 
   if (error) return <p>Xatolik: {error}</p>;
