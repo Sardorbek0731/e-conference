@@ -4,37 +4,54 @@ import { updateArticle } from "../../services/articleService";
 import { useEffect, useState } from "react";
 
 function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
-  const [disabledButton, setDisabledButton] = useState(true);
+  const [editButtonDisabled, setEditButtonDisabled] = useState(true);
   const [isPending, setIsPending] = useState(false);
-  const [author, setAuthor] = useState("");
-  const [articleTitle, setArticleTitle] = useState("");
-  const [content, setContent] = useState("");
   const [articleId, setArticleId] = useState("");
+  const [author, setAuthor] = useState("");
+  const [title, setTitle] = useState("");
+  const [content, setContent] = useState("");
 
   useEffect(() => {
     const editData = JSON.parse(localStorage.getItem("editArticle"));
 
-    if (editData) {
-      setArticleId(editData.id);
-      setAuthor(editData.author);
-      setArticleTitle(editData.title);
-      setContent(editData.content);
-      setDisabledButton(false);
-    }
+    setArticleId(editData.id);
+    setAuthor(editData.author);
+    setTitle(editData.title);
+    setContent(editData.content);
   }, []);
+
+  const checkEditButton = (author, title, content) => {
+    const editData = JSON.parse(localStorage.getItem("editArticle"));
+
+    if (
+      author.trim().length &&
+      title.trim().length &&
+      content.replace(/<[^>]+>/g, "").trim().length &&
+      (author.trim() !== editData.author ||
+        title.trim() !== editData.title ||
+        content.replace(/<[^>]+>/g, "").trim() !==
+          editData.content.replace(/<[^>]+>/g, "").trim())
+    ) {
+      console.log(
+        content.replace(/<[^>]+>/g, "").trim(),
+        " ",
+        editData.content.replace(/<[^>]+>/g, "").trim()
+      );
+
+      setEditButtonDisabled(false);
+    } else {
+      setEditButtonDisabled(true);
+    }
+  };
 
   const handleEdit = async (e) => {
     e.preventDefault();
-    if (!author || !articleTitle || !content) {
-      return;
-    }
-
     setIsPending(true);
 
     try {
       await updateArticle(articleId, {
         author,
-        title: articleTitle,
+        title: title,
         content,
         updatedAt: new Date(),
       });
@@ -58,13 +75,14 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
       isPending={isPending}
       author={author}
       setAuthor={setAuthor}
-      articleTitle={articleTitle}
-      setArticleTitle={setArticleTitle}
+      title={title}
+      setTitle={setTitle}
       content={content}
       setContent={setContent}
-      disabledButton={disabledButton}
-      setDisabledButton={setDisabledButton}
+      disabledButton={editButtonDisabled}
+      setDisabledButton={setEditButtonDisabled}
       iconType={editIcon}
+      checkButton={checkEditButton}
     />
   );
 }

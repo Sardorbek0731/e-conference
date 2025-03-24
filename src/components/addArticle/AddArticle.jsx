@@ -4,24 +4,20 @@ import { addArticle } from "../../services/articleService";
 import { useState } from "react";
 
 const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
-  const [disabledButton, setDisabledButton] = useState(true);
+  const [addButtonDisabled, setAddButtonDisabled] = useState(true);
   const [isPending, setIsPending] = useState(false);
   const [author, setAuthor] = useState("");
-  const [articleTitle, setArticleTitle] = useState("");
+  const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    if (!author || !articleTitle || !content) {
-      return;
-    }
-
     setIsPending(true);
 
     try {
       await addArticle({
         author,
-        title: articleTitle,
+        title: title,
         photo: "",
         createdAt: new Date(),
         content,
@@ -31,6 +27,18 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
       setIsPending(false);
     } catch (err) {
       console.error("Maqolani qo'shishda xatolik:", err);
+    }
+  };
+
+  const checkAddButton = (author, articleTitle, content) => {
+    if (
+      author.trim().length &&
+      articleTitle.trim().length &&
+      content.replace(/<[^>]+>/g, "").trim().length
+    ) {
+      setAddButtonDisabled(false);
+    } else {
+      setAddButtonDisabled(true);
     }
   };
 
@@ -44,13 +52,14 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
       isPending={isPending}
       author={author}
       setAuthor={setAuthor}
-      articleTitle={articleTitle}
-      setArticleTitle={setArticleTitle}
+      title={title}
+      setTitle={setTitle}
       content={content}
       setContent={setContent}
-      disabledButton={disabledButton}
-      setDisabledButton={setDisabledButton}
+      disabledButton={addButtonDisabled}
+      setDisabledButton={setAddButtonDisabled}
       iconType={plusIcon}
+      checkButton={checkAddButton}
     />
   );
 };

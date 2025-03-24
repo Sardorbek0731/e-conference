@@ -11,24 +11,14 @@ const Modal = ({
   isPending,
   author,
   setAuthor,
-  articleTitle,
-  setArticleTitle,
+  title,
+  setTitle,
   content,
   setContent,
   disabledButton,
-  setDisabledButton,
   iconType,
+  checkButton,
 }) => {
-  const checkButton = (author, articleTitle, content) => {
-    if (author.length && articleTitle.length && content.length) {
-      setDisabledButton(false);
-    } else {
-      setDisabledButton(true);
-    }
-  };
-
-  console.log(content.replace(/<[^>]+>/g, ""));
-
   return (
     <div className="overlay">
       <div className="modalArticle">
@@ -57,7 +47,7 @@ const Modal = ({
                 value={author}
                 onChange={(e) => {
                   setAuthor(e.target.value);
-                  checkButton(e.target.value, articleTitle, content);
+                  checkButton(e.target.value, title, content);
                 }}
               />
             </label>
@@ -66,9 +56,9 @@ const Modal = ({
               <input
                 type="text"
                 placeholder="Sarlavha..."
-                value={articleTitle}
+                value={title}
                 onChange={(e) => {
-                  setArticleTitle(e.target.value);
+                  setTitle(e.target.value);
                   checkButton(author, e.target.value, content);
                 }}
               />
@@ -79,11 +69,7 @@ const Modal = ({
             value={content}
             onChange={(value) => {
               setContent(value);
-              checkButton(
-                author,
-                articleTitle,
-                value.replace(/<[^>]+>/g, "").trim()
-              );
+              checkButton(author, title, value);
             }}
           />
           <button
