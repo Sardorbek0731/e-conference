@@ -12,10 +12,15 @@ function Article() {
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
 
-  useEffect(() => {
-    const metaDescription = document.createElement("meta");
-    const script = document.createElement("script");
+  const createMetaTag = (name, content) => {
+    const meta = document.createElement("meta");
+    meta.name = name;
+    meta.content = content || " ";
+    return meta;
+  };
 
+  useEffect(() => {
+    const addedElements = [];
     const fetchArticle = async () => {
       try {
         const data = await getArticleById(articleId);
@@ -29,11 +34,26 @@ function Article() {
     };
 
     fetchArticle().then((article) => {
-      const publishedDate = new Date(
-        article.createdAt.seconds * 1000 + article.createdAt.nanoseconds / 1e6
-      ).toISOString();
-      metaDescription.name = "description";
-      metaDescription.content = article.title;
+      const publishedDate = article.createdAt
+          ? new Date(article.createdAt.seconds * 1000 + article.createdAt.nanoseconds / 1e6).toISOString()
+          : new Date().toISOString();
+
+      const metaDescription = createMetaTag("description", article.title);
+      const metaTitle = createMetaTag("citation_title", article.title);
+      const metaAuthor = createMetaTag("citation_author", article.author);
+      const metaDate = createMetaTag("citation_publication_date", publishedDate.slice(0, 10));
+      const metaJournal = createMetaTag("citation_journal_title", "E-Conference-Online");
+      const metaPdfUrl = createMetaTag("citation_pdf_url", "https://e-conference-online.com/");
+
+      document.head.appendChild(metaDescription);
+      document.head.appendChild(metaTitle);
+      document.head.appendChild(metaAuthor);
+      document.head.appendChild(metaDate);
+      document.head.appendChild(metaJournal);
+      document.head.appendChild(metaPdfUrl);
+      addedElements.push(metaDescription, metaTitle, metaAuthor, metaDate, metaJournal, metaPdfUrl);
+
+      const script = document.createElement("script");
       script.type = "application/ld+json";
       script.textContent = JSON.stringify({
         "@context": "https://schema.org",
@@ -58,13 +78,17 @@ function Article() {
           },
         },
       });
-      document.head.appendChild(metaDescription);
+
       document.head.appendChild(script);
+      addedElements.push(script);
     });
 
     return () => {
-      document.head.removeChild(metaDescription);
-      document.head.removeChild(script);
+      addedElements.forEach((el) => {
+        if (document.head.contains(el)) {
+          document.head.removeChild(el);
+        }
+      });
     };
   }, [articleId]);
 
