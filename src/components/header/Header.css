@@ -9,7 +9,8 @@ header {
   padding: 0 9rem;
 }
 header.otherPage {
-  position: static;
+  position: sticky;
+  top: 1rem;
   padding: 0 1.1rem;
   margin: 3rem 7.9rem 3rem 7.9rem;
   align-items: center;

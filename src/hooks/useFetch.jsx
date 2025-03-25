@@ -12,11 +12,12 @@ export function useFetch() {
 
       data.map((item) => {
         const date = new Date(item.createdAt.seconds * 1000);
-        const formattedDate = `${
+        const formattedDate = `${date.getDate()}/${
           date.getMonth() + 1
-        }/${date.getDate()}/${date.getFullYear()}, ${String(
-          date.getHours()
-        ).padStart(2, "0")}:${String(date.getMinutes()).padStart(2, "0")}`;
+        }/${date.getFullYear()}, ${String(date.getHours()).padStart(
+          2,
+          "0"
+        )}:${String(date.getMinutes()).padStart(2, "0")}`;
 
         return (item.addedTime = formattedDate);
       });
