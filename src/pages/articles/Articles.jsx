@@ -13,7 +13,7 @@ function Articles() {
   return (
     <section className="articles">
       <div className="sectionTitle">
-        <BackButton />
+        <BackButton to="/" />
         <h1>Articles</h1>
         <p>
           Lorem ipsum dolor sit, amet consectetur adipisicing elit. Voluptatem
