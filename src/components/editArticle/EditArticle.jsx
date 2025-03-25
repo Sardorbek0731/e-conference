@@ -29,15 +29,9 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
       content.replace(/<[^>]+>/g, "").trim().length &&
       (author.trim() !== editData.author ||
         title.trim() !== editData.title ||
-        content.replace(/<[^>]+>/g, "").trim() !==
-          editData.content.replace(/<[^>]+>/g, "").trim())
+        content.replace(/<[^>]+>/g, "") !==
+          editData.content.replace(/<[^>]+>/g, ""))
     ) {
-      console.log(
-        content.replace(/<[^>]+>/g, "").trim(),
-        " ",
-        editData.content.replace(/<[^>]+>/g, "").trim()
-      );
-
       setEditButtonDisabled(false);
     } else {
       setEditButtonDisabled(true);
