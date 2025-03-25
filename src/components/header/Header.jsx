@@ -5,14 +5,10 @@ import { header } from "../../data/data";
 
 function Header() {
   const location = useLocation();
+  const pageNotFound = location.pathname !== "/error";
 
   return (
-    location.pathname !== "/login" &&
-    (location.pathname === "/" ||
-      location.pathname === "/articles" ||
-      location.pathname === "/manage-articles" ||
-      location.pathname === "/contact" ||
-      location.pathname.startsWith("/articles")) && (
+    pageNotFound && (
       <header className={location.pathname.length > 1 ? "otherPage" : ""}>
         <NavLink to="/" className="logo">
           <img src={logo} alt="Logo Icon" />

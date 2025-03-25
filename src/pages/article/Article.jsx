@@ -1,6 +1,6 @@
 import "./Article.css";
 import { useEffect, useState } from "react";
-import { useParams, NavLink } from "react-router-dom";
+import { useParams, NavLink, useNavigate } from "react-router-dom";
 import { getArticleById } from "../../services/articleService.js";
 import BackButton from "../../components/backButton/BackButton.jsx";
 import download from "../../assets/icons/arrows/down.png";
@@ -11,6 +11,7 @@ function Article() {
   const [article, setArticle] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
+  const navigate = useNavigate();
 
   const createMetaTag = (name, content) => {
     const meta = document.createElement("meta");
@@ -24,10 +25,15 @@ function Article() {
     const fetchArticle = async () => {
       try {
         const data = await getArticleById(articleId);
+        if (!data) {
+          navigate("/error", { replace: true });
+          return;
+        }
         setArticle(data);
         return data;
       } catch (err) {
         setError(err.message);
+        navigate("/error", { replace: true });
       } finally {
         setIsPending(false);
       }
@@ -118,7 +124,7 @@ function Article() {
       {!isPending && <title>{article.title}</title>}
       <section className="article container">
         <div className="articleButtons">
-          <BackButton to="/articles" />
+          <BackButton />
 
           {!isPending && (
             <div className="articePageDownload-buttons">

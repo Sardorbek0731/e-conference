@@ -7,7 +7,7 @@ import Login from "./pages/login/Login";
 import Contact from "./pages/contact/Contact";
 import ManageArticles from "./pages/manageArticles/ManageArticles";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
   return (
@@ -18,12 +18,13 @@ function App() {
         <Header />
         <Routes>
           <Route path="/" element={<Main />} />
-          <Route path="*" element={<PageNotFound />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/:articleId" element={<Article />} />
           <Route path="/login" element={<Login />} />
-          <Route path="/manage-articles" element={<ManageArticles />} />
           <Route path="/contact" element={<Contact />} />
+          <Route path="/manage-articles" element={<ManageArticles />} />
+          <Route path="*" element={<Navigate to="/error" replace />} />
+          <Route path="/error" element={<PageNotFound />} />
         </Routes>
       </BrowserRouter>
     </>
