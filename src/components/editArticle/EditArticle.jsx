@@ -45,9 +45,9 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
     try {
       await updateArticle(articleId, {
         author,
-        title: title,
+        title,
+        createdAt: new Date(),
         content,
-        updatedAt: new Date(),
       });
       await fetchArticles();
       setOpenEditArticle(false);
