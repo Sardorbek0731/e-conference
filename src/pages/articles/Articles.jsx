@@ -60,14 +60,14 @@ function Articles() {
                   <h5>{article.addedTime}</h5>
                 </div>
 
-                <div className="articlePDF-UI" ref={articleRef}>
-                  <h1 className="articlePDF-UITitle">{article.title}</h1>
-                  <h3 className="articlePDF-UIAuther">{article.author}</h3>
-                  <div
-                    className="articlePDF-UIContent"
-                    dangerouslySetInnerHTML={{ __html: article.content }}
-                  ></div>
-                </div>
+                {/*<div className="articlePDF-UI" ref={articleRef}>*/}
+                {/*  <h1 className="articlePDF-UITitle">{article.title}</h1>*/}
+                {/*  <h3 className="articlePDF-UIAuther">{article.author}</h3>*/}
+                {/*  <div*/}
+                {/*    className="articlePDF-UIContent"*/}
+                {/*    dangerouslySetInnerHTML={{ __html: article.content }}*/}
+                {/*  ></div>*/}
+                {/*</div>*/}
               </div>
             );
           })}
