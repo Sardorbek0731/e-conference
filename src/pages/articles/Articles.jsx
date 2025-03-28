@@ -4,11 +4,8 @@ import BackButton from "../../components/backButton/BackButton";
 import Loading from "../../components/loading/Loading.jsx";
 import { NavLink } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch.jsx";
-import { downloadPDF } from "../../services/articleService.js";
-import { useRef } from "react";
 
 function Articles() {
-  const articleRef = useRef();
   const { data, isPending, error } = useFetch();
 
   if (error) return <p>Xatolik: {error}</p>;
@@ -27,46 +24,30 @@ function Articles() {
         <Loading isPending={isPending} />
       ) : (
         <div className="articleCards">
-          {data.map((article) => {
+          {data.map(({ title, author, addedTime, id }) => {
             return (
-              <div className="articleCard" key={article.id}>
-                <NavLink to={`/articles/${article.id}`}>
+              <div className="articleCard" key={id}>
+                <NavLink to={`/articles/${id}`}>
                   <div className="articleHeader">
                     <img src={image} alt="Article Image" />
-                    <h3>{article.title}</h3>
+                    <h3>{title}</h3>
                   </div>
                   <div className="articleBody">
                     <h4>
-                      <span>Muallif:</span> {article.author}
+                      <span>Muallif:</span> {author}
                     </h4>
                   </div>
                 </NavLink>
 
                 <div className="articleFooter">
                   <div className="articleDownload-buttons">
-                    <span
-                      className="downloadPDF"
-                      onClick={() => {
-                        downloadPDF(article, articleRef);
-                      }}
-                    >
-                      Download (PDF)
-                    </span>
+                    <span className="downloadPDF">Download (PDF)</span>
                     <NavLink to="/" className="zenodo">
                       ZENODO
                     </NavLink>
                   </div>
 
-                  <h5>{article.addedTime}</h5>
-                </div>
-
-                <div className="articlePDF-UI" ref={articleRef}>
-                  <h1 className="articlePDF-UITitle">{article.title}</h1>
-                  <h3 className="articlePDF-UIAuther">{article.author}</h3>
-                  <div
-                    className="articlePDF-UIContent"
-                    dangerouslySetInnerHTML={{ __html: article.content }}
-                  ></div>
+                  <h5>{addedTime}</h5>
                 </div>
               </div>
             );
