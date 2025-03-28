@@ -2,6 +2,8 @@ import "./AddArticle.css";
 import Modal from "../modal/Modal";
 import { addArticle } from "../../services/articleService";
 import { useState } from "react";
+import { storage } from "../../../firebaseConfig";
+import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
   const [addButtonDisabled, setAddButtonDisabled] = useState(true);
@@ -9,36 +11,44 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [pdfFile, setPdfFile] = useState(null);
+
+  const checkAddButton = (author, title, pdfFile, content) => {
+    if (
+      author.trim().length &&
+      title.trim().length &&
+      pdfFile &&
+      content.replace(/<[^>]+>/g, "").trim().length
+    ) {
+      setAddButtonDisabled(false);
+    } else {
+      setAddButtonDisabled(true);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
     setIsPending(true);
 
     try {
+      const storageRef = ref(storage, `pdfs/${pdfFile.name}`);
+      const pdfURL = await getDownloadURL(storageRef);
+      await uploadBytes(storageRef, pdfFile);
+
       await addArticle({
         author,
         title: title,
+        pdfURL,
         photo: "",
         createdAt: new Date(),
         content,
       });
       await fetchArticles();
       setOpenAddArticle(false);
-      setIsPending(false);
     } catch (err) {
       console.error("Maqolani qo'shishda xatolik:", err);
-    }
-  };
-
-  const checkAddButton = (author, articleTitle, content) => {
-    if (
-      author.trim().length &&
-      articleTitle.trim().length &&
-      content.replace(/<[^>]+>/g, "").trim().length
-    ) {
-      setAddButtonDisabled(false);
-    } else {
-      setAddButtonDisabled(true);
+    } finally {
+      setIsPending(false);
     }
   };
 
@@ -60,6 +70,8 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
       setDisabledButton={setAddButtonDisabled}
       iconType={plusIcon}
       checkButton={checkAddButton}
+      pdfFile={pdfFile}
+      setPdfFile={setPdfFile}
     />
   );
 };
