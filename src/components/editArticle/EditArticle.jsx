@@ -2,8 +2,6 @@ import "./EditArticle.css";
 import Modal from "../../components/modal/Modal";
 import { updateArticle } from "../../services/articleService";
 import { useEffect, useState } from "react";
-import { storage } from "../../../firebaseConfig";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
   const [editButtonDisabled, setEditButtonDisabled] = useState(true);
@@ -48,18 +46,9 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
     setIsPending(true);
 
     try {
-      let pdfURL = "";
-
-      if (pdfFile) {
-        const storageRef = ref(storage, `pdfs/${pdfFile.name}`);
-        await uploadBytes(storageRef, pdfFile);
-        pdfURL = await getDownloadURL(storageRef);
-      }
-
       await updateArticle(articleId, {
         author,
         title,
-        pdfURL,
         createdAt: new Date(),
         content,
       });

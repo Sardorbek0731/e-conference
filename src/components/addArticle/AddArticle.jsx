@@ -2,8 +2,6 @@ import "./AddArticle.css";
 import Modal from "../modal/Modal";
 import { addArticle } from "../../services/articleService";
 import { useState } from "react";
-import { storage } from "../../../firebaseConfig";
-import { ref, uploadBytes, getDownloadURL } from "firebase/storage";
 
 const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
   const [addButtonDisabled, setAddButtonDisabled] = useState(true);
@@ -31,14 +29,9 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
     setIsPending(true);
 
     try {
-      const storageRef = ref(storage, `pdfs/${pdfFile.name}`);
-      const pdfURL = await getDownloadURL(storageRef);
-      await uploadBytes(storageRef, pdfFile);
-
       await addArticle({
         author,
         title: title,
-        pdfURL,
         photo: "",
         createdAt: new Date(),
         content,
