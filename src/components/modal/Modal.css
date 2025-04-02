@@ -97,6 +97,10 @@
   border: 1px solid rgb(0, 0, 0);
 }
 
+.uploadPDF-file {
+  margin-bottom: 1.3rem;
+}
+
 .reactQuill {
   width: 40rem;
   height: 17rem;

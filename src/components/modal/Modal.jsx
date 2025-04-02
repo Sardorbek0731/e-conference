@@ -2,6 +2,7 @@ import "./Modal.css";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import closeIcon from "../../assets/icons/close.png";
+import { useRef } from "react";
 
 const Modal = ({
   modalTitle,
@@ -18,7 +19,11 @@ const Modal = ({
   disabledButton,
   iconType,
   checkButton,
+  pdfFile,
+  setPdfFile,
 }) => {
+  const fileInputRef = useRef(null);
+
   return (
     <div className="overlay">
       <div className="modalArticle">
@@ -47,7 +52,7 @@ const Modal = ({
                 value={author}
                 onChange={(e) => {
                   setAuthor(e.target.value);
-                  checkButton(e.target.value, title, content);
+                  checkButton(e.target.value, title, pdfFile, content);
                 }}
               />
             </label>
@@ -59,17 +64,33 @@ const Modal = ({
                 value={title}
                 onChange={(e) => {
                   setTitle(e.target.value);
-                  checkButton(author, e.target.value, content);
+                  checkButton(author, e.target.value, pdfFile, content);
                 }}
               />
             </label>
+          </div>
+          <div className="uploadPDF-file">
+            <input
+              type="file"
+              hidden
+              ref={fileInputRef}
+              accept="application/pdf"
+              onChange={(e) => {
+                setPdfFile(e.target.files[0]);
+                checkButton(author, title, e.target.files[0], content);
+              }}
+            />
+            <button type="button" onClick={() => fileInputRef.current.click()}>
+              CHOOSE A FILE
+            </button>
+            <span>{pdfFile ? pdfFile.name : "No file chosen, yet."}</span>
           </div>
           <ReactQuill
             className="reactQuill"
             value={content}
             onChange={(value) => {
               setContent(value);
-              checkButton(author, title, value);
+              checkButton(author, title, pdfFile, value);
             }}
           />
           <button

@@ -71,7 +71,7 @@
 }
 
 .articleTitle {
-  width: 70%;
+  width: 80%;
   text-align: center;
   font-size: 2.2rem;
   font-weight: 600;
@@ -80,7 +80,6 @@
 }
 
 .articleAuther {
-  width: 50%;
   text-align: center;
   font-size: 1.5rem;
   margin-bottom: 2rem;

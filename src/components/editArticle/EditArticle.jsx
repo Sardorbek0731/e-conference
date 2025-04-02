@@ -10,6 +10,7 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [pdfFile, setPdfFile] = useState(null);
 
   useEffect(() => {
     const editData = JSON.parse(localStorage.getItem("editArticle"));
@@ -20,15 +21,17 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
     setContent(editData.content);
   }, []);
 
-  const checkEditButton = (author, title, content) => {
+  const checkEditButton = (author, title, pdfFile, content) => {
     const editData = JSON.parse(localStorage.getItem("editArticle"));
 
     if (
       author.trim().length &&
       title.trim().length &&
+      pdfFile &&
       content.replace(/<[^>]+>/g, "").trim().length &&
       (author.trim() !== editData.author ||
         title.trim() !== editData.title ||
+        pdfFile !== editData.pdfFile ||
         content.replace(/<[^>]+>/g, "") !==
           editData.content.replace(/<[^>]+>/g, ""))
     ) {
@@ -45,9 +48,9 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
     try {
       await updateArticle(articleId, {
         author,
-        title: title,
+        title,
+        createdAt: new Date(),
         content,
-        updatedAt: new Date(),
       });
       await fetchArticles();
       setOpenEditArticle(false);
@@ -77,6 +80,8 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
       setDisabledButton={setEditButtonDisabled}
       iconType={editIcon}
       checkButton={checkEditButton}
+      pdfFile={pdfFile}
+      setPdfFile={setPdfFile}
     />
   );
 }

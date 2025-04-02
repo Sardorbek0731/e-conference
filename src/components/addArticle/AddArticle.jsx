@@ -9,6 +9,20 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
   const [author, setAuthor] = useState("");
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
+  const [pdfFile, setPdfFile] = useState(null);
+
+  const checkAddButton = (author, title, pdfFile, content) => {
+    if (
+      author.trim().length &&
+      title.trim().length &&
+      pdfFile &&
+      content.replace(/<[^>]+>/g, "").trim().length
+    ) {
+      setAddButtonDisabled(false);
+    } else {
+      setAddButtonDisabled(true);
+    }
+  };
 
   const handleSubmit = async (e) => {
     e.preventDefault();
@@ -24,21 +38,10 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
       });
       await fetchArticles();
       setOpenAddArticle(false);
-      setIsPending(false);
     } catch (err) {
       console.error("Maqolani qo'shishda xatolik:", err);
-    }
-  };
-
-  const checkAddButton = (author, articleTitle, content) => {
-    if (
-      author.trim().length &&
-      articleTitle.trim().length &&
-      content.replace(/<[^>]+>/g, "").trim().length
-    ) {
-      setAddButtonDisabled(false);
-    } else {
-      setAddButtonDisabled(true);
+    } finally {
+      setIsPending(false);
     }
   };
 
@@ -60,6 +63,8 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
       setDisabledButton={setAddButtonDisabled}
       iconType={plusIcon}
       checkButton={checkAddButton}
+      pdfFile={pdfFile}
+      setPdfFile={setPdfFile}
     />
   );
 };

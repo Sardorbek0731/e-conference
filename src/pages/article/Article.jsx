@@ -1,13 +1,12 @@
 import "./Article.css";
-import { useEffect, useState, useRef } from "react";
+import { useEffect, useState } from "react";
 import { useParams, NavLink, useNavigate } from "react-router-dom";
-import { getArticleById, downloadPDF } from "../../services/articleService.js";
+import { getArticleById } from "../../services/articleService.js";
 import BackButton from "../../components/backButton/BackButton.jsx";
 import download from "../../assets/icons/arrows/down.png";
 import Loading from "../../components/loading/Loading.jsx";
 
 function Article() {
-  const articleRef = useRef();
   const { articleId } = useParams();
   const [article, setArticle] = useState(null);
   const [isPending, setIsPending] = useState(true);
@@ -129,12 +128,7 @@ function Article() {
 
           {!isPending && (
             <div className="articePageDownload-buttons">
-              <span
-                className="articlePDF"
-                onClick={() => {
-                  downloadPDF(article, articleRef);
-                }}
-              >
+              <span className="articlePDF">
                 <span className="downloadArticleIcon">
                   <img src={download} alt="Download Icon" />
                 </span>
@@ -150,25 +144,14 @@ function Article() {
         {isPending ? (
           <Loading isPending={isPending} />
         ) : (
-          <>
-            <div className="articleItem">
-              <h1 className="articleTitle">{article.title}</h1>
-              <h3 className="articleAuther">{article.author}</h3>
-              <div
-                className="articleContent"
-                dangerouslySetInnerHTML={{ __html: article.content }}
-              ></div>
-            </div>
-
-            <div className="articlePDF-UI" ref={articleRef}>
-              <h1 className="articlePDF-UITitle">{article.title}</h1>
-              <h3 className="articlePDF-UIAuther">{article.author}</h3>
-              <div
-                className="articlePDF-UIContent"
-                dangerouslySetInnerHTML={{ __html: article.content }}
-              ></div>
-            </div>
-          </>
+          <div className="articleItem">
+            <h1 className="articleTitle">{article.title}</h1>
+            <h3 className="articleAuther">{article.author}</h3>
+            <div
+              className="articleContent"
+              dangerouslySetInnerHTML={{ __html: article.content }}
+            ></div>
+          </div>
         )}
       </section>
     </>
