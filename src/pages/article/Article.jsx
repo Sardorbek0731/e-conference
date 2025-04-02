@@ -128,12 +128,17 @@ function Article() {
 
           {!isPending && (
             <div className="articePageDownload-buttons">
-              <span className="articlePDF">
+              <a
+                href={article.pdfURL}
+                download
+                target="_blank"
+                className="articlePDF"
+              >
                 <span className="downloadArticleIcon">
                   <img src={download} alt="Download Icon" />
                 </span>
                 Download (PDF)
-              </span>
+              </a>
 
               <NavLink to="/" className="articlePage-zenodo">
                 ZENODO

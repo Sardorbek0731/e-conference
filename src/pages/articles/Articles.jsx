@@ -24,7 +24,7 @@ function Articles() {
         <Loading isPending={isPending} />
       ) : (
         <div className="articleCards">
-          {data.map(({ title, author, addedTime, id }) => {
+          {data.map(({ title, author, pdfURL, addedTime, id }) => {
             return (
               <div className="articleCard" key={id}>
                 <NavLink to={`/articles/${id}`}>
@@ -41,7 +41,14 @@ function Articles() {
 
                 <div className="articleFooter">
                   <div className="articleDownload-buttons">
-                    <span className="downloadPDF">Download (PDF)</span>
+                    <a
+                      href={pdfURL}
+                      download
+                      target="_blank"
+                      className="downloadPDF"
+                    >
+                      Download (PDF)
+                    </a>
                     <NavLink to="/" className="zenodo">
                       ZENODO
                     </NavLink>

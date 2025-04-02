@@ -45,10 +45,27 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
     e.preventDefault();
     setIsPending(true);
 
+    const cloudinary = new FormData();
+    cloudinary.append("file", pdfFile);
+    cloudinary.append("upload_preset", "E-Conference");
+
+    const setPDF = await fetch(
+      `https://api.cloudinary.com/v1_1/dqbxrkizg/raw/upload`,
+      {
+        method: "POST",
+        body: cloudinary,
+      }
+    );
+
+    const getPDF = await setPDF.json();
+    let pdfURL = getPDF.url;
+
     try {
       await updateArticle(articleId, {
         author,
         title,
+        pdfURL,
+        photo: "",
         createdAt: new Date(),
         content,
       });
