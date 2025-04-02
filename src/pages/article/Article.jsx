@@ -60,7 +60,7 @@ function Article() {
       );
       const metaPdfUrl = createMetaTag(
         "citation_pdf_url",
-        "https://e-conference-online.com/"
+        article.pdf_url
       );
 
       document.head.appendChild(metaDescription);
