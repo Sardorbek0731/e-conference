@@ -7,14 +7,13 @@
   background-color: white;
   border-radius: 0.1rem;
   box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.12);
-  padding: 1rem 0;
   min-height: 70vh;
 }
 .manageArticles-header {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 0 1rem;
+  padding: 1rem 1rem 0 1rem;
   margin-bottom: 1rem;
 }
 
@@ -51,10 +50,8 @@
   display: flex;
   justify-content: space-between;
   align-items: center;
-  padding: 1.5rem 1rem;
-  padding-bottom: 1.5rem;
+  padding: 1.3rem 1rem;
   background-color: rgba(0, 0, 0, 0.1);
-  margin-bottom: 1rem;
 }
 
 .manageArticles-navbar h3 {
@@ -85,13 +82,10 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding-bottom: 1rem;
-  margin-bottom: 1rem;
+  padding: 0.7rem 0;
   border-bottom: 1px dashed rgba(0, 0, 0, 0.25);
 }
 .manageArticles-item:last-child {
-  margin-bottom: 0;
-  padding-bottom: 0;
   border-bottom: none;
 }
 
