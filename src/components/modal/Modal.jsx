@@ -97,9 +97,11 @@ const Modal = ({
                   author,
                   title,
                   content,
-                  (pdfFile = e.target.files[0]),
-                  (pdfName = e.target.files[0].name)
+                  e.target.files[0],
+                  e.target.files[0].name
                 );
+
+                e.target.value = null;
               }}
             />
             <button
@@ -117,13 +119,7 @@ const Modal = ({
               onClick={() => {
                 setPdfFile(null);
                 setPdfName(null);
-                checkButton(
-                  author,
-                  title,
-                  content,
-                  (pdfFile = null),
-                  (pdfName = null)
-                );
+                checkButton(author, title, content, pdfFile, pdfName);
               }}
             >
               <img src={cancelIcon} alt="Cancel PDF Icon" />

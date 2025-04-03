@@ -101,8 +101,8 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
       checkButton={checkEditButton}
       pdfFile={pdfFile}
       setPdfFile={setPdfFile}
-      setPdfName={setPdfName}
       pdfName={pdfName}
+      setPdfName={setPdfName}
     />
   );
 }
