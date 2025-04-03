@@ -10,8 +10,9 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [pdfFile, setPdfFile] = useState(null);
+  const [pdfName, setPdfName] = useState(null);
 
-  const checkAddButton = (author, title, pdfFile, content) => {
+  const checkAddButton = (author, title, content, pdfFile) => {
     if (
       author.trim().length &&
       title.trim().length &&
@@ -48,6 +49,7 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
         author,
         title,
         pdfURL,
+        pdfName,
         photo: "",
         createdAt: new Date(),
         content,
@@ -81,6 +83,8 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
       checkButton={checkAddButton}
       pdfFile={pdfFile}
       setPdfFile={setPdfFile}
+      pdfName={pdfName}
+      setPdfName={setPdfName}
     />
   );
 };

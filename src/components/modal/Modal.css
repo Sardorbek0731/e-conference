@@ -4,8 +4,8 @@
   top: 0;
   bottom: 0;
   right: 0;
-  background-color: rgba(255, 255, 255, 0.2);
-  backdrop-filter: blur(7px);
+  background-color: rgba(0, 0, 0, 0.5);
+  backdrop-filter: blur(2px);
   display: flex;
   z-index: 10;
   align-items: center;
@@ -14,59 +14,49 @@
 
 .modalArticle {
   background-color: white;
-  padding: 2.6rem;
   border-radius: 0.1rem;
-  box-shadow: 0 0 6rem rgba(0, 0, 0, 0.2);
-}
-
-.modalTitle {
-  font-size: 1.9rem;
-  font-family: "Averia Serif Libre", serif;
 }
 
 .modalHeader {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  margin-bottom: 2.6rem;
-  padding-bottom: 2.6rem;
-  border-bottom: 1px dashed rgba(0, 0, 0, 0.25);
+  background-color: #15c756;
+  margin-bottom: 1.7rem;
+  padding: 1.7rem;
+}
+.editModalHeader {
+  background-color: var(--main-color);
+}
+
+.modalTitle {
+  font-size: 1.45rem;
+  color: white;
+  font-family: "Averia Serif Libre", serif;
+}
+
+.closeModal {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  border: none;
+  cursor: pointer;
+  background-color: transparent;
+}
+.closeModal:disabled {
+  cursor: not-allowed;
+}
+
+.closeModal img {
+  width: 1.55rem;
+  height: 1.55rem;
 }
 
 .modalBody {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
-}
-
-.closeModal {
-  background-color: rgb(255, 91, 91);
-  border: none;
-  outline: none;
-  width: 2.7rem;
-  height: 2.7rem;
-  border-radius: 0.8rem;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  transition: all 0.3s;
-}
-.closeModal:disabled {
-  cursor: not-allowed;
-}
-.closeModal:hover {
-  background-color: rgb(255, 0, 0);
-  box-shadow: 0.5rem 0.5rem 2.5rem rgba(0, 0, 0, 0.2);
-}
-.closeModal:disabled:hover {
-  background-color: rgb(255, 91, 91);
-  box-shadow: none;
-}
-
-.closeModal img {
-  width: 1.4rem;
-  height: 1.4rem;
+  padding: 0 1.7rem 1.7rem 1.7rem;
 }
 
 .addArticle-inputs {
@@ -74,13 +64,13 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  margin-bottom: 1.3rem;
+  margin-bottom: 1rem;
 }
 .addArticle-inputs label {
   display: flex;
   flex-direction: column;
   width: 48%;
-  font-size: 1.1rem;
+  font-size: 1rem;
 }
 
 .addArticle-inputs input {
@@ -98,7 +88,55 @@
 }
 
 .uploadPDF-file {
-  margin-bottom: 1.3rem;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 1rem;
+  position: relative;
+  border-radius: 0.1rem;
+  overflow: hidden;
+}
+.uploadPDF-button {
+  font-size: 1rem;
+  border: none;
+  background-color: rgb(255, 91, 32);
+  padding: 0.8rem 1.1rem;
+  color: white;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+.uploadPDF-button:hover {
+  background-color: rgb(255, 55, 0);
+}
+.pdfName {
+  font-size: 1rem;
+  background-color: rgb(245, 240, 240);
+  padding: 0.8rem 1.1rem;
+  flex-grow: 1;
+}
+.uploadPDF-delete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  cursor: pointer;
+  right: 0.4rem;
+  background-color: rgb(245, 240, 240);
+  border-radius: 50%;
+  transition: all 0.3s;
+}
+.uploadPDF-delete:hover {
+  background-color: rgb(228, 222, 222);
+}
+.uploadPDF-deleteHidden {
+  display: none;
+}
+.uploadPDF-delete img {
+  width: 1.3rem;
+  height: 1.3rem;
 }
 
 .reactQuill {
@@ -118,7 +156,7 @@
   border-radius: 0.1rem;
   line-height: 1;
   transition: all 0.3s;
-  margin-top: 5rem;
+  margin-top: 4.4rem;
 }
 .modalEdit-or-AddButton:hover {
   box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.3);

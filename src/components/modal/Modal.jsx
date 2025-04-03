@@ -2,6 +2,7 @@ import "./Modal.css";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import closeIcon from "../../assets/icons/close.png";
+import cancelIcon from "../../assets/icons/cancel.png";
 import { useRef } from "react";
 
 const Modal = ({
@@ -21,13 +22,21 @@ const Modal = ({
   checkButton,
   pdfFile,
   setPdfFile,
+  pdfName,
+  setPdfName,
 }) => {
   const fileInputRef = useRef(null);
 
   return (
     <div className="overlay">
       <div className="modalArticle">
-        <div className="modalHeader">
+        <div
+          className={
+            modalTitle === "Maqolani tahrirlash"
+              ? "modalHeader editModalHeader"
+              : "modalHeader"
+          }
+        >
           <span className="modalTitle">{modalTitle}</span>
           <button
             className="closeModal"
@@ -52,7 +61,7 @@ const Modal = ({
                 value={author}
                 onChange={(e) => {
                   setAuthor(e.target.value);
-                  checkButton(e.target.value, title, pdfFile, content);
+                  checkButton(e.target.value, title, content, pdfFile, pdfName);
                 }}
               />
             </label>
@@ -64,7 +73,13 @@ const Modal = ({
                 value={title}
                 onChange={(e) => {
                   setTitle(e.target.value);
-                  checkButton(author, e.target.value, pdfFile, content);
+                  checkButton(
+                    author,
+                    e.target.value,
+                    content,
+                    pdfFile,
+                    pdfName
+                  );
                 }}
               />
             </label>
@@ -77,20 +92,49 @@ const Modal = ({
               accept="application/pdf"
               onChange={(e) => {
                 setPdfFile(e.target.files[0]);
-                checkButton(author, title, e.target.files[0], content);
+                setPdfName(e.target.files[0].name);
+                checkButton(
+                  author,
+                  title,
+                  content,
+                  (pdfFile = e.target.files[0]),
+                  (pdfName = e.target.files[0].name)
+                );
               }}
             />
-            <button type="button" onClick={() => fileInputRef.current.click()}>
-              CHOOSE A FILE
+            <button
+              className="uploadPDF-button"
+              type="button"
+              onClick={() => fileInputRef.current.click()}
+            >
+              Faylni yuklash
             </button>
-            <span>{pdfFile ? pdfFile.name : "No file chosen, yet."}</span>
+            <span className="pdfName">
+              {pdfName ? pdfName : "Hali fayl tanlanmadi."}
+            </span>
+            <span
+              className={pdfName ? "uploadPDF-delete" : "hidden"}
+              onClick={() => {
+                setPdfFile(null);
+                setPdfName(null);
+                checkButton(
+                  author,
+                  title,
+                  content,
+                  (pdfFile = null),
+                  (pdfName = null)
+                );
+              }}
+            >
+              <img src={cancelIcon} alt="Cancel PDF Icon" />
+            </span>
           </div>
           <ReactQuill
             className="reactQuill"
             value={content}
             onChange={(value) => {
               setContent(value);
-              checkButton(author, title, pdfFile, value);
+              checkButton(author, title, value, pdfFile, pdfName);
             }}
           />
           <button

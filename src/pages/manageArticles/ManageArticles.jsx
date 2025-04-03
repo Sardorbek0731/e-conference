@@ -30,10 +30,10 @@ function ManageArticles() {
     }
   };
 
-  const handleEdit = (id, title, author, content) => {
+  const handleEdit = (id, title, author, content, pdfName) => {
     localStorage.setItem(
       "editArticle",
-      JSON.stringify({ id, title, author, content })
+      JSON.stringify({ id, title, author, content, pdfName })
     );
   };
 
@@ -61,7 +61,7 @@ function ManageArticles() {
           <Loading isPending={isPending} />
         ) : (
           <div className="manageArticles-body">
-            {data.map(({ id, title, author, addedTime, content }) => (
+            {data.map(({ id, title, author, addedTime, content, pdfName }) => (
               <div className="manageArticles-item" key={id}>
                 <h1 className="manageArticle-title">{title}</h1>
                 <h1 className="manageArticle-author">{author}</h1>
@@ -70,7 +70,7 @@ function ManageArticles() {
                   <button
                     className="manageArticle-editButton"
                     onClick={() => {
-                      handleEdit(id, title, author, content);
+                      handleEdit(id, title, author, content, pdfName);
                       setOpenEditArticle(true);
                     }}
                   >
