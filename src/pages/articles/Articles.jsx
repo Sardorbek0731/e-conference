@@ -34,7 +34,7 @@ function Articles() {
                   </div>
                   <div className="articleBody">
                     <h4>
-                      <span>Muallif:</span> {author}
+                      <span>Author:</span> {author}
                     </h4>
                   </div>
                 </NavLink>
