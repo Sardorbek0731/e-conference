@@ -13,7 +13,7 @@ function ManageArticles() {
   const { data, isPending, error, fetchArticles } = useFetch();
   const [openAddArticle, setOpenAddArticle] = useState(false);
   const [openEditArticle, setOpenEditArticle] = useState(false);
-  const [clickedDelete, setClickedDelete] = useState([]);
+  const [loadingState, setLoadingState] = useState({});
 
   if (!JSON.parse(localStorage.getItem("logined"))) {
     window.location = "/login";
@@ -22,11 +22,15 @@ function ManageArticles() {
 
   const handleDelete = async (id) => {
     try {
+      setLoadingState((prevState) => ({ ...prevState, [id]: true }));
+
       await deleteArticle(id);
       await fetchArticles();
-      setClickedDelete([false, id]);
+
+      setLoadingState((prevState) => ({ ...prevState, [id]: false }));
     } catch (error) {
       console.error("Maqolani o‘chirishda xatolik:", error);
+      setLoadingState((prevState) => ({ ...prevState, [id]: false }));
     }
   };
 
@@ -78,13 +82,10 @@ function ManageArticles() {
                   </button>
                   <button
                     className="manageArticle-deleteButton"
-                    onClick={() => {
-                      handleDelete(id);
-                      setClickedDelete([true, id]);
-                    }}
-                    disabled={clickedDelete[0] && id === clickedDelete[1]}
+                    onClick={() => handleDelete(id)}
+                    disabled={loadingState[id]}
                   >
-                    {clickedDelete[0] && id === clickedDelete[1] ? (
+                    {loadingState[id] ? (
                       <span className="loading centreLoading"></span>
                     ) : (
                       <img src={deleteIcon} alt="Delete Icon" />
