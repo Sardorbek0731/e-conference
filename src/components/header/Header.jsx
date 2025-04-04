@@ -5,7 +5,8 @@ import { header } from "../../data/data";
 
 function Header() {
   const location = useLocation();
-  const pageNotFound = location.pathname !== "/error";
+  const pageNotFound =
+    location.pathname !== "/error" && location.pathname !== "/login";
 
   return (
     pageNotFound && (

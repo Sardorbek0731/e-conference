@@ -29,31 +29,31 @@ const Modal = ({
 
   return (
     <div className="overlay">
-      <div className="modalArticle">
-        <div
-          className={
-            modalTitle === "Maqolani tahrirlash"
-              ? "modalHeader editModalHeader"
-              : "modalHeader"
-          }
-        >
-          <span className="modalTitle">{modalTitle}</span>
-          <button
-            className="closeModal"
-            onClick={() => {
-              setIsOpenModal(false);
+      <div className="modalContainer">
+        <div className="modalArticle">
+          <div
+            className={
               modalTitle === "Maqolani tahrirlash"
-                ? localStorage.removeItem("editArticle")
-                : "";
-            }}
-            disabled={isPending}
+                ? "modalHeader editModalHeader"
+                : "modalHeader"
+            }
           >
-            <img src={closeIcon} alt="Close Icon" />
-          </button>
-        </div>
-        <form className="modalBody">
-          <div className="addArticle-inputs">
-            <label>
+            <span className="modalTitle">{modalTitle}</span>
+            <button
+              className="closeModal"
+              onClick={() => {
+                setIsOpenModal(false);
+                modalTitle === "Maqolani tahrirlash"
+                  ? localStorage.removeItem("editArticle")
+                  : "";
+              }}
+              disabled={isPending}
+            >
+              <img src={closeIcon} alt="Close Icon" />
+            </button>
+          </div>
+          <form className="modalBody">
+            <label className="modalLabel">
               Muallif
               <input
                 type="text"
@@ -65,7 +65,7 @@ const Modal = ({
                 }}
               />
             </label>
-            <label>
+            <label className="modalLabel">
               Sarlavha
               <input
                 type="text"
@@ -83,84 +83,84 @@ const Modal = ({
                 }}
               />
             </label>
-          </div>
-          <div className="uploadPDF-file">
-            <input
-              type="file"
-              hidden
-              ref={fileInputRef}
-              accept="application/pdf"
-              onChange={(e) => {
-                setPdfFile(e.target.files[0]);
-                setPdfName(e.target.files[0].name);
-                checkButton(
-                  author,
-                  title,
-                  content,
-                  e.target.files[0],
-                  e.target.files[0].name
-                );
+            <div className="uploadPDF-file">
+              <input
+                type="file"
+                hidden
+                ref={fileInputRef}
+                accept="application/pdf"
+                onChange={(e) => {
+                  setPdfFile(e.target.files[0]);
+                  setPdfName(e.target.files[0].name);
+                  checkButton(
+                    author,
+                    title,
+                    content,
+                    e.target.files[0],
+                    e.target.files[0].name
+                  );
 
-                e.target.value = null;
+                  e.target.value = null;
+                }}
+              />
+              <button
+                className="uploadPDF-button"
+                type="button"
+                onClick={() => fileInputRef.current.click()}
+              >
+                Faylni yuklash
+              </button>
+              <div className="pdfNameSelect">
+                <span className="pdfName">
+                  {pdfName ? pdfName : "Hali fayl tanlanmadi."}
+                </span>
+              </div>
+              <div
+                className={
+                  pdfName
+                    ? "uploadPDF-delete"
+                    : "uploadPDF-delete uploadPDF-deleteHidden"
+                }
+              >
+                <span
+                  className="uploadPDF-deleteButton"
+                  onClick={() => {
+                    setPdfFile(null);
+                    setPdfName(null);
+                    checkButton(author, title, content, pdfFile, pdfName);
+                  }}
+                >
+                  <img src={cancelIcon} alt="Cancel PDF Icon" />
+                </span>
+              </div>
+            </div>
+            <ReactQuill
+              className="reactQuill"
+              value={content}
+              onChange={(value) => {
+                setContent(value);
+                checkButton(author, title, value, pdfFile, pdfName);
               }}
             />
             <button
-              className="uploadPDF-button"
-              type="button"
-              onClick={() => fileInputRef.current.click()}
-            >
-              Faylni yuklash
-            </button>
-            <div className="pdfNameSelect">
-              <span className="pdfName">
-                {pdfName ? pdfName : "Hali fayl tanlanmadi."}
-              </span>
-            </div>
-            <div
               className={
-                pdfName
-                  ? "uploadPDF-delete"
-                  : "uploadPDF-delete uploadPDF-deleteHidden"
+                modalTitle === "Maqolani tahrirlash"
+                  ? "modalEdit-or-AddButton editArticle-button"
+                  : "modalEdit-or-AddButton addArticle-button"
               }
+              type="submit"
+              onClick={handeledButton}
+              disabled={isPending || disabledButton}
             >
-              <span
-                className="uploadPDF-deleteButton"
-                onClick={() => {
-                  setPdfFile(null);
-                  setPdfName(null);
-                  checkButton(author, title, content, pdfFile, pdfName);
-                }}
-              >
-                <img src={cancelIcon} alt="Cancel PDF Icon" />
-              </span>
-            </div>
-          </div>
-          <ReactQuill
-            className="reactQuill"
-            value={content}
-            onChange={(value) => {
-              setContent(value);
-              checkButton(author, title, value, pdfFile, pdfName);
-            }}
-          />
-          <button
-            className={
-              modalTitle === "Maqolani tahrirlash"
-                ? "modalEdit-or-AddButton editArticle-button"
-                : "modalEdit-or-AddButton addArticle-button"
-            }
-            type="submit"
-            onClick={handeledButton}
-            disabled={isPending || disabledButton}
-          >
-            {isPending ? (
-              <span className="loading"></span>
-            ) : (
-              <img src={iconType} alt="Plus Icon" />
-            )}
-            {modalBtnType}
-          </button>
-        </form>
+              {isPending ? (
+                <span className="loading"></span>
+              ) : (
+                <img src={iconType} alt="Plus Icon" />
+              )}
+              {modalBtnType}
+            </button>
+          </form>
+        </div>
       </div>
     </div>
   );
