@@ -111,19 +111,29 @@ const Modal = ({
             >
               Faylni yuklash
             </button>
-            <span className="pdfName">
-              {pdfName ? pdfName : "Hali fayl tanlanmadi."}
-            </span>
-            <span
-              className={pdfName ? "uploadPDF-delete" : "hidden"}
-              onClick={() => {
-                setPdfFile(null);
-                setPdfName(null);
-                checkButton(author, title, content, pdfFile, pdfName);
-              }}
+            <div className="pdfNameSelect">
+              <span className="pdfName">
+                {pdfName ? pdfName : "Hali fayl tanlanmadi."}
+              </span>
+            </div>
+            <div
+              className={
+                pdfName
+                  ? "uploadPDF-delete"
+                  : "uploadPDF-delete uploadPDF-deleteHidden"
+              }
             >
-              <img src={cancelIcon} alt="Cancel PDF Icon" />
-            </span>
+              <span
+                className="uploadPDF-deleteButton"
+                onClick={() => {
+                  setPdfFile(null);
+                  setPdfName(null);
+                  checkButton(author, title, content, pdfFile, pdfName);
+                }}
+              >
+                <img src={cancelIcon} alt="Cancel PDF Icon" />
+              </span>
+            </div>
           </div>
           <ReactQuill
             className="reactQuill"
