@@ -13,7 +13,7 @@ export const header = [
   },
   {
     icon: info,
-    title: "Information",
+    title: "About us",
     to: "/",
   },
   {

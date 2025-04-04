@@ -108,7 +108,7 @@ const Modal = ({
                 type="button"
                 onClick={() => fileInputRef.current.click()}
               >
-                Faylni yuklash
+                Fayl (PDF)
               </button>
               <div className="pdfNameSelect">
                 <span className="pdfName">
@@ -127,7 +127,13 @@ const Modal = ({
                   onClick={() => {
                     setPdfFile(null);
                     setPdfName(null);
-                    checkButton(author, title, content, pdfFile, pdfName);
+                    checkButton(
+                      author,
+                      title,
+                      content,
+                      (pdfFile = null),
+                      (pdfName = null)
+                    );
                   }}
                 >
                   <img src={cancelIcon} alt="Cancel PDF Icon" />
@@ -142,23 +148,37 @@ const Modal = ({
                 checkButton(author, title, value, pdfFile, pdfName);
               }}
             />
-            <button
-              className={
-                modalTitle === "Maqolani tahrirlash"
-                  ? "modalEdit-or-AddButton editArticle-button"
-                  : "modalEdit-or-AddButton addArticle-button"
-              }
-              type="submit"
-              onClick={handeledButton}
-              disabled={isPending || disabledButton}
-            >
-              {isPending ? (
-                <span className="loading"></span>
-              ) : (
-                <img src={iconType} alt="Plus Icon" />
-              )}
-              {modalBtnType}
-            </button>
+            <div className="modalClose-buttons">
+              <button
+                className={
+                  modalTitle === "Maqolani tahrirlash"
+                    ? "modalEdit-or-AddButton editArticle-button"
+                    : "modalEdit-or-AddButton addArticle-button"
+                }
+                type="submit"
+                onClick={handeledButton}
+                disabled={isPending || disabledButton}
+              >
+                {isPending ? (
+                  <span className="loading"></span>
+                ) : (
+                  <img src={iconType} alt="Plus Icon" />
+                )}
+                {modalBtnType}
+              </button>
+              <button
+                className="cancelModal-button"
+                onClick={() => {
+                  setIsOpenModal(false);
+                  modalTitle === "Maqolani tahrirlash"
+                    ? localStorage.removeItem("editArticle")
+                    : "";
+                }}
+                disabled={isPending}
+              >
+                Bekor qilish
+              </button>
+            </div>
           </form>
         </div>
       </div>

@@ -102,7 +102,7 @@
   padding: 0.4rem 0 0.4rem 0;
   cursor: pointer;
   transition: all 0.3s;
-  width: 9rem;
+  width: 7.2rem;
 }
 .uploadPDF-button:hover {
   background-color: rgb(255, 55, 0);
@@ -118,7 +118,7 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 1rem;
-  width: 30.2rem;
+  width: 31rem;
   padding: 0.4rem 1.4rem 0.4rem 1.1rem;
 }
 
@@ -151,8 +151,14 @@
 }
 
 .reactQuill {
-  width: 42rem;
+  width: 41rem;
   height: 20rem;
+}
+
+.modalClose-buttons {
+  display: flex;
+  align-items: center;
+  margin-top: 4rem;
 }
 
 .modalEdit-or-AddButton {
@@ -167,7 +173,7 @@
   border-radius: 0.1rem;
   line-height: 1;
   transition: all 0.3s;
-  margin-top: 4rem;
+  margin-right: 1rem;
 }
 .modalEdit-or-AddButton:hover {
   box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.3);
@@ -205,6 +211,25 @@
 }
 .editArticle-button:hover {
   background-color: var(--main-color);
+}
+
+.cancelModal-button {
+  display: flex;
+  align-items: center;
+  padding: 0.8rem 0.9rem;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  color: rgb(46, 46, 51);
+  border-radius: 0.1rem;
+  line-height: 1;
+  transition: all 0.3s;
+  background-color: rgba(63, 63, 75, 0.15);
+}
+.cancelModal-button:hover {
+  color: black;
+  background-color: rgba(63, 63, 75, 0.25);
 }
 
 .loading {
