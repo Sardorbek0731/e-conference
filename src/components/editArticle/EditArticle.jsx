@@ -12,6 +12,7 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
   const [content, setContent] = useState("");
   const [pdfFile, setPdfFile] = useState(null);
   const [pdfName, setPdfName] = useState(null);
+  const [autherList, setAutherList] = useState([]);
 
   useEffect(() => {
     const editData = JSON.parse(localStorage.getItem("editArticle"));
@@ -103,6 +104,8 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
       setPdfFile={setPdfFile}
       pdfName={pdfName}
       setPdfName={setPdfName}
+      autherList={autherList}
+      setAutherList={setAutherList}
     />
   );
 }

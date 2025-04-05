@@ -3,7 +3,9 @@ import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import closeIcon from "../../assets/icons/close.png";
 import cancelIcon from "../../assets/icons/cancel.png";
-import { useRef } from "react";
+import plusIcon from "../../assets/icons/plus-math.png";
+import deleteIcon from "../../assets/icons/delete.png";
+import { useRef, useState, useEffect } from "react";
 
 const Modal = ({
   modalTitle,
@@ -24,51 +26,135 @@ const Modal = ({
   setPdfFile,
   pdfName,
   setPdfName,
+  autherList,
+  setAutherList,
 }) => {
+  const [canAddAuthor, setCanAddAuthor] = useState(false);
   const fileInputRef = useRef(null);
 
+  useEffect(() => {
+    const hasEmptyAuthor = autherList.some((a) => a.trim() === "");
+    setCanAddAuthor(author.trim().length > 3 && !hasEmptyAuthor);
+  }, [author, autherList]);
+
+  const closeModal = () => {
+    setIsOpenModal(false);
+    if (modalTitle === "Maqolani tahrirlash") {
+      localStorage.removeItem("editArticle");
+    }
+  };
+
+  const addAuthorHandler = (e) => {
+    e.preventDefault();
+    if (author.trim().length > 3 && !autherList.some((a) => a.trim() === "")) {
+      setAutherList([author, ...autherList]);
+      setAuthor("");
+    }
+  };
+
+  const changeAuthorHandler = (id, value) => {
+    const updatedAuthors = [...autherList];
+    updatedAuthors[id] = value;
+    setAutherList(updatedAuthors);
+  };
+
+  const deleteAuthorHandler = (id) => {
+    const filteredAuthors = autherList.filter((_, index) => index !== id);
+    setAutherList(filteredAuthors);
+  };
+
+  const fileChangeHandler = (e) => {
+    const file = e.target.files[0];
+    if (file) {
+      setPdfFile(file);
+      setPdfName(file.name);
+      checkButton(author, title, content, file, file.name);
+    }
+    e.target.value = null;
+  };
+
+  const fileDeleteHandler = () => {
+    setPdfFile(null);
+    setPdfName(null);
+    checkButton(author, title, content, null, null);
+  };
+
   return (
-    <div className="overlay">
+    <div className="modalOverlay">
       <div className="modalContainer">
-        <div className="modalArticle">
+        <div className="modalDialog">
           <div
-            className={
-              modalTitle === "Maqolani tahrirlash"
-                ? "modalHeader editModalHeader"
-                : "modalHeader"
-            }
+            className={`modalHeader ${
+              modalTitle === "Maqolani tahrirlash" ? "modalHeaderEdit" : ""
+            }`}
           >
             <span className="modalTitle">{modalTitle}</span>
             <button
-              className="closeModal"
-              onClick={() => {
-                setIsOpenModal(false);
-                modalTitle === "Maqolani tahrirlash"
-                  ? localStorage.removeItem("editArticle")
-                  : "";
-              }}
+              className="modalClose"
+              onClick={closeModal}
               disabled={isPending}
             >
-              <img src={closeIcon} alt="Close Icon" />
+              <img src={closeIcon} alt="Close Modal" />
             </button>
           </div>
-          <form className="modalBody">
+
+          <form className="modalForm">
             <label className="modalLabel">
               Muallif
-              <input
-                type="text"
-                placeholder="Muallif..."
-                value={author}
-                onChange={(e) => {
-                  setAuthor(e.target.value);
-                  checkButton(e.target.value, title, content, pdfFile, pdfName);
-                }}
-              />
+              <div className="authorInputGroup">
+                <input
+                  type="text"
+                  className="modalInput authorInput"
+                  placeholder="Muallif..."
+                  value={author}
+                  onChange={(e) => {
+                    setAuthor(e.target.value);
+                    checkButton(
+                      e.target.value,
+                      title,
+                      content,
+                      pdfFile,
+                      pdfName
+                    );
+                  }}
+                />
+                <button
+                  className={`authorAddBtn ${
+                    canAddAuthor ? "" : "disabledAuthorAddBtn"
+                  }`}
+                  onClick={addAuthorHandler}
+                  disabled={!canAddAuthor}
+                >
+                  <img src={plusIcon} alt="Plus Icon" />
+                </button>
+              </div>
+              <div className="authorList">
+                {autherList.map((auther, id) => (
+                  <div className="authorItem" key={id}>
+                    <input
+                      type="text"
+                      value={auther}
+                      onChange={(e) => changeAuthorHandler(id, e.target.value)}
+                    />
+                    <button
+                      className="authorDelete"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        deleteAuthorHandler(id);
+                      }}
+                    >
+                      <img src={deleteIcon} alt="Delete Icon" />
+                    </button>
+                  </div>
+                ))}
+              </div>
             </label>
+
             <label className="modalLabel">
               Sarlavha
               <input
                 type="text"
+                className="modalInput"
                 placeholder="Sarlavha..."
                 value={title}
                 onChange={(e) => {
@@ -83,78 +169,54 @@ const Modal = ({
                 }}
               />
             </label>
-            <div className="uploadPDF-file">
+
+            <div className="pdfUploadGroup">
               <input
                 type="file"
                 hidden
                 ref={fileInputRef}
                 accept="application/pdf"
-                onChange={(e) => {
-                  setPdfFile(e.target.files[0]);
-                  setPdfName(e.target.files[0].name);
-                  checkButton(
-                    author,
-                    title,
-                    content,
-                    e.target.files[0],
-                    e.target.files[0].name
-                  );
-
-                  e.target.value = null;
-                }}
+                onChange={fileChangeHandler}
               />
               <button
-                className="uploadPDF-button"
+                className="pdfUploadBtn"
                 type="button"
                 onClick={() => fileInputRef.current.click()}
               >
                 Fayl (PDF)
               </button>
-              <div className="pdfNameSelect">
+              <div className="pdfNameWrapper">
                 <span className="pdfName">
-                  {pdfName ? pdfName : "Hali fayl tanlanmadi."}
+                  {pdfName || "Hali fayl tanlanmadi."}
                 </span>
               </div>
               <div
-                className={
-                  pdfName
-                    ? "uploadPDF-delete"
-                    : "uploadPDF-delete uploadPDF-deleteHidden"
-                }
+                className={`pdfDeleteWrapper ${
+                  pdfName ? "" : "disabledPdfDeleteWrapper"
+                }`}
               >
-                <span
-                  className="uploadPDF-deleteButton"
-                  onClick={() => {
-                    setPdfFile(null);
-                    setPdfName(null);
-                    checkButton(
-                      author,
-                      title,
-                      content,
-                      (pdfFile = null),
-                      (pdfName = null)
-                    );
-                  }}
-                >
-                  <img src={cancelIcon} alt="Cancel PDF Icon" />
+                <span className="pdfDeleteBtn" onClick={fileDeleteHandler}>
+                  <img src={cancelIcon} alt="Delete PDF Icon" />
                 </span>
               </div>
             </div>
+
             <ReactQuill
-              className="reactQuill"
+              className="modalEditor"
               value={content}
               onChange={(value) => {
                 setContent(value);
                 checkButton(author, title, value, pdfFile, pdfName);
               }}
             />
-            <div className="modalClose-buttons">
+
+            <div className="modalActions">
               <button
-                className={
+                className={`modalSubmit ${
                   modalTitle === "Maqolani tahrirlash"
-                    ? "modalEdit-or-AddButton editArticle-button"
-                    : "modalEdit-or-AddButton addArticle-button"
-                }
+                    ? "modalSubmitEdit"
+                    : "modalSubmitAdd"
+                }`}
                 type="submit"
                 onClick={handeledButton}
                 disabled={isPending || disabledButton}
@@ -166,14 +228,10 @@ const Modal = ({
                 )}
                 {modalBtnType}
               </button>
+
               <button
-                className="cancelModal-button"
-                onClick={() => {
-                  setIsOpenModal(false);
-                  modalTitle === "Maqolani tahrirlash"
-                    ? localStorage.removeItem("editArticle")
-                    : "";
-                }}
+                className="modalCancel"
+                onClick={closeModal}
                 disabled={isPending}
               >
                 Bekor qilish

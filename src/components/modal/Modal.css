@@ -1,4 +1,4 @@
-.overlay {
+.modalOverlay {
   position: fixed;
   top: 0;
   left: 0;
@@ -14,7 +14,8 @@
   display: flex;
   justify-content: center;
 }
-.modalArticle {
+
+.modalDialog {
   background-color: white;
   border-radius: 0.1rem;
   overflow: hidden;
@@ -28,35 +29,58 @@
   margin-bottom: 1.5rem;
   padding: 1.5rem;
 }
-.editModalHeader {
+
+.modalHeaderEdit {
   background-color: var(--main-color);
 }
 
 .modalTitle {
   font-size: 1.45rem;
   color: white;
+  font-weight: 450;
   line-height: 1;
-  font-family: "Averia Serif Libre", serif;
 }
 
-.closeModal {
+.modalClose,
+.authorAddBtn,
+.authorDelete,
+.pdfUploadBtn,
+.pdfDeleteBtn,
+.modalSubmit,
+.modalCancel {
+  border: none;
+  outline: none;
+  cursor: pointer;
+  transition: all 0.3s;
+}
+
+.modalClose,
+.authorAddBtn,
+.authorDelete,
+.pdfDeleteBtn,
+.modalSubmit,
+.modalCancel {
   display: flex;
   align-items: center;
   justify-content: center;
-  border: none;
-  cursor: pointer;
+}
+
+.modalClose {
   background-color: transparent;
 }
-.closeModal:disabled {
+
+.modalClose:disabled,
+.modalSubmit:disabled,
+.modalCancel:disabled {
   cursor: not-allowed;
 }
 
-.closeModal img {
+.modalClose img {
   width: 1.5rem;
   height: 1.5rem;
 }
 
-.modalBody {
+.modalForm {
   display: flex;
   flex-direction: column;
   align-items: flex-end;
@@ -71,163 +95,208 @@
   margin-bottom: 1rem;
 }
 
-.modalLabel input {
+.modalInput,
+.authorInput,
+.authorItem input {
   padding: 0.8rem;
   border: 1px solid rgba(0, 0, 0, 0.2);
   outline: none;
-  margin-top: 0.5rem;
   border-radius: 0.1rem;
   transition: all 0.3s;
   font-size: 1rem;
+  margin-top: 0.5rem;
 }
-.modalLabel input:hover,
-.modalLabel input:focus {
+
+.modalInput,
+.authorItem input {
+  flex-grow: 1;
+}
+
+.modalInput:hover,
+.modalInput:focus,
+.authorInput:hover,
+.authorInput:focus,
+.authorItem input:hover,
+.authorItem input:focus {
   border: 1px solid rgb(0, 0, 0);
 }
 
-.uploadPDF-file {
+.authorInputGroup,
+.authorItem,
+.pdfUploadGroup,
+.pdfNameWrapper {
   display: flex;
+  align-items: center;
+  position: relative;
+}
+
+.authorInput {
+  padding-right: 4rem;
+}
+
+.authorList {
+  display: flex;
+  flex-direction: column;
+}
+
+.authorAddBtn,
+.authorDelete {
+  position: absolute;
+  right: 0.4rem;
+  background-color: #15c756;
+  width: 2rem;
+  height: 2rem;
+  border-radius: 0.6rem;
+  margin-top: 0.5rem;
+}
+
+.authorAddBtn:hover {
+  box-shadow: 1rem 1rem 3rem rgba(0, 0, 0, 0.3);
+  background-color: #149c46;
+}
+
+.authorDelete {
+  background-color: rgb(255, 0, 0);
+}
+
+.authorAddBtn img,
+.authorDelete img {
+  width: 1rem;
+  height: 1rem;
+}
+
+.disabledAuthorAddBtn {
+  opacity: 0.5;
+  cursor: not-allowed;
+}
+
+.pdfUploadGroup {
+  align-items: normal;
   width: 100%;
   margin-bottom: 1rem;
-  position: relative;
   overflow: hidden;
   background-color: rgb(245, 240, 240);
 }
 
-.uploadPDF-button {
+.pdfUploadBtn {
   font-size: 1rem;
-  border: none;
   background-color: rgb(255, 117, 67);
   color: white;
-  padding: 0.4rem 0 0.4rem 0;
-  cursor: pointer;
-  transition: all 0.3s;
-  width: 7.2rem;
+  padding: 0.35rem 0;
+  width: 6.9rem;
 }
-.uploadPDF-button:hover {
+
+.pdfUploadBtn:hover {
   background-color: rgb(255, 94, 0);
 }
 
-.pdfNameSelect {
-  display: flex;
-  align-items: center;
-}
 .pdfName {
   display: block;
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 1rem;
-  width: 30rem;
-  padding: 0.4rem 1.4rem 0.4rem 1.1rem;
+  width: 29.4rem;
+  padding: 0.35rem 1.5rem 0.35rem 1.1rem;
 }
 
-.uploadPDF-delete {
-  padding: 0.4rem;
+.pdfDeleteWrapper {
+  padding: 0.35rem;
 }
-.uploadPDF-deleteHidden {
+
+.disabledPdfDeleteWrapper {
   opacity: 0;
   visibility: hidden;
 }
 
-.uploadPDF-deleteButton {
-  display: flex;
-  align-items: center;
-  justify-content: center;
+.pdfDeleteBtn {
   width: 2rem;
   height: 2rem;
-  border: none;
-  cursor: pointer;
   background-color: rgb(245, 240, 240);
   border-radius: 50%;
-  transition: all 0.3s;
 }
-.uploadPDF-deleteButton:hover {
-  background-color: rgba(0, 0, 0, 0.08);
+
+.pdfDeleteBtn:hover {
+  background-color: rgba(0, 0, 0, 0.1);
 }
-.uploadPDF-deleteButton img {
+
+.pdfDeleteBtn img {
   width: 1.4rem;
   height: 1.4rem;
 }
 
-.reactQuill {
-  width: 40rem;
+.modalEditor {
+  width: 39rem;
   height: 20rem;
 }
 
-.modalClose-buttons {
+.modalActions {
   display: flex;
   align-items: center;
   margin-top: 4rem;
 }
 
-.modalEdit-or-AddButton {
-  display: flex;
-  align-items: center;
+.modalSubmit {
   padding: 0.8rem 0.9rem;
   font-size: 1rem;
-  border: none;
-  outline: none;
-  cursor: pointer;
   color: white;
   border-radius: 0.1rem;
   line-height: 1;
-  transition: all 0.3s;
   margin-right: 1rem;
 }
-.modalEdit-or-AddButton:hover {
+
+.modalSubmit:hover {
   box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.3);
 }
-.modalEdit-or-AddButton:disabled {
-  cursor: not-allowed;
+
+.modalSubmit:disabled {
   opacity: 0.7;
 }
-.modalEdit-or-AddButton:disabled:hover {
+
+.modalSubmit:disabled:hover {
   box-shadow: none;
 }
 
-.modalEdit-or-AddButton img {
+.modalSubmit img {
   width: 1rem;
   height: 1rem;
   margin-right: 0.5rem;
 }
 
-.addArticle-button {
-  background-color: #15c756;
-}
-.addArticle-button:disabled:hover {
+.modalSubmitAdd {
   background-color: #15c756;
 }
 
-.editArticle-button {
-  background-color: #af59ff;
+.modalSubmitAdd:disabled:hover {
+  background-color: #15c756;
 }
-.editArticle-button:disabled:hover {
+
+.modalSubmitEdit {
   background-color: #af59ff;
 }
 
-.addArticle-button:hover {
+.modalSubmitEdit:disabled:hover {
+  background-color: #af59ff;
+}
+
+.modalSubmitAdd:hover {
   background-color: #149c46;
 }
-.editArticle-button:hover {
+
+.modalSubmitEdit:hover {
   background-color: var(--main-color);
 }
 
-.cancelModal-button {
-  display: flex;
-  align-items: center;
+.modalCancel {
   padding: 0.8rem 0.9rem;
   font-size: 1rem;
-  border: none;
-  outline: none;
-  cursor: pointer;
   color: rgb(46, 46, 51);
   border-radius: 0.1rem;
   line-height: 1;
-  transition: all 0.3s;
   background-color: rgba(63, 63, 75, 0.15);
 }
-.cancelModal-button:hover {
+
+.modalCancel:hover {
   color: black;
   background-color: rgba(63, 63, 75, 0.25);
 }
@@ -243,6 +312,7 @@
   animation: spin 1s linear infinite;
   margin-right: 0.5rem;
 }
+
 .centreLoading {
   margin-right: 0;
 }

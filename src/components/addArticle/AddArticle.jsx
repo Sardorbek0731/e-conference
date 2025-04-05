@@ -11,6 +11,7 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
   const [content, setContent] = useState("");
   const [pdfFile, setPdfFile] = useState(null);
   const [pdfName, setPdfName] = useState(null);
+  const [autherList, setAutherList] = useState([]);
 
   const checkAddButton = (author, title, content, pdfFile) => {
     if (
@@ -85,6 +86,8 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
       setPdfFile={setPdfFile}
       pdfName={pdfName}
       setPdfName={setPdfName}
+      autherList={autherList}
+      setAutherList={setAutherList}
     />
   );
 };
