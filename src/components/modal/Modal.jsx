@@ -2,9 +2,9 @@ import "./Modal.css";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import closeIcon from "../../assets/icons/close.png";
+import editIcon from "../../assets/icons/edit.png";
 import cancelIcon from "../../assets/icons/cancel.png";
 import plusIcon from "../../assets/icons/plus-math.png";
-import deleteIcon from "../../assets/icons/delete.png";
 import { useRef, useState, useEffect } from "react";
 
 const Modal = ({
@@ -47,19 +47,16 @@ const Modal = ({
   const addAuthorHandler = (e) => {
     e.preventDefault();
     if (author.trim().length > 3 && !autherList.some((a) => a.trim() === "")) {
-      setAutherList([author, ...autherList]);
+      setAutherList([...autherList, author]);
+      checkButton([...autherList, author], title, content, pdfFile, pdfName);
+
       setAuthor("");
     }
   };
 
-  const changeAuthorHandler = (id, value) => {
-    const updatedAuthors = [...autherList];
-    updatedAuthors[id] = value;
-    setAutherList(updatedAuthors);
-  };
-
   const deleteAuthorHandler = (id) => {
     const filteredAuthors = autherList.filter((_, index) => index !== id);
+    checkButton(filteredAuthors, title, content, pdfFile, pdfName);
     setAutherList(filteredAuthors);
   };
 
@@ -68,7 +65,7 @@ const Modal = ({
     if (file) {
       setPdfFile(file);
       setPdfName(file.name);
-      checkButton(author, title, content, file, file.name);
+      checkButton(autherList, title, content, file, file.name);
     }
     e.target.value = null;
   };
@@ -76,7 +73,7 @@ const Modal = ({
   const fileDeleteHandler = () => {
     setPdfFile(null);
     setPdfName(null);
-    checkButton(author, title, content, null, null);
+    checkButton(autherList, title, content, null, null);
   };
 
   return (
@@ -99,7 +96,7 @@ const Modal = ({
           </div>
 
           <form className="modalForm">
-            <label className="modalLabel">
+            <label className="modalLabel autherLabel">
               Muallif
               <div className="authorInputGroup">
                 <input
@@ -109,13 +106,6 @@ const Modal = ({
                   value={author}
                   onChange={(e) => {
                     setAuthor(e.target.value);
-                    checkButton(
-                      e.target.value,
-                      title,
-                      content,
-                      pdfFile,
-                      pdfName
-                    );
                   }}
                 />
                 <button
@@ -128,27 +118,38 @@ const Modal = ({
                   <img src={plusIcon} alt="Plus Icon" />
                 </button>
               </div>
+            </label>
+
+            {autherList.length > 0 && (
               <div className="authorList">
                 {autherList.map((auther, id) => (
-                  <div className="authorItem" key={id}>
-                    <input
-                      type="text"
-                      value={auther}
-                      onChange={(e) => changeAuthorHandler(id, e.target.value)}
-                    />
+                  <span className="authorItem" key={id}>
+                    {auther}
+
                     <button
-                      className="authorDelete"
+                      className="authorEdit autherButton"
+                      onClick={(e) => {
+                        e.preventDefault();
+                        setAuthor(auther);
+                        deleteAuthorHandler(id);
+                      }}
+                    >
+                      <img src={editIcon} alt="Edit Icon" />
+                    </button>
+
+                    <button
+                      className="authorDelete autherButton"
                       onClick={(e) => {
                         e.preventDefault();
                         deleteAuthorHandler(id);
                       }}
                     >
-                      <img src={deleteIcon} alt="Delete Icon" />
+                      <img src={closeIcon} alt="Delete Icon" />
                     </button>
-                  </div>
+                  </span>
                 ))}
               </div>
-            </label>
+            )}
 
             <label className="modalLabel">
               Sarlavha
@@ -160,7 +161,7 @@ const Modal = ({
                 onChange={(e) => {
                   setTitle(e.target.value);
                   checkButton(
-                    author,
+                    autherList,
                     e.target.value,
                     content,
                     pdfFile,
@@ -206,7 +207,7 @@ const Modal = ({
               value={content}
               onChange={(value) => {
                 setContent(value);
-                checkButton(author, title, value, pdfFile, pdfName);
+                checkButton(autherList, title, value, pdfFile, pdfName);
               }}
             />
 

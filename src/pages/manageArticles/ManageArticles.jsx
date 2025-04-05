@@ -34,10 +34,10 @@ function ManageArticles() {
     }
   };
 
-  const handleEdit = (id, title, author, content, pdfName) => {
+  const handleEdit = (id, title, autherList, content, pdfName, pdfURL) => {
     localStorage.setItem(
       "editArticle",
-      JSON.stringify({ id, title, author, content, pdfName })
+      JSON.stringify({ id, title, autherList, content, pdfName, pdfURL })
     );
   };
 
@@ -65,35 +65,55 @@ function ManageArticles() {
           <Loading isPending={isPending} />
         ) : (
           <div className="manageArticles-body">
-            {data.map(({ id, title, author, addedTime, content, pdfName }) => (
-              <div className="manageArticles-item" key={id}>
-                <h1 className="manageArticle-title">{title}</h1>
-                <h1 className="manageArticle-author">{author}</h1>
-                <h1 className="manageArticle-createdAt">{addedTime}</h1>
-                <div className="manageArticle-Buttons">
-                  <button
-                    className="manageArticle-editButton"
-                    onClick={() => {
-                      handleEdit(id, title, author, content, pdfName);
-                      setOpenEditArticle(true);
-                    }}
-                  >
-                    <img src={editIcon} alt="Edit Icon" />
-                  </button>
-                  <button
-                    className="manageArticle-deleteButton"
-                    onClick={() => handleDelete(id)}
-                    disabled={loadingState[id]}
-                  >
-                    {loadingState[id] ? (
-                      <span className="loading centreLoading"></span>
-                    ) : (
-                      <img src={deleteIcon} alt="Delete Icon" />
-                    )}
-                  </button>
+            {data.map(
+              ({
+                id,
+                title,
+                autherList,
+                addedTime,
+                content,
+                pdfName,
+                pdfURL,
+              }) => (
+                <div className="manageArticles-item" key={id}>
+                  <h1 className="manageArticle-title">{title}</h1>
+                  <h1 className="manageArticle-author">
+                    {autherList.join(", ")}
+                  </h1>
+                  <h1 className="manageArticle-createdAt">{addedTime}</h1>
+                  <div className="manageArticle-Buttons">
+                    <button
+                      className="manageArticle-editButton"
+                      onClick={() => {
+                        handleEdit(
+                          id,
+                          title,
+                          autherList,
+                          content,
+                          pdfName,
+                          pdfURL
+                        );
+                        setOpenEditArticle(true);
+                      }}
+                      disabled={loadingState[id]}
+                    >
+                      <img src={editIcon} alt="Edit Icon" />
+                    </button>
+                    <button
+                      className="manageArticle-deleteButton"
+                      onClick={() => handleDelete(id)}
+                      disabled={loadingState[id]}
+                    >
+                      {loadingState[id] ? (
+                        <span className="loading centreLoading"></span>
+                      ) : (
+                        <img src={deleteIcon} alt="Delete Icon" />
+                      )}
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))}
+              )
+            )}
           </div>
         )}
       </div>

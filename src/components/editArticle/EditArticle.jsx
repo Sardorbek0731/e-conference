@@ -8,36 +8,47 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
   const [isPending, setIsPending] = useState(false);
   const [articleId, setArticleId] = useState("");
   const [author, setAuthor] = useState("");
+  const [autherList, setAutherList] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [pdfFile, setPdfFile] = useState(null);
   const [pdfName, setPdfName] = useState(null);
-  const [autherList, setAutherList] = useState([]);
+  const [pdfURL, setPdfURL] = useState(null);
 
   useEffect(() => {
     const editData = JSON.parse(localStorage.getItem("editArticle"));
 
     setArticleId(editData.id);
-    setAuthor(editData.author);
+    setAutherList(editData.autherList);
     setTitle(editData.title);
     setContent(editData.content);
     setPdfName(editData.pdfName);
+    setPdfURL(editData.pdfURL);
   }, []);
 
-  const checkEditButton = (author, title, content, pdfFile, pdfName) => {
+  const checkEditButton = (autherList, title, content, pdfName) => {
     const editData = JSON.parse(localStorage.getItem("editArticle"));
 
+    const isSameArray = (a, b) => {
+      if (!Array.isArray(a) || !Array.isArray(b)) return false;
+      if (a.length !== b.length) return false;
+      return a.every((item, index) => item === b[index]);
+    };
+
+    const authorsChanged = !isSameArray(autherList, editData.autherList);
+    const titleChanged = title.trim() !== editData.title;
+    const contentChanged = content !== editData.content;
+    const pdfNameChanged = pdfName !== editData.pdfName;
+
     if (
-      author.trim().length &&
+      autherList.length > 0 &&
       title.trim().length &&
-      pdfName &&
       content.replace(/<[^>]+>/g, "").trim().length &&
-      (author.trim() !== editData.author ||
-        title.trim() !== editData.title ||
-        content !== editData.content ||
-        pdfName !== editData.pdfName)
+      (authorsChanged || titleChanged || contentChanged || pdfNameChanged)
     ) {
       setEditButtonDisabled(false);
+
+      console.log(authorsChanged);
     } else {
       setEditButtonDisabled(true);
     }
@@ -60,15 +71,15 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
     );
 
     const getPDF = await setPDF.json();
-    let pdfURL = getPDF.url;
+    let newPdffURL = getPDF.url ? getPDF.url : pdfURL;
 
     try {
       await updateArticle(articleId, {
-        author,
+        autherList,
         title,
-        pdfURL,
+        newPdffURL,
         pdfName,
-        photo: "",
+        image: "test",
         createdAt: new Date(),
         content,
       });

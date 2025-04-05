@@ -24,7 +24,7 @@ function Articles() {
         <Loading isPending={isPending} />
       ) : (
         <div className="articleCards">
-          {data.map(({ title, author, pdfURL, addedTime, id }) => {
+          {data.map(({ title, autherList, pdfURL, addedTime, id }) => {
             return (
               <div className="articleCard" key={id}>
                 <NavLink to={`/articles/${id}`}>
@@ -34,7 +34,8 @@ function Articles() {
                   </div>
                   <div className="articleBody">
                     <h4>
-                      <span>Author:</span> {author}
+                      <span>Author: </span>
+                      {autherList.join(", ")}
                     </h4>
                   </div>
                 </NavLink>

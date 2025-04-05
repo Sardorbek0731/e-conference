@@ -142,18 +142,27 @@
   background-color: #af59ff;
   margin-right: 1rem;
 }
+
 .manageArticle-deleteButton {
   background-color: rgb(255, 91, 91);
-}
-.manageArticle-deleteButton:disabled {
-  cursor: not-allowed;
-  opacity: 0.7;
 }
 .manageArticle-editButton:hover {
   background-color: var(--main-color);
 }
 .manageArticle-deleteButton:hover {
   background-color: rgb(255, 0, 0);
+}
+.manageArticle-editButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.manageArticle-deleteButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.7;
+}
+.manageArticle-editButton:disabled:hover {
+  background-color: #af59ff;
+  box-shadow: none;
 }
 .manageArticle-deleteButton:disabled:hover {
   background-color: rgb(255, 91, 91);

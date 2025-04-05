@@ -43,7 +43,7 @@
 
 .modalClose,
 .authorAddBtn,
-.authorDelete,
+.autherButton,
 .pdfUploadBtn,
 .pdfDeleteBtn,
 .modalSubmit,
@@ -56,7 +56,7 @@
 
 .modalClose,
 .authorAddBtn,
-.authorDelete,
+.autherButton,
 .pdfDeleteBtn,
 .modalSubmit,
 .modalCancel {
@@ -92,6 +92,8 @@
   flex-direction: column;
   width: 100%;
   font-size: 1rem;
+}
+.autherLabel {
   margin-bottom: 1rem;
 }
 
@@ -134,13 +136,7 @@
   padding-right: 4rem;
 }
 
-.authorList {
-  display: flex;
-  flex-direction: column;
-}
-
-.authorAddBtn,
-.authorDelete {
+.authorAddBtn {
   position: absolute;
   right: 0.4rem;
   background-color: #15c756;
@@ -155,12 +151,7 @@
   background-color: #149c46;
 }
 
-.authorDelete {
-  background-color: rgb(255, 0, 0);
-}
-
-.authorAddBtn img,
-.authorDelete img {
+.authorAddBtn img {
   width: 1rem;
   height: 1rem;
 }
@@ -169,11 +160,62 @@
   opacity: 0.5;
   cursor: not-allowed;
 }
+.disabledAuthorAddBtn:hover {
+  background-color: #15c756;
+  box-shadow: none;
+}
+
+.authorList {
+  display: flex;
+  align-items: flex-start;
+  flex-wrap: wrap;
+  width: 39rem;
+}
+
+.authorItem {
+  background-color: rgb(245, 240, 240);
+  padding: 0.6rem 0.6rem 0.6rem 0.8rem;
+  border-radius: 0.1rem;
+  margin-right: 1rem;
+  margin-bottom: 1rem;
+}
+
+.autherButton {
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 0.45rem;
+  transition: all 0.3s;
+}
+
+.authorEdit {
+  margin-left: 1rem;
+  background-color: #af59ff;
+}
+.authorEdit:hover {
+  background-color: var(--main-color);
+}
+
+.authorDelete {
+  background-color: rgb(255, 110, 110);
+  margin-left: 0.5rem;
+}
+.authorDelete:hover {
+  background-color: red;
+}
+
+.autherButton img {
+  width: 1rem;
+  height: 1rem;
+}
+.authorEdit img {
+  width: 0.9rem;
+  height: 0.9rem;
+}
 
 .pdfUploadGroup {
   align-items: normal;
   width: 100%;
-  margin-bottom: 1rem;
+  margin: 1rem 0;
   overflow: hidden;
   background-color: rgb(245, 240, 240);
 }
@@ -182,7 +224,7 @@
   font-size: 1rem;
   background-color: rgb(255, 117, 67);
   color: white;
-  padding: 0.35rem 0;
+  padding: 0.3rem 0;
   width: 6.9rem;
 }
 
@@ -196,12 +238,12 @@
   overflow: hidden;
   text-overflow: ellipsis;
   font-size: 1rem;
-  width: 29.4rem;
-  padding: 0.35rem 1.5rem 0.35rem 1.1rem;
+  width: 29.5rem;
+  padding: 0.3rem 1.5rem 0.3rem 1.1rem;
 }
 
 .pdfDeleteWrapper {
-  padding: 0.35rem;
+  padding: 0.3rem;
 }
 
 .disabledPdfDeleteWrapper {

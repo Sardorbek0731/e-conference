@@ -7,15 +7,15 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
   const [addButtonDisabled, setAddButtonDisabled] = useState(true);
   const [isPending, setIsPending] = useState(false);
   const [author, setAuthor] = useState("");
+  const [autherList, setAutherList] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [pdfFile, setPdfFile] = useState(null);
   const [pdfName, setPdfName] = useState(null);
-  const [autherList, setAutherList] = useState([]);
 
-  const checkAddButton = (author, title, content, pdfFile) => {
+  const checkAddButton = (autherList, title, content, pdfFile) => {
     if (
-      author.trim().length &&
+      autherList.length > 0 &&
       title.trim().length &&
       pdfFile &&
       content.replace(/<[^>]+>/g, "").trim().length
@@ -47,11 +47,11 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
 
     try {
       await addArticle({
-        author,
+        autherList,
         title,
         pdfURL,
         pdfName,
-        photo: "",
+        image: "test",
         createdAt: new Date(),
         content,
       });

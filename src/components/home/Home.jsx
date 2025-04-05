@@ -25,7 +25,7 @@ function Home() {
           laudantium dolore recusandae beatae.
         </p>
         <NavLink to="#" className="detailBtn">
-          Batafsil
+          Learn more
         </NavLink>
       </div>
 
