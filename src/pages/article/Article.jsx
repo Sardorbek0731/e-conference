@@ -58,10 +58,7 @@ function Article() {
         "citation_journal_title",
         "E-Conference-Online"
       );
-      const metaPdfUrl = createMetaTag(
-        "citation_pdf_url",
-        article.pdf_url
-      );
+      const metaPdfUrl = createMetaTag("citation_pdf_url", article.pdf_url);
 
       document.head.appendChild(metaDescription);
       document.head.appendChild(metaTitle);

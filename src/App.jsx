@@ -7,6 +7,7 @@ import Login from "./pages/login/Login";
 import Contact from "./pages/contact/Contact";
 import ManageArticles from "./pages/manageArticles/ManageArticles";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
+import Conference from "./pages/conference/Conference";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 
 function App() {
@@ -20,6 +21,7 @@ function App() {
           <Route path="/" element={<Main />} />
           <Route path="/articles" element={<Articles />} />
           <Route path="/articles/:articleId" element={<Article />} />
+          <Route path="/:conferenceId" element={<Conference />} />
           <Route path="/login" element={<Login />} />
           <Route path="/contact" element={<Contact />} />
           <Route path="/manage-articles" element={<ManageArticles />} />

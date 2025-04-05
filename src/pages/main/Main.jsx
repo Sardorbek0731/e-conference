@@ -1,5 +1,5 @@
 import Home from "../../components/home/Home";
-import Conference from "../../components/conference/Conference.jsx";
+import Conferences from "../../components/conferences/Conferences.jsx";
 import { useState, useEffect } from "react";
 
 function Main() {
@@ -24,7 +24,7 @@ function Main() {
         </div>
       </div>
       <Home />
-      <Conference />
+      <Conferences />
     </main>
   );
 }

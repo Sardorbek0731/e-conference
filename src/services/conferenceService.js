@@ -7,7 +7,7 @@ import {
   updateDoc,
   deleteDoc,
 } from "firebase/firestore";
-import { db } from "firebaseConfig.js";
+import { db } from "../../firebaseConfig.js";
 
 const conferencesCollection = collection(db, "conferences");
 
