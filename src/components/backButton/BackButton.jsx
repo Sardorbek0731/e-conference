@@ -1,13 +1,19 @@
 import "./BackButton.css";
 import leftArrow from "../../assets/icons/arrows/left.png";
-import { NavLink } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 
-function BackButton({ to }) {
+function BackButton() {
+  const navigate = useNavigate();
+
+  const backPage = () => {
+    navigate(-1);
+  };
+
   return (
-    <NavLink to={to} className="backBtn">
+    <button onClick={backPage} className="backBtn">
       <img src={leftArrow} alt="Left Arrow" />
       Back
-    </NavLink>
+    </button>
   );
 }
 

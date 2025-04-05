@@ -121,7 +121,7 @@ function Article() {
       {!isPending && <title>{article.title}</title>}
       <section className="article container">
         <div className="articleButtons">
-          <BackButton to="/articles" />
+          <BackButton />
 
           {!isPending && (
             <div className="articePageDownload-buttons">
