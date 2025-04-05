@@ -3,9 +3,11 @@ import logo from "../../assets/logo/logo.png";
 import { getConferences } from "../../services/conferenceService";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
+import Loading from "../loading/Loading";
 
 function Conferences() {
   const [conferences, setConferences] = useState(null);
+  const [isPending, setIsPending] = useState(true);
 
   const fetchConferences = async () => {
     try {
@@ -13,6 +15,8 @@ function Conferences() {
       setConferences(data);
     } catch (error) {
       console.error("Konferensiyalarni olishda xatolik:", error);
+    } finally {
+      setIsPending(false);
     }
   };
 
@@ -21,7 +25,7 @@ function Conferences() {
   }, []);
 
   return (
-    <section className="conference container">
+    <section className="conferences container" id="conferences">
       <div className="sectionTitle">
         <h1>Conferences</h1>
         <p>
@@ -29,21 +33,24 @@ function Conferences() {
           molestias nulla odit esse.
         </p>
       </div>
-      <div className="conferenceList">
-        {conferences &&
+      <div className="conferencesList">
+        {isPending ? (
+          <Loading isPending={isPending} />
+        ) : (
           conferences.map((conference) => (
-            <div key={conference.id} className="conferenceItem">
+            <div key={conference.id} className="conferencesItem">
               <NavLink to={"/" + conference.id}>
                 <img src={logo} alt="Conference Image" />
               </NavLink>
-              <div className="conferenceColumn">
+              <div className="conferencesColumn">
                 <NavLink to={"/" + conference.id}>
                   <h1>{conference.title}</h1>
                 </NavLink>
                 <p>{conference.description}</p>
               </div>
             </div>
-          ))}
+          ))
+        )}
       </div>
     </section>
   );

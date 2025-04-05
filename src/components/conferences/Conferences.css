@@ -1,28 +1,32 @@
-.conference {
-  margin: 3rem 0;
+.conferences {
+  margin: 3rem;
+  min-height: 20rem;
 }
 
-.conferenceItem {
+.conferencesList {
+  position: relative;
+}
+
+.conferencesItem {
   display: flex;
   align-items: flex-start;
   padding-bottom: 3rem;
   border-bottom: 1px dashed rgba(0, 0, 0, 0.6);
   margin-bottom: 3rem;
 }
-.conferenceItem:last-child {
+.conferencesItem:last-child {
   border-bottom: none;
   margin-bottom: 0;
-  padding-bottom: 0;
 }
 
-.conferenceItem img {
+.conferencesItem img {
   width: 10rem;
   height: 10rem;
   margin-right: 1rem;
   border-radius: 0.1rem;
 }
 
-.conferenceColumn h1 {
+.conferencesColumn h1 {
   line-height: 1;
   margin-bottom: 1rem;
   font-size: 1.4rem;
@@ -30,6 +34,6 @@
   transition: all 0.3s;
   color: black;
 }
-.conferenceColumn h1:hover {
+.conferencesColumn h1:hover {
   color: var(--main-color);
 }

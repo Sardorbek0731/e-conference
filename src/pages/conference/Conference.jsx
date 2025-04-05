@@ -3,6 +3,7 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getConferenceById } from "../../services/conferenceService";
 import { useEffect, useState } from "react";
 import Loading from "../../components/loading/Loading";
+import BackButton from "../../components/backButton/BackButton";
 
 function Conference() {
   const [conference, setConference] = useState(null);
@@ -31,14 +32,20 @@ function Conference() {
     fetchConference();
   }, []);
 
-  return isPending ? (
-    <Loading isPending={isPending} />
-  ) : (
+  return (
     <>
-      {console.log(conference)}
-
+      {!isPending && <title>{conference.title}</title>}
       <section className="conference container">
-        <h1>Conference</h1>
+        <BackButton to="/" />
+
+        {isPending ? (
+          <Loading isPending={isPending} />
+        ) : (
+          <div className="conferenceItem" key={conference.id}>
+            <h1>{conference.title}</h1>
+            <p>{conference.description}</p>
+          </div>
+        )}
       </section>
     </>
   );

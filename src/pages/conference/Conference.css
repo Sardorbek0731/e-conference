@@ -1,0 +1,9 @@
+.conference {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.conferenceItem {
+  margin-top: 3rem;
+}
