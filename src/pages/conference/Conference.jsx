@@ -75,7 +75,7 @@ function Conference() {
               {isPending ? (
                 <Loading isPending={isPending} />
               ) : articles.length > 0 ? (
-                articles.map(({ title, author, pdfURL, addedTime, id }) => (
+                articles.map(({ title, authors, pdfURL, addedTime, id }) => (
                   <div className="articleCard" key={id}>
                     <NavLink to={`/articles/${id}`}>
                       <div className="articleHeader">
@@ -84,7 +84,7 @@ function Conference() {
                       </div>
                       <div className="articleBody">
                         <h4>
-                          <span>Author:</span> {author}
+                          <span>Author:</span> {authors.join(", ")}
                         </h4>
                       </div>
                     </NavLink>

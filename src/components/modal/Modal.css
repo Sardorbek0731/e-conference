@@ -35,10 +35,9 @@
 }
 
 .modalTitle {
-  font-size: 1.45rem;
+  font-size: 1.4rem;
   color: white;
   font-weight: 450;
-  line-height: 1;
 }
 
 .modalClose,
@@ -65,8 +64,8 @@
 }
 
 .modalClose img {
-  width: 1.5rem;
-  height: 1.5rem;
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .modalForm {
@@ -79,7 +78,9 @@
 .authorAdd,
 .modalLabel {
   width: 100%;
+  font-size: 1.1rem;
   margin-bottom: 1rem;
+  color: var(--main-color);
 }
 
 .authorAddBtn {
@@ -98,8 +99,8 @@
 }
 
 .authorAddBtn img {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1.1rem;
+  height: 1.1rem;
 }
 
 .disabledAuthorAddBtn {
@@ -148,12 +149,11 @@
   align-items: center;
   justify-content: center;
   position: absolute;
-  right: 0.65rem;
-  width: 1.7rem;
-  height: 1.7rem;
-  border-radius: 0.1rem;
+  right: 0.6rem;
+  width: 1.8rem;
+  height: 1.8rem;
+  border-radius: 50%;
   background-color: rgb(255, 110, 110);
-  margin-left: 0.5rem;
   transition: all 0.3s;
 }
 
@@ -162,8 +162,8 @@
 }
 
 .authorDelete img {
-  width: 1rem;
-  height: 1rem;
+  width: 0.7rem;
+  height: 0.7rem;
 }
 
 .pdfUploadGroup {

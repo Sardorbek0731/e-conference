@@ -1,8 +1,84 @@
 .manageArticles-container {
+  display: flex;
+  flex-direction: column;
+  align-items: flex-start;
   padding: 0 7.9rem;
 }
 
+.manageType {
+  position: relative;
+}
+
+.manageTypeBtn {
+  display: flex;
+  align-items: center;
+  margin-bottom: 1.5rem;
+  background-color: white;
+  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.12);
+  padding: 1rem;
+  border-radius: 0.1rem;
+  cursor: pointer;
+  transition: all 0.3s;
+  border: 1px solid white;
+  font-size: 1rem;
+  font-weight: 500;
+  user-select: none;
+}
+.manageTypeBtnFocused,
+.manageTypeBtn:hover {
+  border: 1px solid black;
+}
+.manageTypeBtn span {
+  color: var(--main-color);
+  margin-left: 0.25rem;
+}
+
+.manageTypeOptions {
+  position: absolute;
+  right: 0;
+  top: 85%;
+  background-color: white;
+  padding: 0.5rem 0;
+  border-radius: 0.1rem;
+  box-shadow: 1rem 1rem 5rem rgba(0, 0, 0, 0.3);
+  transition: all 0.3s;
+}
+.manageTypeOptionsHidden {
+  opacity: 0;
+  top: 120%;
+}
+
+.manageTypeIcon {
+  width: 1.05rem;
+  height: 1.05rem;
+  margin-left: 0.5rem;
+  user-select: none;
+  transform: rotate(-0);
+  transition: all 0.3s;
+}
+.manageTypeIcon.rotateIcon {
+  transform: rotate(-90deg);
+}
+
+.manageTypeOptions h2 {
+  font-size: 1rem;
+  text-align: right;
+  font-weight: 500;
+  margin-bottom: 0.5rem;
+  padding: 0.5rem 1rem;
+  cursor: pointer;
+  user-select: none;
+  transition: all 0.3s;
+}
+.manageTypeOptions h2:last-child {
+  margin-bottom: 0;
+}
+.manageTypeOptions h2:hover {
+  background-color: rgba(0, 0, 0, 0.07);
+}
+
 .manageArticles {
+  width: 100%;
   background-color: white;
   border-radius: 0.1rem;
   box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.12);
@@ -47,9 +123,9 @@
 
 .manageArticles-navbar {
   display: flex;
-  justify-content: space-between;
   align-items: center;
   padding: 1.3rem 1rem;
+  justify-content: space-between;
   background-color: rgba(0, 0, 0, 0.1);
 }
 

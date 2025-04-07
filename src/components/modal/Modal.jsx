@@ -94,7 +94,7 @@ const Modal = ({
 
           <form className="modalForm">
             <div className="authorAdd">
-              Muallif
+              Muallif:
               <button
                 type="button"
                 className={`authorAddBtn ${
@@ -140,7 +140,7 @@ const Modal = ({
             )}
 
             <label className="modalLabel">
-              Sarlavha
+              Sarlavha:
               <input
                 type="text"
                 className="modalInput titleInput"

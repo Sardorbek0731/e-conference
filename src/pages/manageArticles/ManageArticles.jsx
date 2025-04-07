@@ -2,10 +2,11 @@ import "./ManageArticles.css";
 import plusIcon from "../../assets/icons/plus.png";
 import editIcon from "../../assets/icons/edit.png";
 import deleteIcon from "../../assets/icons/delete.png";
+import downIcon from "../../assets/icons/arrows/down-arrow.png";
 import Loading from "../../components/loading/Loading";
 import AddArticle from "../../components/addArticle/AddArticle";
 import EditArticle from "../../components/editArticle/EditArticle";
-import { useState } from "react";
+import { useState, useEffect, useRef } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { deleteArticle } from "../../services/articleService";
 
@@ -13,7 +14,23 @@ function ManageArticles() {
   const { data, isPending, error, fetchArticles } = useFetch();
   const [openAddArticle, setOpenAddArticle] = useState(false);
   const [openEditArticle, setOpenEditArticle] = useState(false);
+  const [manageTypeBtn, setManageTypeBtn] = useState(false);
+  const [manageType, setManageType] = useState("Maqola");
   const [loadingState, setLoadingState] = useState({});
+  const dropdownRef = useRef(null);
+
+  useEffect(() => {
+    const handleClickOutside = (event) => {
+      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
+        setManageTypeBtn(false);
+      }
+    };
+
+    document.addEventListener("mousedown", handleClickOutside);
+    return () => {
+      document.removeEventListener("mousedown", handleClickOutside);
+    };
+  }, []);
 
   if (!JSON.parse(localStorage.getItem("logined"))) {
     window.location = "/login";
@@ -45,6 +62,50 @@ function ManageArticles() {
 
   return (
     <section className="manageArticles-container">
+      <div className="manageType" ref={dropdownRef}>
+        <button
+          className={
+            manageTypeBtn
+              ? "manageTypeBtn manageTypeBtnFocused"
+              : "manageTypeBtn"
+          }
+          onClick={() => setManageTypeBtn(!manageTypeBtn)}
+        >
+          Boshqarish: <span>{manageType}</span>
+          <img
+            className={
+              manageTypeBtn ? "manageTypeIcon rotateIcon" : "manageTypeIcon"
+            }
+            src={downIcon}
+            alt="Down Arrow Icon"
+          />
+        </button>
+        <div
+          className={
+            manageTypeBtn
+              ? "manageTypeOptions"
+              : "manageTypeOptions manageTypeOptionsHidden"
+          }
+        >
+          <h2
+            onClick={() => {
+              setManageType("Maqola");
+              setManageTypeBtn(!manageTypeBtn);
+            }}
+          >
+            Maqola
+          </h2>
+          <h2
+            onClick={() => {
+              setManageType("Konferensiya");
+              setManageTypeBtn(!manageTypeBtn);
+            }}
+          >
+            Konferensiya
+          </h2>
+        </div>
+      </div>
+
       <div className="manageArticles">
         <div className="manageArticles-header">
           <h3 className="articlesCount">{data.length} ta maqola</h3>
