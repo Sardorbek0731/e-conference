@@ -6,27 +6,27 @@ import { useEffect, useState } from "react";
 function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
   const [editButtonDisabled, setEditButtonDisabled] = useState(true);
   const [isPending, setIsPending] = useState(false);
-  const [articleId, setArticleId] = useState("");
-  const [author, setAuthor] = useState("");
-  const [authorList, setAuthorList] = useState([]);
+
+  const [authors, setAuthors] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [pdfFile, setPdfFile] = useState(null);
   const [pdfName, setPdfName] = useState(null);
   const [pdfURL, setPdfURL] = useState(null);
+  const [articleId, setArticleId] = useState("");
 
   useEffect(() => {
     const editData = JSON.parse(localStorage.getItem("editArticle"));
 
-    setArticleId(editData.id);
-    setAuthorList(editData.authorList);
+    setAuthors(editData.authors);
     setTitle(editData.title);
     setContent(editData.content);
     setPdfName(editData.pdfName);
     setPdfURL(editData.pdfURL);
+    setArticleId(editData.id);
   }, []);
 
-  const checkEditButton = (authorList, title, content, _, pdfName) => {
+  const checkEditButton = (authors, title, content, _, pdfName) => {
     const editData = JSON.parse(localStorage.getItem("editArticle"));
 
     const isSameArray = (a, b) => {
@@ -35,16 +35,17 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
       return a.every((item, index) => item === b[index]);
     };
 
-    const authorListCheck = !isSameArray(authorList, editData.authorList);
+    const trimmedAuthors = authors.filter((a) => a.trim().length >= 3);
+    const authorsCheck = !isSameArray(trimmedAuthors, editData.authors);
 
     if (
-      authorList.length > 0 &&
-      title.trim().length &&
+      trimmedAuthors.length > 0 &&
+      title.trim().length >= 3 &&
       pdfName &&
       content.replace(/<[^>]+>/g, "").trim().length &&
       (title.trim() !== editData.title ||
         content !== editData.content ||
-        authorListCheck ||
+        authorsCheck ||
         pdfName !== editData.pdfName)
     ) {
       setEditButtonDisabled(false);
@@ -73,7 +74,7 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
 
     try {
       await updateArticle(articleId, {
-        authorList,
+        authors,
         title,
         savePdfURL,
         pdfName,
@@ -95,26 +96,22 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
     <Modal
       modalTitle={"Maqolani tahrirlash"}
       modalBtnType={"Tahrirlash"}
-      setIsOpenModal={setOpenEditArticle}
-      fetchArticles={fetchArticles}
       handeledButton={handleEdit}
       isPending={isPending}
-      author={author}
-      setAuthor={setAuthor}
+      disabledButton={editButtonDisabled}
+      iconType={editIcon}
+      checkButton={checkEditButton}
+      setIsOpenModal={setOpenEditArticle}
+      authors={authors}
+      setAuthors={setAuthors}
       title={title}
       setTitle={setTitle}
       content={content}
       setContent={setContent}
-      disabledButton={editButtonDisabled}
-      setDisabledButton={setEditButtonDisabled}
-      iconType={editIcon}
-      checkButton={checkEditButton}
       pdfFile={pdfFile}
       setPdfFile={setPdfFile}
       pdfName={pdfName}
       setPdfName={setPdfName}
-      authorList={authorList}
-      setAuthorList={setAuthorList}
     />
   );
 }

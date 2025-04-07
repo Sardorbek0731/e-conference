@@ -34,10 +34,10 @@ function ManageArticles() {
     }
   };
 
-  const handleEdit = (id, title, authorList, content, pdfName, pdfURL) => {
+  const handleEdit = (id, title, authors, content, pdfName, pdfURL) => {
     localStorage.setItem(
       "editArticle",
-      JSON.stringify({ id, title, authorList, content, pdfName, pdfURL })
+      JSON.stringify({ id, title, authors, content, pdfName, pdfURL })
     );
   };
 
@@ -67,20 +67,10 @@ function ManageArticles() {
             <Loading isPending={isPending} />
           ) : (
             data.map(
-              ({
-                id,
-                title,
-                authorList,
-                addedTime,
-                content,
-                pdfName,
-                pdfURL,
-              }) => (
+              ({ id, title, authors, addedTime, content, pdfName, pdfURL }) => (
                 <div className="manageArticles-item" key={id}>
                   <h1 className="manageArticle-title">{title}</h1>
-                  <h1 className="manageArticle-author">
-                    {authorList.join(", ")}
-                  </h1>
+                  <h1 className="manageArticle-author">{authors.join(", ")}</h1>
                   <h1 className="manageArticle-createdAt">{addedTime}</h1>
                   <div className="manageArticle-Buttons">
                     <button
@@ -89,7 +79,7 @@ function ManageArticles() {
                         handleEdit(
                           id,
                           title,
-                          authorList,
+                          authors,
                           content,
                           pdfName,
                           pdfURL

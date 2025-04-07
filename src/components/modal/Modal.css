@@ -43,7 +43,7 @@
 
 .modalClose,
 .authorAddBtn,
-.autherButton,
+.authorDelete,
 .pdfUploadBtn,
 .pdfDeleteBtn,
 .modalSubmit,
@@ -52,17 +52,6 @@
   outline: none;
   cursor: pointer;
   transition: all 0.3s;
-}
-
-.modalClose,
-.authorAddBtn,
-.autherButton,
-.pdfDeleteBtn,
-.modalSubmit,
-.modalCancel {
-  display: flex;
-  align-items: center;
-  justify-content: center;
 }
 
 .modalClose {
@@ -87,73 +76,30 @@
   padding: 0 1.5rem 1.5rem 1.5rem;
 }
 
+.authorAdd,
 .modalLabel {
-  display: flex;
-  flex-direction: column;
   width: 100%;
-  font-size: 1rem;
-}
-.autherLabel {
   margin-bottom: 1rem;
 }
 
-.modalInput,
-.authorInput,
-.authorItem input {
-  padding: 0.8rem;
-  border: 1px solid rgba(0, 0, 0, 0.2);
-  outline: none;
-  border-radius: 0.1rem;
-  transition: all 0.3s;
-  font-size: 1rem;
-  margin-top: 0.5rem;
-}
-
-.modalInput,
-.authorItem input {
-  flex-grow: 1;
-}
-
-.modalInput:hover,
-.modalInput:focus,
-.authorInput:hover,
-.authorInput:focus,
-.authorItem input:hover,
-.authorItem input:focus {
-  border: 1px solid rgb(0, 0, 0);
-}
-
-.authorInputGroup,
-.authorItem,
-.pdfUploadGroup,
-.pdfNameWrapper {
+.authorAddBtn {
   display: flex;
   align-items: center;
-  position: relative;
-}
-
-.authorInput {
-  padding-right: 4rem;
-}
-
-.authorAddBtn {
-  position: absolute;
-  right: 0.4rem;
+  justify-content: center;
   background-color: #15c756;
-  width: 2rem;
-  height: 2rem;
-  border-radius: 0.6rem;
-  margin-top: 0.5rem;
+  width: 2.2rem;
+  height: 2.2rem;
+  border-radius: 0.1rem;
 }
 
 .authorAddBtn:hover {
-  box-shadow: 1rem 1rem 3rem rgba(0, 0, 0, 0.3);
+  box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.2);
   background-color: #149c46;
 }
 
 .authorAddBtn img {
-  width: 1rem;
-  height: 1rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .disabledAuthorAddBtn {
@@ -165,59 +111,73 @@
   box-shadow: none;
 }
 
-.authorList {
-  display: flex;
-  align-items: flex-start;
-  flex-wrap: wrap;
-  width: 39rem;
-}
-
-.authorItem {
-  background-color: rgb(245, 240, 240);
-  padding: 0.6rem 0.6rem 0.6rem 0.8rem;
-  border-radius: 0.1rem;
-  margin-right: 1rem;
+.authorInputs {
+  width: 100%;
   margin-bottom: 1rem;
 }
 
-.autherButton {
-  width: 1.7rem;
-  height: 1.7rem;
-  border-radius: 0.45rem;
-  transition: all 0.3s;
+.authorInputRow {
+  position: relative;
+  display: flex;
+  align-items: center;
+  width: 100%;
+  margin-bottom: 0.5rem;
 }
 
-.authorEdit {
-  margin-left: 1rem;
-  background-color: #af59ff;
+.modalInput {
+  width: 100%;
+  padding: 0.8rem 3rem 0.8rem 0.8rem;
+  border: 1px solid rgba(0, 0, 0, 0.3);
+  outline: none;
+  border-radius: 0.1rem;
+  font-size: 1rem;
+  transition: all 0.3s;
 }
-.authorEdit:hover {
-  background-color: var(--main-color);
+.modalInput:hover,
+.modalInput:focus {
+  border: 1px solid rgb(0, 0, 0);
+}
+
+.authorAddBtn,
+.titleInput {
+  margin-top: 0.5rem;
 }
 
 .authorDelete {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  position: absolute;
+  right: 0.65rem;
+  width: 1.7rem;
+  height: 1.7rem;
+  border-radius: 0.1rem;
   background-color: rgb(255, 110, 110);
   margin-left: 0.5rem;
+  transition: all 0.3s;
 }
+
 .authorDelete:hover {
   background-color: red;
 }
 
-.autherButton img {
+.authorDelete img {
   width: 1rem;
   height: 1rem;
 }
-.authorEdit img {
-  width: 0.9rem;
-  height: 0.9rem;
-}
 
 .pdfUploadGroup {
+  display: flex;
   align-items: normal;
   width: 100%;
-  margin: 1rem 0;
+  margin-bottom: 1rem;
   overflow: hidden;
   background-color: rgb(245, 240, 240);
+}
+
+.pdfNameWrapper {
+  display: flex;
+  align-items: center;
 }
 
 .pdfUploadBtn {
@@ -252,6 +212,9 @@
 }
 
 .pdfDeleteBtn {
+  display: flex;
+  align-items: center;
+  justify-content: center;
   width: 2rem;
   height: 2rem;
   background-color: rgb(245, 240, 240);
@@ -279,6 +242,8 @@
 }
 
 .modalSubmit {
+  display: flex;
+  align-items: center;
   padding: 0.8rem 0.9rem;
   font-size: 1rem;
   color: white;
@@ -330,7 +295,7 @@
 }
 
 .modalCancel {
-  padding: 0.8rem 0.9rem;
+  padding: 0.8rem 1rem;
   font-size: 1rem;
   color: rgb(46, 46, 51);
   border-radius: 0.1rem;

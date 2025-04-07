@@ -6,19 +6,22 @@ import { useState } from "react";
 const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
   const [addButtonDisabled, setAddButtonDisabled] = useState(true);
   const [isPending, setIsPending] = useState(false);
-  const [author, setAuthor] = useState("");
-  const [authorList, setAuthorList] = useState([]);
+
+  const [authors, setAuthors] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [pdfFile, setPdfFile] = useState(null);
   const [pdfName, setPdfName] = useState(null);
 
-  const checkAddButton = (authorList, title, content, pdfFile) => {
+  const checkAddButton = (authors, title, content, pdfFile, pdfName) => {
+    const trimmedAuthors = authors.filter((a) => a.trim().length >= 3);
+
     if (
-      authorList.length > 0 &&
-      title.trim().length &&
+      trimmedAuthors.length > 0 &&
+      title.trim().length >= 3 &&
       pdfFile &&
-      content.replace(/<[^>]+>/g, "").trim().length
+      pdfName &&
+      content.replace(/<[^>]+>/g, "").trim().length >= 3
     ) {
       setAddButtonDisabled(false);
     } else {
@@ -47,7 +50,7 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
 
     try {
       await addArticle({
-        authorList,
+        authors,
         title,
         pdfURL,
         pdfName,
@@ -68,26 +71,22 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
     <Modal
       modalTitle={"Maqola qo'shish"}
       modalBtnType={"Qo'shish"}
-      setIsOpenModal={setOpenAddArticle}
-      fetchArticles={fetchArticles}
       handeledButton={handleSubmit}
       isPending={isPending}
-      author={author}
-      setAuthor={setAuthor}
+      disabledButton={addButtonDisabled}
+      iconType={plusIcon}
+      checkButton={checkAddButton}
+      setIsOpenModal={setOpenAddArticle}
+      authors={authors}
+      setAuthors={setAuthors}
       title={title}
       setTitle={setTitle}
       content={content}
       setContent={setContent}
-      disabledButton={addButtonDisabled}
-      setDisabledButton={setAddButtonDisabled}
-      iconType={plusIcon}
-      checkButton={checkAddButton}
       pdfFile={pdfFile}
       setPdfFile={setPdfFile}
       pdfName={pdfName}
       setPdfName={setPdfName}
-      authorList={authorList}
-      setAuthorList={setAuthorList}
     />
   );
 };

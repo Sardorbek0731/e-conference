@@ -2,40 +2,31 @@ import "./Modal.css";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import closeIcon from "../../assets/icons/close.png";
-import editIcon from "../../assets/icons/edit.png";
 import cancelIcon from "../../assets/icons/cancel.png";
 import plusIcon from "../../assets/icons/plus-math.png";
-import { useRef, useState, useEffect } from "react";
+import { useRef } from "react";
 
 const Modal = ({
   modalTitle,
   modalBtnType,
-  setIsOpenModal,
   handeledButton,
   isPending,
-  author,
-  setAuthor,
+  disabledButton,
+  iconType,
+  checkButton,
+  setIsOpenModal,
+  authors,
+  setAuthors,
   title,
   setTitle,
   content,
   setContent,
-  disabledButton,
-  iconType,
-  checkButton,
   pdfFile,
   setPdfFile,
   pdfName,
   setPdfName,
-  authorList,
-  setAuthorList,
 }) => {
-  const [canAddAuthor, setCanAddAuthor] = useState(false);
   const fileInputRef = useRef(null);
-
-  useEffect(() => {
-    const hasEmptyAuthor = authorList.some((a) => a.trim() === "");
-    setCanAddAuthor(author.trim().length > 3 && !hasEmptyAuthor);
-  }, [author, authorList]);
 
   const closeModal = () => {
     setIsOpenModal(false);
@@ -44,20 +35,26 @@ const Modal = ({
     }
   };
 
-  const addAuthorHandler = (e) => {
-    e.preventDefault();
-    if (author.trim().length > 3 && !authorList.some((a) => a.trim() === "")) {
-      setAuthorList([...authorList, author]);
-      checkButton([...authorList, author], title, content, pdfFile, pdfName);
-
-      setAuthor("");
+  const addAuthorInput = () => {
+    const last = authors[authors.length - 1];
+    if (authors.length === 0 || (last && last.trim().length >= 3)) {
+      const updated = [...authors, ""];
+      setAuthors(updated);
+      checkButton(updated, title, content, pdfFile, pdfName);
     }
   };
 
-  const deleteAuthorHandler = (id) => {
-    const filteredAuthors = authorList.filter((_, index) => index !== id);
-    checkButton(filteredAuthors, title, content, pdfFile, pdfName);
-    setAuthorList(filteredAuthors);
+  const handleAuthorChange = (index, value) => {
+    const updated = [...authors];
+    updated[index] = value;
+    setAuthors(updated);
+    checkButton(updated, title, content, pdfFile, pdfName);
+  };
+
+  const deleteAuthorInput = (index) => {
+    const updated = authors.filter((_, i) => i !== index);
+    setAuthors(updated);
+    checkButton(updated, title, content, pdfFile, pdfName);
   };
 
   const fileChangeHandler = (e) => {
@@ -65,7 +62,7 @@ const Modal = ({
     if (file) {
       setPdfFile(file);
       setPdfName(file.name);
-      checkButton(authorList, title, content, file, file.name);
+      checkButton(authors, title, content, file, file.name);
     }
     e.target.value = null;
   };
@@ -73,7 +70,7 @@ const Modal = ({
   const fileDeleteHandler = () => {
     setPdfFile(null);
     setPdfName(null);
-    checkButton(authorList, title, content, null, null);
+    checkButton(authors, title, content, null, null);
   };
 
   return (
@@ -96,57 +93,48 @@ const Modal = ({
           </div>
 
           <form className="modalForm">
-            <label className="modalLabel autherLabel">
+            <div className="authorAdd">
               Muallif
-              <div className="authorInputGroup">
-                <input
-                  type="text"
-                  className="modalInput authorInput"
-                  placeholder="Muallif..."
-                  value={author}
-                  onChange={(e) => {
-                    setAuthor(e.target.value);
-                  }}
-                />
-                <button
-                  className={`authorAddBtn ${
-                    canAddAuthor ? "" : "disabledAuthorAddBtn"
-                  }`}
-                  onClick={addAuthorHandler}
-                  disabled={!canAddAuthor}
-                >
-                  <img src={plusIcon} alt="Plus Icon" />
-                </button>
-              </div>
-            </label>
+              <button
+                type="button"
+                className={`authorAddBtn ${
+                  authors.length === 0 ||
+                  authors[authors.length - 1].trim().length >= 3
+                    ? ""
+                    : "disabledAuthorAddBtn"
+                }`}
+                onClick={addAuthorInput}
+                disabled={
+                  authors.length !== 0 &&
+                  authors[authors.length - 1].trim().length < 3
+                }
+              >
+                <img src={plusIcon} alt="Add Author" />
+              </button>
+            </div>
 
-            {authorList.length > 0 && (
-              <div className="authorList">
-                {authorList.map((auther, id) => (
-                  <span className="authorItem" key={id}>
-                    {auther}
-
-                    <button
-                      className="authorEdit autherButton"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        setAuthor(auther);
-                        deleteAuthorHandler(id);
-                      }}
-                    >
-                      <img src={editIcon} alt="Edit Icon" />
-                    </button>
+            {authors.length > 0 && (
+              <div className="authorInputs">
+                {authors.map((author, index) => (
+                  <div className="authorInputRow" key={index}>
+                    <input
+                      type="text"
+                      className="modalInput"
+                      placeholder={`Muallif ${index + 1}`}
+                      value={author}
+                      onChange={(e) =>
+                        handleAuthorChange(index, e.target.value)
+                      }
+                    />
 
                     <button
-                      className="authorDelete autherButton"
-                      onClick={(e) => {
-                        e.preventDefault();
-                        deleteAuthorHandler(id);
-                      }}
+                      type="button"
+                      className="authorDelete"
+                      onClick={() => deleteAuthorInput(index)}
                     >
                       <img src={closeIcon} alt="Delete Icon" />
                     </button>
-                  </span>
+                  </div>
                 ))}
               </div>
             )}
@@ -155,13 +143,13 @@ const Modal = ({
               Sarlavha
               <input
                 type="text"
-                className="modalInput"
+                className="modalInput titleInput"
                 placeholder="Sarlavha..."
                 value={title}
                 onChange={(e) => {
                   setTitle(e.target.value);
                   checkButton(
-                    authorList,
+                    authors,
                     e.target.value,
                     content,
                     pdfFile,
@@ -207,7 +195,7 @@ const Modal = ({
               value={content}
               onChange={(value) => {
                 setContent(value);
-                checkButton(authorList, title, value, pdfFile, pdfName);
+                checkButton(authors, title, value, pdfFile, pdfName);
               }}
             />
 

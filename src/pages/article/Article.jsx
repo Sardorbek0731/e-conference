@@ -7,10 +7,10 @@ import download from "../../assets/icons/arrows/down.png";
 import Loading from "../../components/loading/Loading.jsx";
 
 function Article() {
-  const { articleId } = useParams();
   const [article, setArticle] = useState(null);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
+  const { articleId } = useParams();
   const navigate = useNavigate();
 
   const createMetaTag = (name, content) => {
@@ -112,7 +112,7 @@ function Article() {
         }
       });
     };
-  }, [articleId]);
+  }, [articleId, navigate]);
 
   if (error) return <p>Xatolik: {error}</p>;
 
@@ -148,7 +148,7 @@ function Article() {
         ) : (
           <div className="articleItem">
             <h1 className="articleTitle">{article.title}</h1>
-            <h3 className="articleAuther">{article.authorList.join(", ")}</h3>
+            <h3 className="articleAuther">{article.authors.join(", ")}</h3>
             <div
               className="articleContent"
               dangerouslySetInnerHTML={{ __html: article.content }}
