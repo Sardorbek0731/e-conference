@@ -63,7 +63,7 @@ function ManageArticles() {
   return (
     <section className="manageArticles-container">
       <div className="manageType" ref={dropdownRef}>
-        <button
+        <div
           className={
             manageTypeBtn
               ? "manageTypeBtn manageTypeBtnFocused"
@@ -79,7 +79,7 @@ function ManageArticles() {
             src={downIcon}
             alt="Down Arrow Icon"
           />
-        </button>
+        </div>
         <div
           className={
             manageTypeBtn
