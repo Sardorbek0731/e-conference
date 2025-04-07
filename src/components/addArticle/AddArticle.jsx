@@ -7,15 +7,15 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
   const [addButtonDisabled, setAddButtonDisabled] = useState(true);
   const [isPending, setIsPending] = useState(false);
   const [author, setAuthor] = useState("");
-  const [autherList, setAutherList] = useState([]);
+  const [authorList, setAuthorList] = useState([]);
   const [title, setTitle] = useState("");
   const [content, setContent] = useState("");
   const [pdfFile, setPdfFile] = useState(null);
   const [pdfName, setPdfName] = useState(null);
 
-  const checkAddButton = (autherList, title, content, pdfFile) => {
+  const checkAddButton = (authorList, title, content, pdfFile) => {
     if (
-      autherList.length > 0 &&
+      authorList.length > 0 &&
       title.trim().length &&
       pdfFile &&
       content.replace(/<[^>]+>/g, "").trim().length
@@ -47,7 +47,7 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
 
     try {
       await addArticle({
-        autherList,
+        authorList,
         title,
         pdfURL,
         pdfName,
@@ -86,8 +86,8 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
       setPdfFile={setPdfFile}
       pdfName={pdfName}
       setPdfName={setPdfName}
-      autherList={autherList}
-      setAutherList={setAutherList}
+      authorList={authorList}
+      setAuthorList={setAuthorList}
     />
   );
 };

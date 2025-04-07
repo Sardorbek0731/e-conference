@@ -34,10 +34,10 @@ function ManageArticles() {
     }
   };
 
-  const handleEdit = (id, title, autherList, content, pdfName, pdfURL) => {
+  const handleEdit = (id, title, authorList, content, pdfName, pdfURL) => {
     localStorage.setItem(
       "editArticle",
-      JSON.stringify({ id, title, autherList, content, pdfName, pdfURL })
+      JSON.stringify({ id, title, authorList, content, pdfName, pdfURL })
     );
   };
 
@@ -61,15 +61,16 @@ function ManageArticles() {
           <h3 className="manageArticles-navbarCreatedAt">Qo'shilgan vaqt</h3>
           <h3 className="manageArticles-navbarEdit">Tahrirlash</h3>
         </div>
-        {isPending ? (
-          <Loading isPending={isPending} />
-        ) : (
-          <div className="manageArticles-body">
-            {data.map(
+
+        <div className="manageArticles-body">
+          {isPending ? (
+            <Loading isPending={isPending} />
+          ) : (
+            data.map(
               ({
                 id,
                 title,
-                autherList,
+                authorList,
                 addedTime,
                 content,
                 pdfName,
@@ -78,7 +79,7 @@ function ManageArticles() {
                 <div className="manageArticles-item" key={id}>
                   <h1 className="manageArticle-title">{title}</h1>
                   <h1 className="manageArticle-author">
-                    {autherList.join(", ")}
+                    {authorList.join(", ")}
                   </h1>
                   <h1 className="manageArticle-createdAt">{addedTime}</h1>
                   <div className="manageArticle-Buttons">
@@ -88,7 +89,7 @@ function ManageArticles() {
                         handleEdit(
                           id,
                           title,
-                          autherList,
+                          authorList,
                           content,
                           pdfName,
                           pdfURL
@@ -113,9 +114,9 @@ function ManageArticles() {
                   </div>
                 </div>
               )
-            )}
-          </div>
-        )}
+            )
+          )}
+        </div>
       </div>
       {openAddArticle && (
         <AddArticle

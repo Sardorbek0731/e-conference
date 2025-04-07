@@ -1,14 +1,13 @@
 .manageArticles-container {
-  position: relative;
   padding: 0 7.9rem;
-  margin-bottom: 3rem;
 }
+
 .manageArticles {
   background-color: white;
   border-radius: 0.1rem;
   box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.12);
-  min-height: 70vh;
 }
+
 .manageArticles-header {
   display: flex;
   justify-content: space-between;
@@ -61,7 +60,9 @@
 }
 
 .manageArticles-body {
+  position: relative;
   padding: 0 1rem;
+  min-height: 20rem;
 }
 
 .manageArticles-navbarTitle {
@@ -71,8 +72,8 @@
   width: 30%;
 }
 .manageArticles-navbarCreatedAt {
-  width: 15%;
-  padding-right: 1.5rem;
+  width: 13%;
+  padding-right: 1rem;
 }
 .manageArticles-navbarEdit {
   width: 8%;
@@ -100,7 +101,7 @@
   -webkit-box-orient: vertical;
   -webkit-line-clamp: 1;
   overflow: hidden;
-  padding-right: 1.5rem;
+  padding-right: 1rem;
 }
 
 .manageArticle-title {
@@ -112,8 +113,8 @@
 }
 
 .manageArticle-createdAt {
-  width: 15%;
-  padding-right: 1.5rem;
+  width: 13%;
+  padding-right: 1rem;
 }
 
 .manageArticle-Buttons {
@@ -140,7 +141,7 @@
 
 .manageArticle-editButton {
   background-color: #af59ff;
-  margin-right: 1rem;
+  margin-right: 0.75rem;
 }
 
 .manageArticle-deleteButton {

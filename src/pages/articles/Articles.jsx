@@ -20,11 +20,11 @@ function Articles() {
           molestias nulla odit esse.
         </p>
       </div>
-      {isPending ? (
-        <Loading isPending={isPending} />
-      ) : (
-        <div className="articleCards">
-          {data.map(({ title, autherList, pdfURL, addedTime, id }) => {
+      <div className="articleCards">
+        {isPending ? (
+          <Loading isPending={isPending} />
+        ) : (
+          data.map(({ title, authorList, pdfURL, addedTime, id }) => {
             return (
               <div className="articleCard" key={id}>
                 <NavLink to={`/articles/${id}`}>
@@ -35,7 +35,7 @@ function Articles() {
                   <div className="articleBody">
                     <h4>
                       <span>Author: </span>
-                      {autherList.join(", ")}
+                      {authorList.join(", ")}
                     </h4>
                   </div>
                 </NavLink>
@@ -59,9 +59,9 @@ function Articles() {
                 </div>
               </div>
             );
-          })}
-        </div>
-      )}
+          })
+        )}
+      </div>
     </section>
   );
 }

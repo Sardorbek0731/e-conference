@@ -26,16 +26,16 @@ const Modal = ({
   setPdfFile,
   pdfName,
   setPdfName,
-  autherList,
-  setAutherList,
+  authorList,
+  setAuthorList,
 }) => {
   const [canAddAuthor, setCanAddAuthor] = useState(false);
   const fileInputRef = useRef(null);
 
   useEffect(() => {
-    const hasEmptyAuthor = autherList.some((a) => a.trim() === "");
+    const hasEmptyAuthor = authorList.some((a) => a.trim() === "");
     setCanAddAuthor(author.trim().length > 3 && !hasEmptyAuthor);
-  }, [author, autherList]);
+  }, [author, authorList]);
 
   const closeModal = () => {
     setIsOpenModal(false);
@@ -46,18 +46,18 @@ const Modal = ({
 
   const addAuthorHandler = (e) => {
     e.preventDefault();
-    if (author.trim().length > 3 && !autherList.some((a) => a.trim() === "")) {
-      setAutherList([...autherList, author]);
-      checkButton([...autherList, author], title, content, pdfFile, pdfName);
+    if (author.trim().length > 3 && !authorList.some((a) => a.trim() === "")) {
+      setAuthorList([...authorList, author]);
+      checkButton([...authorList, author], title, content, pdfFile, pdfName);
 
       setAuthor("");
     }
   };
 
   const deleteAuthorHandler = (id) => {
-    const filteredAuthors = autherList.filter((_, index) => index !== id);
+    const filteredAuthors = authorList.filter((_, index) => index !== id);
     checkButton(filteredAuthors, title, content, pdfFile, pdfName);
-    setAutherList(filteredAuthors);
+    setAuthorList(filteredAuthors);
   };
 
   const fileChangeHandler = (e) => {
@@ -65,7 +65,7 @@ const Modal = ({
     if (file) {
       setPdfFile(file);
       setPdfName(file.name);
-      checkButton(autherList, title, content, file, file.name);
+      checkButton(authorList, title, content, file, file.name);
     }
     e.target.value = null;
   };
@@ -73,7 +73,7 @@ const Modal = ({
   const fileDeleteHandler = () => {
     setPdfFile(null);
     setPdfName(null);
-    checkButton(autherList, title, content, null, null);
+    checkButton(authorList, title, content, null, null);
   };
 
   return (
@@ -120,9 +120,9 @@ const Modal = ({
               </div>
             </label>
 
-            {autherList.length > 0 && (
+            {authorList.length > 0 && (
               <div className="authorList">
-                {autherList.map((auther, id) => (
+                {authorList.map((auther, id) => (
                   <span className="authorItem" key={id}>
                     {auther}
 
@@ -161,7 +161,7 @@ const Modal = ({
                 onChange={(e) => {
                   setTitle(e.target.value);
                   checkButton(
-                    autherList,
+                    authorList,
                     e.target.value,
                     content,
                     pdfFile,
@@ -207,7 +207,7 @@ const Modal = ({
               value={content}
               onChange={(value) => {
                 setContent(value);
-                checkButton(autherList, title, value, pdfFile, pdfName);
+                checkButton(authorList, title, value, pdfFile, pdfName);
               }}
             />
 

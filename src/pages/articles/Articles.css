@@ -1,11 +1,13 @@
 .articles {
-  padding: 0 8rem 2rem 9rem;
+  padding: 0 8rem 3rem 9rem;
 }
 
 .articleCards {
   display: grid;
   grid-template-columns: 25% 25% 25% 25%;
   width: 100%;
+  position: relative;
+  min-height: 20rem;
 }
 
 .articleCard {

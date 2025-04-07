@@ -148,7 +148,7 @@ function Article() {
         ) : (
           <div className="articleItem">
             <h1 className="articleTitle">{article.title}</h1>
-            <h3 className="articleAuther">{article.author}</h3>
+            <h3 className="articleAuther">{article.authorList.join(", ")}</h3>
             <div
               className="articleContent"
               dangerouslySetInnerHTML={{ __html: article.content }}
