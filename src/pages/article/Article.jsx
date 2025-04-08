@@ -49,7 +49,6 @@ function Article() {
 
       const metaDescription = createMetaTag("description", article.title);
       const metaTitle = createMetaTag("citation_title", article.title);
-      const metaAuthor = createMetaTag("citation_author", article.author);
       const metaDate = createMetaTag(
         "citation_publication_date",
         publishedDate.slice(0, 10)
@@ -58,18 +57,22 @@ function Article() {
         "citation_journal_title",
         "E-Conference-Online"
       );
-      const metaPdfUrl = createMetaTag("citation_pdf_url", article.pdf_url);
+      const metaPdfUrl = createMetaTag("citation_pdf_url", article.pdfURL);
+
+      article && article.authors.length && article.authors.forEach(author => {
+        const metaAuthor = createMetaTag("citation_author", author);
+        document.head.appendChild(metaAuthor);
+        addedElements.push(metaAuthor);
+      })
 
       document.head.appendChild(metaDescription);
       document.head.appendChild(metaTitle);
-      document.head.appendChild(metaAuthor);
       document.head.appendChild(metaDate);
       document.head.appendChild(metaJournal);
       document.head.appendChild(metaPdfUrl);
       addedElements.push(
         metaDescription,
         metaTitle,
-        metaAuthor,
         metaDate,
         metaJournal,
         metaPdfUrl
