@@ -59,8 +59,8 @@ function Article() {
       );
       const metaPdfUrl = createMetaTag("citation_pdf_url", article.pdfURL);
 
-      article && article.author.length && article.author.forEach(author => {
-        const metaAuthor = createMetaTag("citation_author", article.author);
+      article && article.authors.length && article.authors.forEach(author => {
+        const metaAuthor = createMetaTag("citation_author", author);
         document.head.appendChild(metaAuthor);
         addedElements.push(metaAuthor);
       })
