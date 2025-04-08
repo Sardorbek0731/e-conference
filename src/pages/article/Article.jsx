@@ -2,8 +2,8 @@ import "./Article.css";
 import { useEffect, useState } from "react";
 import { useParams, NavLink, useNavigate } from "react-router-dom";
 import { getArticleById } from "../../services/articleService.js";
+import { icons } from "../../data/data.js";
 import BackButton from "../../components/backButton/BackButton.jsx";
-import download from "../../assets/icons/arrows/down.png";
 import Loading from "../../components/loading/Loading.jsx";
 
 function Article() {
@@ -132,7 +132,7 @@ function Article() {
                 className="articlePDF"
               >
                 <span className="downloadArticleIcon">
-                  <img src={download} alt="Download Icon" />
+                  <img src={icons.downArrow} alt="Download PDF" />
                 </span>
                 Download (PDF)
               </a>

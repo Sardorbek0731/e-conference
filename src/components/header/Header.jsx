@@ -1,6 +1,6 @@
 import "./Header.css";
 import { NavLink, useLocation } from "react-router-dom";
-import logo from "../../assets/logo/logo.png";
+import { images } from "../../data/data";
 import { header } from "../../data/data";
 
 function Header() {
@@ -12,7 +12,7 @@ function Header() {
     pageNotFound && (
       <header className={location.pathname.length > 1 ? "otherPage" : ""}>
         <NavLink to="/" className="logo">
-          <img src={logo} alt="Logo Icon" />
+          <img src={images.logo} alt="Logo Icon" />
         </NavLink>
 
         <nav>

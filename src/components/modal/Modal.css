@@ -38,6 +38,7 @@
   font-size: 1.4rem;
   color: white;
   font-weight: 450;
+  line-height: 1;
 }
 
 .modalClose,
@@ -64,8 +65,8 @@
 }
 
 .modalClose img {
-  width: 1.1rem;
-  height: 1.1rem;
+  width: 1rem;
+  height: 1rem;
 }
 
 .modalForm {
@@ -94,7 +95,6 @@
 }
 
 .authorAddBtn:hover {
-  box-shadow: 0.5rem 0.5rem 2rem rgba(0, 0, 0, 0.2);
   background-color: #149c46;
 }
 
@@ -109,7 +109,6 @@
 }
 .disabledAuthorAddBtn:hover {
   background-color: #15c756;
-  box-shadow: none;
 }
 
 .authorInputs {
@@ -127,11 +126,11 @@
 
 .modalInput {
   width: 100%;
+  outline: none;
+  font-size: 1rem;
+  border-radius: 0.1rem;
   padding: 0.8rem 3rem 0.8rem 0.8rem;
   border: 1px solid rgba(0, 0, 0, 0.3);
-  outline: none;
-  border-radius: 0.1rem;
-  font-size: 1rem;
   transition: all 0.3s;
 }
 .modalInput:hover,
@@ -152,8 +151,8 @@
   right: 0.6rem;
   width: 1.8rem;
   height: 1.8rem;
-  border-radius: 50%;
-  background-color: rgb(255, 110, 110);
+  border-radius: 0.6rem;
+  background-color: rgb(255, 91, 91);
   transition: all 0.3s;
 }
 
@@ -226,8 +225,8 @@
 }
 
 .pdfDeleteBtn img {
-  width: 1.4rem;
-  height: 1.4rem;
+  width: 1.2rem;
+  height: 1.2rem;
 }
 
 .modalEditor {
@@ -244,7 +243,7 @@
 .modalSubmit {
   display: flex;
   align-items: center;
-  padding: 0.8rem 0.9rem;
+  padding: 0.7rem;
   font-size: 1rem;
   color: white;
   border-radius: 0.1rem;
@@ -252,16 +251,8 @@
   margin-right: 1rem;
 }
 
-.modalSubmit:hover {
-  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.3);
-}
-
 .modalSubmit:disabled {
-  opacity: 0.7;
-}
-
-.modalSubmit:disabled:hover {
-  box-shadow: none;
+  opacity: 0.5;
 }
 
 .modalSubmit img {
@@ -295,7 +286,7 @@
 }
 
 .modalCancel {
-  padding: 0.8rem 1rem;
+  padding: 0.7rem;
   font-size: 1rem;
   color: rgb(46, 46, 51);
   border-radius: 0.1rem;

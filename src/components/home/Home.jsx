@@ -1,17 +1,7 @@
-// CSS
 import "./Home.css";
-
-// React Router DOM
 import { NavLink } from "react-router-dom";
-
-// Icons
-import telegram from "../../assets/icons/social-network/telegram.png";
-import twitter from "../../assets/icons/social-network/twitter.png";
-import instagram from "../../assets/icons/social-network/instagram.png";
-import facebook from "../../assets/icons/social-network/facebook.png";
-
-// Images
-import paperPen from "../../assets/images/paper-pen.png";
+import { icons } from "../../data/data";
+import { images } from "../../data/data";
 
 function Home() {
   return (
@@ -29,20 +19,24 @@ function Home() {
         </NavLink>
       </div>
 
-      <img className="penAndPaper" src={paperPen} alt="Paper And Pen Image" />
+      <img
+        className="penAndPaper"
+        src={images.paperPen}
+        alt="Paper And Pen Image"
+      />
 
       <div className="socialNetworks">
         <a href="#">
-          <img src={telegram} alt="Telegram Icon" />
+          <img src={icons.telegram} alt="Telegram Icon" />
         </a>
         <a href="#">
-          <img src={twitter} alt="Twitter Icon" />
+          <img src={icons.twitter} alt="Twitter Icon" />
         </a>
         <a href="#">
-          <img src={instagram} alt="Instagram Icon" />
+          <img src={icons.instagram} alt="Instagram Icon" />
         </a>
         <a href="#">
-          <img src={facebook} alt="Facebook Icon" />
+          <img src={icons.facebook} alt="Facebook Icon" />
         </a>
       </div>
     </section>

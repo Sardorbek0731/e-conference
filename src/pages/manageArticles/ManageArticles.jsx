@@ -1,11 +1,8 @@
 import "./ManageArticles.css";
-import plusIcon from "../../assets/icons/plus.png";
-import editIcon from "../../assets/icons/edit.png";
-import deleteIcon from "../../assets/icons/delete.png";
-import downIcon from "../../assets/icons/arrows/down-arrow.png";
 import Loading from "../../components/loading/Loading";
 import AddArticle from "../../components/addArticle/AddArticle";
 import EditArticle from "../../components/editArticle/EditArticle";
+import { icons } from "../../data/data";
 import { useState, useEffect, useRef } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { deleteArticle } from "../../services/articleService";
@@ -15,11 +12,15 @@ function ManageArticles() {
   const [openAddArticle, setOpenAddArticle] = useState(false);
   const [openEditArticle, setOpenEditArticle] = useState(false);
   const [manageTypeBtn, setManageTypeBtn] = useState(false);
-  const [manageType, setManageType] = useState("Maqola");
+  const [manageType, setManageType] = useState(() => {
+    return localStorage.getItem("manageType") || "Maqola";
+  });
   const [loadingState, setLoadingState] = useState({});
   const dropdownRef = useRef(null);
 
   useEffect(() => {
+    localStorage.setItem("manageType", manageType);
+
     const handleClickOutside = (event) => {
       if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
         setManageTypeBtn(false);
@@ -30,11 +31,10 @@ function ManageArticles() {
     return () => {
       document.removeEventListener("mousedown", handleClickOutside);
     };
-  }, []);
+  }, [manageType]);
 
   if (!JSON.parse(localStorage.getItem("logined"))) {
     window.location = "/login";
-    return null;
   }
 
   const handleDelete = async (id) => {
@@ -62,48 +62,45 @@ function ManageArticles() {
 
   return (
     <section className="manageArticles-container">
-      <div className="manageType" ref={dropdownRef}>
-        <div
-          className={
-            manageTypeBtn
-              ? "manageTypeBtn manageTypeBtnFocused"
-              : "manageTypeBtn"
-          }
-          onClick={() => setManageTypeBtn(!manageTypeBtn)}
+      <div className="dropdown-container" ref={dropdownRef}>
+        <button
+          className={`dropdown-toggle ${
+            manageTypeBtn ? "dropdown-toggle--active" : ""
+          }`}
+          onClick={() => setManageTypeBtn((prev) => !prev)}
+          aria-expanded={manageTypeBtn}
         >
-          Boshqarish: <span>{manageType}</span>
+          Boshqaruv: <span className="selected-option">{manageType}</span>
           <img
-            className={
-              manageTypeBtn ? "manageTypeIcon rotateIcon" : "manageTypeIcon"
-            }
-            src={downIcon}
-            alt="Down Arrow Icon"
+            className="dropdown-icon"
+            src={icons.down}
+            alt="Dropdown Arrow"
           />
-        </div>
-        <div
-          className={
-            manageTypeBtn
-              ? "manageTypeOptions"
-              : "manageTypeOptions manageTypeOptionsHidden"
-          }
-        >
-          <h2
+        </button>
+        <ul className="dropdown-menu">
+          <li
+            className={`dropdown-item ${
+              manageType === "Maqola" ? "dropdown-item--selected" : ""
+            }`}
             onClick={() => {
               setManageType("Maqola");
-              setManageTypeBtn(!manageTypeBtn);
+              setManageTypeBtn((prev) => !prev);
             }}
           >
             Maqola
-          </h2>
-          <h2
+          </li>
+          <li
+            className={`dropdown-item ${
+              manageType === "Konferensiya" ? "dropdown-item--selected" : ""
+            }`}
             onClick={() => {
               setManageType("Konferensiya");
-              setManageTypeBtn(!manageTypeBtn);
+              setManageTypeBtn((prev) => !prev);
             }}
           >
             Konferensiya
-          </h2>
-        </div>
+          </li>
+        </ul>
       </div>
 
       <div className="manageArticles">
@@ -112,8 +109,9 @@ function ManageArticles() {
           <button
             className="openAddArticle-button"
             onClick={() => setOpenAddArticle(true)}
+            aria-expanded="Maqola Qo'shish"
           >
-            <img src={plusIcon} alt="Plus Icon" /> Qo'shish
+            <img src={icons.circlePlus} alt="Plus Icon" /> Qo'shish
           </button>
         </div>
         <div className="manageArticles-navbar">
@@ -149,7 +147,7 @@ function ManageArticles() {
                       }}
                       disabled={loadingState[id]}
                     >
-                      <img src={editIcon} alt="Edit Icon" />
+                      <img src={icons.edit} alt="Edit Icon" />
                     </button>
                     <button
                       className="manageArticle-deleteButton"
@@ -159,7 +157,7 @@ function ManageArticles() {
                       {loadingState[id] ? (
                         <span className="loading centreLoading"></span>
                       ) : (
-                        <img src={deleteIcon} alt="Delete Icon" />
+                        <img src={icons.trash} alt="Delete Icon" />
                       )}
                     </button>
                   </div>
@@ -173,14 +171,14 @@ function ManageArticles() {
         <AddArticle
           setOpenAddArticle={setOpenAddArticle}
           fetchArticles={fetchArticles}
-          plusIcon={plusIcon}
+          plusIcon={icons.circlePlus}
         />
       )}
       {openEditArticle && (
         <EditArticle
           setOpenEditArticle={setOpenEditArticle}
           fetchArticles={fetchArticles}
-          editIcon={editIcon}
+          editIcon={icons.edit}
         />
       )}
     </section>

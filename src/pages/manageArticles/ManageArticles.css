@@ -5,83 +5,96 @@
   padding: 0 7.9rem;
 }
 
-.manageType {
+.dropdown-container {
   position: relative;
 }
 
-.manageTypeBtn {
+.dropdown-toggle {
   display: flex;
   align-items: center;
-  margin-bottom: 1.5rem;
-  background-color: white;
-  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.12);
   padding: 1rem;
-  border-radius: 0.1rem;
   cursor: pointer;
-  transition: all 0.3s;
-  border: 1px solid white;
   font-size: 1rem;
   font-weight: 500;
   user-select: none;
+  border: none;
+  border-radius: 0.1rem;
+  margin-bottom: 1.5rem;
+  background-color: white;
+  transition: all 0.3s;
+  font-family: "Inter", sans-serif;
 }
-.manageTypeBtnFocused,
-.manageTypeBtn:hover {
-  border: 1px solid black;
-}
-.manageTypeBtn span {
+
+.dropdown-toggle .selected-option {
   color: var(--main-color);
   margin-left: 0.25rem;
 }
 
-.manageTypeOptions {
+.dropdown-menu {
   position: absolute;
   right: 0;
-  top: 85%;
-  background-color: white;
+  top: 120%;
+  opacity: 0;
   padding: 0.5rem 0;
+  visibility: hidden;
   border-radius: 0.1rem;
+  background-color: white;
   box-shadow: 1rem 1rem 5rem rgba(0, 0, 0, 0.3);
   transition: all 0.3s;
 }
-.manageTypeOptionsHidden {
-  opacity: 0;
-  top: 120%;
+
+.dropdown-toggle[aria-expanded="true"] + .dropdown-menu {
+  top: 85%;
+  opacity: 1;
+  visibility: visible;
 }
 
-.manageTypeIcon {
-  width: 1.05rem;
-  height: 1.05rem;
-  margin-left: 0.5rem;
-  user-select: none;
-  transform: rotate(-0);
-  transition: all 0.3s;
-}
-.manageTypeIcon.rotateIcon {
-  transform: rotate(-90deg);
-}
-
-.manageTypeOptions h2 {
+.dropdown-item {
   font-size: 1rem;
   text-align: right;
   font-weight: 500;
-  margin-bottom: 0.5rem;
   padding: 0.5rem 1rem;
   cursor: pointer;
   user-select: none;
   transition: all 0.3s;
+  font-family: "Inter", sans-serif;
+  list-style: none;
+  margin-bottom: 0.5rem;
 }
-.manageTypeOptions h2:last-child {
+
+.dropdown-item:last-child {
   margin-bottom: 0;
 }
-.manageTypeOptions h2:hover {
-  background-color: rgba(0, 0, 0, 0.07);
+
+.dropdown-item:hover {
+  background-color: rgba(0, 0, 0, 0.05);
+}
+
+.dropdown-item--selected {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-item--selected:hover {
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.dropdown-icon {
+  width: 1rem;
+  height: 1rem;
+  margin-left: 0.5rem;
+  user-select: none;
+  transform: rotate(0);
+  transition: all 0.3s;
+}
+
+.dropdown-toggle[aria-expanded="true"] .dropdown-icon {
+  transform: rotate(-90deg);
 }
 
 .manageArticles {
   width: 100%;
   background-color: white;
   border-radius: 0.1rem;
-  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.12);
 }
 
 .manageArticles-header {
@@ -100,7 +113,7 @@
 .openAddArticle-button {
   display: flex;
   align-items: center;
-  padding: 0.8rem 1rem;
+  padding: 0.7rem;
   font-size: 1rem;
   border: none;
   outline: none;
@@ -113,7 +126,6 @@
 }
 .openAddArticle-button:hover {
   background-color: #149c46;
-  box-shadow: 1rem 1rem 4rem rgba(0, 0, 0, 0.3);
 }
 .openAddArticle-button img {
   width: 1rem;
@@ -124,7 +136,7 @@
 .manageArticles-navbar {
   display: flex;
   align-items: center;
-  padding: 1.3rem 1rem;
+  padding: 1rem;
   justify-content: space-between;
   background-color: rgba(0, 0, 0, 0.1);
 }
@@ -159,7 +171,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  padding: 0.7rem 0;
+  padding: 0.5rem 0;
   border-bottom: 1px dashed rgba(0, 0, 0, 0.25);
 }
 .manageArticles-item:last-child {
@@ -203,16 +215,13 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.2rem;
-  height: 2.2rem;
+  width: 2rem;
+  height: 2rem;
   border: none;
   outline: none;
   cursor: pointer;
   border-radius: 0.55rem;
   transition: all 0.3s;
-}
-.manageArticle-Buttons button:hover {
-  box-shadow: 0.5rem 0.5rem 2.5rem rgba(0, 0, 0, 0.2);
 }
 
 .manageArticle-editButton {
@@ -231,22 +240,20 @@
 }
 .manageArticle-editButton:disabled {
   cursor: not-allowed;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 .manageArticle-deleteButton:disabled {
   cursor: not-allowed;
-  opacity: 0.7;
+  opacity: 0.5;
 }
 .manageArticle-editButton:disabled:hover {
   background-color: #af59ff;
-  box-shadow: none;
 }
 .manageArticle-deleteButton:disabled:hover {
   background-color: rgb(255, 91, 91);
-  box-shadow: none;
 }
 
 .manageArticle-Buttons button img {
-  width: 1.2rem;
-  height: 1.2rem;
+  width: 1.1rem;
+  height: 1.1rem;
 }

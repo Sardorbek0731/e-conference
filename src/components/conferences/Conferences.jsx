@@ -1,5 +1,5 @@
 import "./Conferences.css";
-import logo from "../../assets/logo/logo.png";
+import { images } from "../../data/data";
 import { getConferences } from "../../services/conferenceService";
 import { useEffect, useState } from "react";
 import { NavLink } from "react-router-dom";
@@ -40,7 +40,7 @@ function Conferences() {
           conferences.map((conference) => (
             <div key={conference.id} className="conferencesItem">
               <NavLink to={"/" + conference.id}>
-                <img src={logo} alt="Conference Image" />
+                <img src={images.logo} alt="Conference Image" />
               </NavLink>
               <div className="conferencesColumn">
                 <NavLink to={"/" + conference.id}>

@@ -1,7 +1,7 @@
 import "./Login.css";
 import { useState } from "react";
 import { login } from "../../services/authService";
-import logo from "../../assets/logo/logo.png";
+import { images } from "../../data/data.js";
 
 const Login = () => {
   const [email, setEmail] = useState("");
@@ -27,7 +27,7 @@ const Login = () => {
   return (
     <section className="login">
       <div className="loginLogo">
-        <img src={logo} alt="Logo Image" />
+        <img src={images.logo} alt="Logo Image" />
       </div>
       <div className="loginForm">
         <form onSubmit={handleSubmit}>

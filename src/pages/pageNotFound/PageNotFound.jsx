@@ -1,13 +1,13 @@
 import "./PageNotFound.css";
-import pageNotFoundImg from "../../assets/images/pageNotFound.png";
 import BackButton from "../../components/backButton/BackButton";
+import { images } from "../../data/data";
 
 function PageNotFound() {
   return (
     <section className="pageNotFound container">
       <BackButton />
       <div className="pageNotFound-img">
-        <img src={pageNotFoundImg} alt="Page Not Found Image" />
+        <img src={images.pageNotFound} alt="Page Not Found Image" />
       </div>
     </section>
   );

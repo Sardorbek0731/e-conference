@@ -1,5 +1,5 @@
 import "./BackButton.css";
-import leftArrow from "../../assets/icons/arrows/left.png";
+import { icons } from "../../data/data";
 import { useNavigate } from "react-router-dom";
 
 function BackButton() {
@@ -11,7 +11,7 @@ function BackButton() {
 
   return (
     <button onClick={backPage} className="backBtn">
-      <img src={leftArrow} alt="Left Arrow" />
+      <img src={icons.leftArrow} alt="Left Arrow" />
       Back
     </button>
   );

@@ -1,9 +1,7 @@
 import "./Modal.css";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
-import closeIcon from "../../assets/icons/close.png";
-import cancelIcon from "../../assets/icons/cancel.png";
-import plusIcon from "../../assets/icons/plus-math.png";
+import { icons } from "../../data/data";
 import { useRef } from "react";
 
 const Modal = ({
@@ -88,7 +86,7 @@ const Modal = ({
               onClick={closeModal}
               disabled={isPending}
             >
-              <img src={closeIcon} alt="Close Modal" />
+              <img src={icons.cancel} alt="Close Modal" />
             </button>
           </div>
 
@@ -109,7 +107,7 @@ const Modal = ({
                   authors[authors.length - 1].trim().length < 3
                 }
               >
-                <img src={plusIcon} alt="Add Author" />
+                <img src={icons.plus} alt="Add Author" />
               </button>
             </div>
 
@@ -132,7 +130,7 @@ const Modal = ({
                       className="authorDelete"
                       onClick={() => deleteAuthorInput(index)}
                     >
-                      <img src={closeIcon} alt="Delete Icon" />
+                      <img src={icons.cancel} alt="Author Delete" />
                     </button>
                   </div>
                 ))}
@@ -185,7 +183,7 @@ const Modal = ({
                 }`}
               >
                 <span className="pdfDeleteBtn" onClick={fileDeleteHandler}>
-                  <img src={cancelIcon} alt="Delete PDF Icon" />
+                  <img src={icons.circleCancel} alt="Delete PDF" />
                 </span>
               </div>
             </div>

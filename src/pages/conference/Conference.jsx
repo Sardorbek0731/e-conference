@@ -3,10 +3,10 @@ import { useParams, useNavigate } from "react-router-dom";
 import { getConferenceById } from "../../services/conferenceService";
 import { getArticleById } from "../../services/articleService";
 import { useEffect, useState } from "react";
+import { NavLink } from "react-router-dom";
+import { images } from "../../data/data";
 import Loading from "../../components/loading/Loading";
 import BackButton from "../../components/backButton/BackButton";
-import { NavLink } from "react-router-dom";
-import image from "../../assets/logo/logo.png";
 
 function Conference() {
   const [conference, setConference] = useState(null);
@@ -79,7 +79,7 @@ function Conference() {
                   <div className="articleCard" key={id}>
                     <NavLink to={`/articles/${id}`}>
                       <div className="articleHeader">
-                        <img src={image} alt="Article Image" />
+                        <img src={images.logo} alt="Article Image" />
                         <h3>{title}</h3>
                       </div>
                       <div className="articleBody">

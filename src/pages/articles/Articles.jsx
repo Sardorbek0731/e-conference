@@ -1,9 +1,9 @@
 import "./Articles.css";
-import image from "../../assets/logo/logo.png";
 import BackButton from "../../components/backButton/BackButton";
-import Loading from "../../components/loading/Loading.jsx";
+import Loading from "../../components/loading/Loading";
 import { NavLink } from "react-router-dom";
-import { useFetch } from "../../hooks/useFetch.jsx";
+import { useFetch } from "../../hooks/useFetch";
+import { images } from "../../data/data.js";
 
 function Articles() {
   const { data, isPending, error } = useFetch();
@@ -29,7 +29,7 @@ function Articles() {
               <div className="articleCard" key={id}>
                 <NavLink to={`/articles/${id}`}>
                   <div className="articleHeader">
-                    <img src={image} alt="Article Image" />
+                    <img src={images.logo} alt="Article Image" />
                     <h3>{title}</h3>
                   </div>
                   <div className="articleBody">

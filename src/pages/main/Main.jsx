@@ -1,5 +1,5 @@
 import Home from "../../components/home/Home";
-import Conferences from "../../components/conferences/Conferences.jsx";
+import Conferences from "../../components/conferences/Conferences";
 import { useState, useEffect } from "react";
 
 function Main() {
