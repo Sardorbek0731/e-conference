@@ -51,10 +51,26 @@ function ManageArticles() {
     }
   };
 
-  const handleEdit = (id, title, authors, content, pdfName, pdfURL) => {
+  const handleEdit = (
+    id,
+    title,
+    authors,
+    createdAt,
+    content,
+    pdfName,
+    pdfURL
+  ) => {
     localStorage.setItem(
       "editArticle",
-      JSON.stringify({ id, title, authors, content, pdfName, pdfURL })
+      JSON.stringify({
+        id,
+        title,
+        authors,
+        createdAt,
+        content,
+        pdfName,
+        pdfURL,
+      })
     );
   };
 
@@ -126,7 +142,16 @@ function ManageArticles() {
             <Loading isPending={isPending} />
           ) : (
             data.map(
-              ({ id, title, authors, addedTime, content, pdfName, pdfURL }) => (
+              ({
+                id,
+                title,
+                authors,
+                createdAt,
+                content,
+                pdfName,
+                pdfURL,
+                addedTime,
+              }) => (
                 <div className="manageArticles-item" key={id}>
                   <h1 className="manageArticle-title">{title}</h1>
                   <h1 className="manageArticle-author">{authors.join(", ")}</h1>
@@ -139,6 +164,7 @@ function ManageArticles() {
                           id,
                           title,
                           authors,
+                          createdAt,
                           content,
                           pdfName,
                           pdfURL

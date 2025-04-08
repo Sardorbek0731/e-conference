@@ -2,6 +2,7 @@ import "./EditArticle.css";
 import Modal from "../../components/modal/Modal";
 import { updateArticle } from "../../services/articleService";
 import { useEffect, useState } from "react";
+import { Timestamp } from "firebase/firestore";
 
 function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
   const [editButtonDisabled, setEditButtonDisabled] = useState(true);
@@ -13,6 +14,7 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
   const [pdfFile, setPdfFile] = useState(null);
   const [pdfName, setPdfName] = useState(null);
   const [pdfURL, setPdfURL] = useState(null);
+  const [createdAt, setCreatedAt] = useState("");
   const [articleId, setArticleId] = useState("");
 
   useEffect(() => {
@@ -23,6 +25,7 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
     setContent(editData.content);
     setPdfName(editData.pdfName);
     setPdfURL(editData.pdfURL);
+    setCreatedAt(editData.createdAt);
     setArticleId(editData.id);
   }, []);
 
@@ -70,16 +73,16 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
     );
 
     const getPDF = await setPDF.json();
-    let savePdfURL = getPDF.url || pdfURL;
+    setPdfURL(getPDF.url || pdfURL);
 
     try {
       await updateArticle(articleId, {
         authors,
         title,
-        savePdfURL,
+        pdfURL,
         pdfName,
         image: "test",
-        createdAt: new Date(),
+        createdAt: new Timestamp(createdAt.seconds, createdAt.nanoseconds),
         content,
       });
       await fetchArticles();
