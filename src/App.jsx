@@ -6,6 +6,8 @@ import Article from "./pages/article/Article";
 import Login from "./pages/login/Login";
 import Contact from "./pages/contact/Contact";
 import ManageArticles from "./pages/manageArticles/ManageArticles";
+import ManageConferences from "./pages/manageConferences/ManageConferences";
+import Manage from "./pages/manage/Manage";
 import PageNotFound from "./pages/pageNotFound/PageNotFound";
 import Conference from "./pages/conference/Conference";
 import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
@@ -24,7 +26,9 @@ function App() {
           <Route path="/:conferenceId" element={<Conference />} />
           <Route path="/login" element={<Login />} />
           <Route path="/contact" element={<Contact />} />
-          <Route path="/manage-articles" element={<ManageArticles />} />
+          <Route path="/manage" element={<Manage />} />
+          <Route path="/manage/articles" element={<ManageArticles />} />
+          <Route path="/manage/conferences" element={<ManageConferences />} />
           <Route path="*" element={<Navigate to="/error" replace />} />
           <Route path="/error" element={<PageNotFound />} />
         </Routes>

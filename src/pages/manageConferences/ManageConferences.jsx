@@ -1,4 +1,4 @@
-import "./ManageArticles.css";
+import "./ManageConferences.css";
 import Loading from "../../components/loading/Loading";
 import AddArticle from "../../components/addArticle/AddArticle";
 import EditArticle from "../../components/editArticle/EditArticle";
@@ -21,7 +21,7 @@ function ManageArticles() {
   const dropdownRef = useRef(null);
 
   useEffect(() => {
-    setManageType("Maqola");
+    setManageType("Konferensiya");
     localStorage.setItem("manageType", manageType);
 
     const handleClickOutside = (event) => {
@@ -130,7 +130,7 @@ function ManageArticles() {
 
       <div className="manageArticles">
         <div className="manageArticles-header">
-          <h3 className="articlesCount">{data.length} ta maqola</h3>
+          <h3 className="articlesCount">{data.length} ta konferensiya</h3>
           <button
             className="openAddArticle-button"
             onClick={() => setOpenAddArticle(true)}

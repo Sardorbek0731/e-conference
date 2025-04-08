@@ -35,8 +35,6 @@
 }
 
 .dropdown-menu {
-  display: flex;
-  flex-direction: column;
   position: absolute;
   right: 0;
   top: 140%;
@@ -66,7 +64,6 @@
   font-family: "Inter", sans-serif;
   list-style: none;
   margin-bottom: 0.5rem;
-  color: black;
 }
 
 .dropdown-item:last-child {
