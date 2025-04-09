@@ -8,9 +8,10 @@ import { useState, useEffect, useRef } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { deleteArticle } from "../../services/articleService";
 import { NavLink } from "react-router-dom";
+import { getArticles } from "../../services/articleService.js";
 
 function ManageArticles() {
-  const { data, isPending, error, fetchArticles } = useFetch();
+  const { data, isPending, error, fetchArticles } = useFetch(getArticles);
   const [openAddArticle, setOpenAddArticle] = useState(false);
   const [openEditArticle, setOpenEditArticle] = useState(false);
   const [manageTypeBtn, setManageTypeBtn] = useState(false);

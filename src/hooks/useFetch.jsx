@@ -1,14 +1,13 @@
 import { useEffect, useState } from "react";
-import { getArticles } from "../services/articleService";
 
-export function useFetch() {
+export function useFetch(fetchType) {
   const [data, setData] = useState([]);
   const [isPending, setIsPending] = useState(true);
   const [error, setError] = useState(null);
 
   const fetchArticles = async () => {
     try {
-      const data = await getArticles();
+      const data = await fetchType();
 
       data.map((item) => {
         const date = new Date(item.createdAt.seconds * 1000);

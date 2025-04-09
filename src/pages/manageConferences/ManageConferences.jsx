@@ -8,9 +8,10 @@ import { useState, useEffect, useRef } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { deleteArticle } from "../../services/articleService";
 import { NavLink } from "react-router-dom";
+import { getConferences } from "../../services/conferenceService";
 
 function ManageArticles() {
-  const { data, isPending, error, fetchArticles } = useFetch();
+  const { data, isPending, error, fetchArticles } = useFetch(getConferences);
   const [openAddArticle, setOpenAddArticle] = useState(false);
   const [openEditArticle, setOpenEditArticle] = useState(false);
   const [manageTypeBtn, setManageTypeBtn] = useState(false);
@@ -163,7 +164,7 @@ function ManageArticles() {
               }) => (
                 <div className="manageArticles-item" key={id}>
                   <h1 className="manageArticle-title">{title}</h1>
-                  <h1 className="manageArticle-author">{authors.join(", ")}</h1>
+                  <h1 className="manageArticle-author"></h1>
                   <h1 className="manageArticle-createdAt">{addedTime}</h1>
                   <div className="manageArticle-Buttons">
                     <button

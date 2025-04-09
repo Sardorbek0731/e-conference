@@ -4,9 +4,10 @@ import Loading from "../../components/loading/Loading";
 import { NavLink } from "react-router-dom";
 import { useFetch } from "../../hooks/useFetch";
 import { images } from "../../data/data.js";
+import { getArticles } from "../../services/articleService.js";
 
 function Articles() {
-  const { data, isPending, error } = useFetch();
+  const { data, isPending, error } = useFetch(getArticles);
 
   if (error) return <p>Xatolik: {error}</p>;
 
