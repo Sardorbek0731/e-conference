@@ -1,4 +1,5 @@
 import "../manage/Manage.css";
+import "./ManageArticles.css";
 import Loading from "../../components/loading/Loading";
 import AddArticle from "../../components/addArticle/AddArticle";
 import EditArticle from "../../components/editArticle/EditArticle";
@@ -7,6 +8,7 @@ import { useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { deleteArticle } from "../../services/articleService";
 import { getArticles } from "../../services/articleService.js";
+import { NavLink } from "react-router-dom";
 
 function ManageArticles() {
   const { data, isPending, error, fetchArticles } = useFetch(getArticles);
@@ -51,29 +53,38 @@ function ManageArticles() {
     );
   };
 
+  if (!JSON.parse(localStorage.getItem("logined"))) {
+    window.location = "/login";
+  }
+
   if (error) return <p>Xatolik: {error}</p>;
 
   return (
-    <>
-      <div className="manageArticles">
-        <div className="manageArticles-header">
+    <section className="manageContainer">
+      <div className="manageType">
+        <NavLink to={"/manage/articles"}>Maqola</NavLink>
+        <span>|</span>
+        <NavLink to={"/manage/conferences"}>Konferensiya</NavLink>
+      </div>
+
+      <div className="manage">
+        <div className="manageHeader">
           <h3 className="articlesCount">{data.length} ta maqola</h3>
           <button
-            className="openAddArticle-button"
+            className="openAddModal-button"
             onClick={() => setOpenAddArticle(true)}
-            aria-expanded="Maqola Qo'shish"
           >
             <img src={icons.circlePlus} alt="Add Article" /> Qo'shish
           </button>
         </div>
-        <div className="manageArticles-navbar">
+        <div className="manageNavbar">
           <h3 className="manageArticles-navbarTitle">Sarlavha</h3>
           <h3 className="manageArticles-navbarAuthor">Muallif</h3>
           <h3 className="manageArticles-navbarCreatedAt">Qo'shilgan vaqt</h3>
           <h3 className="manageArticles-navbarEdit">Tahrirlash</h3>
         </div>
 
-        <div className="manageArticles-body">
+        <div className="manageBody">
           {isPending ? (
             <Loading isPending={isPending} />
           ) : (
@@ -88,13 +99,13 @@ function ManageArticles() {
                 pdfURL,
                 addedTime,
               }) => (
-                <div className="manageArticles-item" key={id}>
+                <div className="manageItem" key={id}>
                   <h1 className="manageArticle-title">{title}</h1>
                   <h1 className="manageArticle-author">{authors.join(", ")}</h1>
                   <h1 className="manageArticle-createdAt">{addedTime}</h1>
-                  <div className="manageArticle-Buttons">
+                  <div className="manageButtons">
                     <button
-                      className="manageArticle-editButton"
+                      className="manageEditButton"
                       onClick={() => {
                         handleEdit(
                           id,
@@ -109,17 +120,17 @@ function ManageArticles() {
                       }}
                       disabled={loadingState[id]}
                     >
-                      <img src={icons.edit} alt="Edit Icon" />
+                      <img src={icons.edit} alt="Edit" />
                     </button>
                     <button
-                      className="manageArticle-deleteButton"
+                      className="manageDeleteButton"
                       onClick={() => handleDelete(id)}
                       disabled={loadingState[id]}
                     >
                       {loadingState[id] ? (
                         <span className="loading centreLoading"></span>
                       ) : (
-                        <img src={icons.trash} alt="Delete Icon" />
+                        <img src={icons.trash} alt="Delete" />
                       )}
                     </button>
                   </div>
@@ -143,7 +154,7 @@ function ManageArticles() {
           editIcon={icons.edit}
         />
       )}
-    </>
+    </section>
   );
 }
 

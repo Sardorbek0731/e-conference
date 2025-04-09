@@ -1,4 +1,5 @@
 import "../manage/Manage.css";
+import "./ManageConferences.css";
 import Loading from "../../components/loading/Loading";
 import AddConference from "../../components/addConference/AddConference";
 import EditConference from "../../components/editConference/EditConference";
@@ -7,6 +8,7 @@ import { useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { deleteArticle } from "../../services/articleService";
 import { getConferences } from "../../services/conferenceService";
+import { NavLink } from "react-router-dom";
 
 function ManageConference() {
   const { data, isPending, error, fetchArticles } = useFetch(getConferences);
@@ -28,54 +30,63 @@ function ManageConference() {
     }
   };
 
+  if (!JSON.parse(localStorage.getItem("logined"))) {
+    window.location = "/login";
+  }
+
   if (error) return <p>Xatolik: {error}</p>;
 
   return (
-    <>
-      <div className="manageArticles">
-        <div className="manageArticles-header">
+    <section className="manageContainer">
+      <div className="manageType">
+        <NavLink to={"/manage/articles"}>Maqola</NavLink>
+        <span>|</span>
+        <NavLink to={"/manage/conferences"}>Konferensiya</NavLink>
+      </div>
+
+      <div className="manage">
+        <div className="manageHeader">
           <h3 className="articlesCount">{data.length} ta konferensiya</h3>
           <button
-            className="openAddArticle-button"
+            className="openAddModal-button"
             onClick={() => setOpenAddConference(true)}
-            aria-expanded="Konferensiya Qo'shish"
           >
             <img src={icons.circlePlus} alt="Add Conference" /> Qo'shish
           </button>
         </div>
-        <div className="manageArticles-navbar">
-          <h3 className="manageArticles-navbarTitle">Sarlavha</h3>
-          <h3 className="manageArticles-navbarAuthor">Muallif</h3>
-          <h3 className="manageArticles-navbarCreatedAt">Qo'shilgan vaqt</h3>
-          <h3 className="manageArticles-navbarEdit">Tahrirlash</h3>
+        <div className="manageNavbar">
+          <h3 className="manageConference-navbarTitle">Sarlavha</h3>
+          <h3 className="manageConference-navbarAuthor">Soni</h3>
+          <h3 className="manageConference-navbarCreatedAt">Qo'shilgan vaqt</h3>
+          <h3 className="manageConference-navbarEdit">Tahrirlash</h3>
         </div>
 
-        <div className="manageArticles-body">
+        <div className="manageBody">
           {isPending ? (
             <Loading isPending={isPending} />
           ) : (
-            data.map(({ id, title, addedTime }) => (
-              <div className="manageArticles-item" key={id}>
-                <h1 className="manageArticle-title">{title}</h1>
-                <h1 className="manageArticle-author"></h1>
-                <h1 className="manageArticle-createdAt">{addedTime}</h1>
-                <div className="manageArticle-Buttons">
+            data.map(({ id, title, number, addedTime }) => (
+              <div className="manageItem" key={id}>
+                <h1 className="manageConference-title">{title}</h1>
+                <h1 className="manageConference-author">{number}</h1>
+                <h1 className="manageConference-createdAt">{addedTime}</h1>
+                <div className="manageButtons">
                   <button
-                    className="manageArticle-editButton"
+                    className="manageEditButton"
                     onClick={() => setOpenEditConference(true)}
                     disabled={loadingState[id]}
                   >
-                    <img src={icons.edit} alt="Edit Icon" />
+                    <img src={icons.edit} alt="Edit" />
                   </button>
                   <button
-                    className="manageArticle-deleteButton"
+                    className="manageDeleteButton"
                     onClick={() => handleDelete(id)}
                     disabled={loadingState[id]}
                   >
                     {loadingState[id] ? (
                       <span className="loading centreLoading"></span>
                     ) : (
-                      <img src={icons.trash} alt="Delete Icon" />
+                      <img src={icons.trash} alt="Delete" />
                     )}
                   </button>
                 </div>
@@ -86,7 +97,7 @@ function ManageConference() {
       </div>
       {openAddConference && <AddConference />}
       {openEditConference && <EditConference />}
-    </>
+    </section>
   );
 }
 

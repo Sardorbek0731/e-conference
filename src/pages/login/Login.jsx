@@ -15,7 +15,7 @@ const Login = () => {
     try {
       const user = await login(email, password);
       if (user.accessToken) {
-        window.location = "/manage";
+        window.location = "/manage/articles";
         setLogin(true);
       }
     } catch (err) {
