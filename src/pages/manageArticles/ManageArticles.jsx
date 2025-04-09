@@ -1,45 +1,18 @@
-import "./ManageArticles.css";
+import "../manage/Manage.css";
 import Loading from "../../components/loading/Loading";
 import AddArticle from "../../components/addArticle/AddArticle";
 import EditArticle from "../../components/editArticle/EditArticle";
-import BackButton from "../../components/backButton/BackButton";
 import { icons } from "../../data/data";
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
 import { deleteArticle } from "../../services/articleService";
-import { NavLink } from "react-router-dom";
 import { getArticles } from "../../services/articleService.js";
 
 function ManageArticles() {
   const { data, isPending, error, fetchArticles } = useFetch(getArticles);
   const [openAddArticle, setOpenAddArticle] = useState(false);
   const [openEditArticle, setOpenEditArticle] = useState(false);
-  const [manageTypeBtn, setManageTypeBtn] = useState(false);
-  const [manageType, setManageType] = useState(() => {
-    return localStorage.getItem("manageType") || "Maqola";
-  });
   const [loadingState, setLoadingState] = useState({});
-  const dropdownRef = useRef(null);
-
-  useEffect(() => {
-    setManageType("Maqola");
-    localStorage.setItem("manageType", manageType);
-
-    const handleClickOutside = (event) => {
-      if (dropdownRef.current && !dropdownRef.current.contains(event.target)) {
-        setManageTypeBtn(false);
-      }
-    };
-
-    document.addEventListener("mousedown", handleClickOutside);
-    return () => {
-      document.removeEventListener("mousedown", handleClickOutside);
-    };
-  }, [manageType]);
-
-  if (!JSON.parse(localStorage.getItem("logined"))) {
-    window.location = "/login";
-  }
 
   const handleDelete = async (id) => {
     try {
@@ -81,54 +54,7 @@ function ManageArticles() {
   if (error) return <p>Xatolik: {error}</p>;
 
   return (
-    <section className="manageArticles-container">
-      <div className="manageHeaderBtns">
-        <BackButton />
-
-        <div className="dropdown-container" ref={dropdownRef}>
-          <button
-            className={`dropdown-toggle ${
-              manageTypeBtn ? "dropdown-toggle--active" : ""
-            }`}
-            onClick={() => setManageTypeBtn((prev) => !prev)}
-            aria-expanded={manageTypeBtn}
-          >
-            Boshqaruv: <span className="selected-option">{manageType}</span>
-            <img
-              className="dropdown-icon"
-              src={icons.down}
-              alt="Dropdown Arrow"
-            />
-          </button>
-          <div className="dropdown-menu">
-            <NavLink
-              to={"/manage/articles"}
-              className={`dropdown-item ${
-                manageType === "Maqola" ? "dropdown-item--selected" : ""
-              }`}
-              onClick={() => {
-                setManageType("Maqola");
-                setManageTypeBtn((prev) => !prev);
-              }}
-            >
-              Maqola
-            </NavLink>
-            <NavLink
-              to={"/manage/conferences"}
-              className={`dropdown-item ${
-                manageType === "Konferensiya" ? "dropdown-item--selected" : ""
-              }`}
-              onClick={() => {
-                setManageType("Konferensiya");
-                setManageTypeBtn((prev) => !prev);
-              }}
-            >
-              Konferensiya
-            </NavLink>
-          </div>
-        </div>
-      </div>
-
+    <>
       <div className="manageArticles">
         <div className="manageArticles-header">
           <h3 className="articlesCount">{data.length} ta maqola</h3>
@@ -137,7 +63,7 @@ function ManageArticles() {
             onClick={() => setOpenAddArticle(true)}
             aria-expanded="Maqola Qo'shish"
           >
-            <img src={icons.circlePlus} alt="Plus Icon" /> Qo'shish
+            <img src={icons.circlePlus} alt="Add Article" /> Qo'shish
           </button>
         </div>
         <div className="manageArticles-navbar">
@@ -217,7 +143,7 @@ function ManageArticles() {
           editIcon={icons.edit}
         />
       )}
-    </section>
+    </>
   );
 }
 

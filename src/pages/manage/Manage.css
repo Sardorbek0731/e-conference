@@ -1,0 +1,166 @@
+.manageArticles {
+  width: 100%;
+  background-color: white;
+  border-radius: 0.1rem;
+}
+
+.manageArticles-header {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 1rem 1rem 0 1rem;
+  margin-bottom: 1rem;
+}
+
+.articlesCount {
+  font-size: 1.3rem;
+  font-weight: 500;
+}
+
+.openAddArticle-button {
+  display: flex;
+  align-items: center;
+  padding: 0.7rem;
+  font-size: 1rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  background-color: #15c756;
+  color: white;
+  border-radius: 0.1rem;
+  line-height: 1;
+  transition: all 0.3s;
+}
+.openAddArticle-button:hover {
+  background-color: #149c46;
+}
+.openAddArticle-button img {
+  width: 1rem;
+  height: 1rem;
+  margin-right: 0.5rem;
+}
+
+.manageArticles-navbar {
+  display: flex;
+  align-items: center;
+  padding: 1rem;
+  justify-content: space-between;
+  background-color: rgba(0, 0, 0, 0.1);
+}
+
+.manageArticles-navbar h3 {
+  font-size: 1rem;
+  font-weight: 500;
+  line-height: 1;
+}
+
+.manageArticles-body {
+  position: relative;
+  padding: 0 1rem;
+  min-height: 20rem;
+}
+
+.manageArticles-navbarTitle {
+  width: 47%;
+}
+.manageArticles-navbarAuthor {
+  width: 30%;
+}
+.manageArticles-navbarCreatedAt {
+  width: 13%;
+  padding-right: 1rem;
+}
+.manageArticles-navbarEdit {
+  width: 8%;
+}
+
+.manageArticles-item {
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  padding: 0.5rem 0;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.25);
+}
+.manageArticles-item:last-child {
+  border-bottom: none;
+}
+
+.manageArticles-item h1 {
+  font-size: 1rem;
+  font-weight: 500;
+}
+
+.manageArticle-title,
+.manageArticle-author {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 1;
+  overflow: hidden;
+  padding-right: 1rem;
+}
+
+.manageArticle-title {
+  width: 47%;
+}
+
+.manageArticle-author {
+  width: 30%;
+}
+
+.manageArticle-createdAt {
+  width: 13%;
+  padding-right: 1rem;
+}
+
+.manageArticle-Buttons {
+  display: flex;
+  align-items: center;
+  width: 8%;
+}
+
+.manageArticle-Buttons button {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  width: 2rem;
+  height: 2rem;
+  border: none;
+  outline: none;
+  cursor: pointer;
+  border-radius: 0.55rem;
+  transition: all 0.3s;
+}
+
+.manageArticle-editButton {
+  background-color: #af59ff;
+  margin-right: 0.75rem;
+}
+
+.manageArticle-deleteButton {
+  background-color: rgb(255, 91, 91);
+}
+.manageArticle-editButton:hover {
+  background-color: var(--main-color);
+}
+.manageArticle-deleteButton:hover {
+  background-color: rgb(255, 0, 0);
+}
+.manageArticle-editButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.manageArticle-deleteButton:disabled {
+  cursor: not-allowed;
+  opacity: 0.5;
+}
+.manageArticle-editButton:disabled:hover {
+  background-color: #af59ff;
+}
+.manageArticle-deleteButton:disabled:hover {
+  background-color: rgb(255, 91, 91);
+}
+
+.manageArticle-Buttons button img {
+  width: 1.1rem;
+  height: 1.1rem;
+}
