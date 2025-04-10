@@ -29,7 +29,7 @@
 
 .articleCard img {
   width: 100%;
-  height: 15rem;
+  height: 16.5rem;
   object-fit: cover;
 }
 
@@ -43,7 +43,7 @@
   overflow: hidden;
   color: black;
   height: 4.1rem;
-  margin-bottom: 0.9rem;
+  margin-bottom: 0.6rem;
 }
 
 .articleBody {
@@ -51,10 +51,15 @@
 }
 
 .articleBody h4 {
+  display: -webkit-box;
+  -webkit-box-orient: vertical;
+  -webkit-line-clamp: 2;
   font-weight: 500;
-  font-size: 1.07rem;
-  height: 4rem;
+  overflow: hidden;
+  font-size: 1.05rem;
+  height: 2.6rem;
   color: black;
+  margin-bottom: 0.9rem;
 }
 
 .articleFooter {
@@ -72,8 +77,8 @@
 .zenodo {
   border-radius: 0.1rem;
   cursor: pointer;
-  margin-bottom: 1.4rem;
-  font-size: 0.92rem;
+  margin-bottom: 1rem;
+  font-size: 0.9rem;
   font-weight: 500;
   background-color: var(--main-color);
   padding: 0.55rem 0.7rem;

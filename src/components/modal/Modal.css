@@ -295,6 +295,12 @@
 .modalCancel:hover {
   background-color: rgb(216, 216, 220);
 }
+.modalCancel:disabled {
+  opacity: 0.5;
+}
+.modalCancel:disabled:hover {
+  background-color: rgb(232, 232, 237);
+}
 
 .loading {
   width: 1rem;
