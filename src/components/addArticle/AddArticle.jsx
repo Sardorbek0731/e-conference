@@ -1,5 +1,4 @@
-import "./AddArticle.css";
-import Modal from "../modal/Modal";
+import ArticleModal from "../articleModal/ArticleModal";
 import { addArticle } from "../../services/articleService";
 import { useState } from "react";
 
@@ -68,7 +67,7 @@ const AddArticle = ({ setOpenAddArticle, fetchArticles, plusIcon }) => {
   };
 
   return (
-    <Modal
+    <ArticleModal
       modalTitle={"Maqola qo'shish"}
       modalBtnType={"Qo'shish"}
       handeledButton={handleSubmit}

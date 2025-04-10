@@ -46,7 +46,10 @@ function Conferences() {
                 <NavLink to={"/" + conference.id}>
                   <h1>{conference.title}</h1>
                 </NavLink>
-                <p>{conference.description}</p>
+                <div
+                  className="articleContent"
+                  dangerouslySetInnerHTML={{ __html: conference.description }}
+                ></div>
               </div>
             </div>
           ))

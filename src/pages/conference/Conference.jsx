@@ -70,7 +70,10 @@ function Conference() {
         ) : (
           <div className="conferenceItem" key={conference.id}>
             <h1>{conference.title}</h1>
-            <p>{conference.description}</p>
+            <div
+              className="articleContent"
+              dangerouslySetInnerHTML={{ __html: conference.description }}
+            ></div>
             <div className="articleCards">
               {isPending ? (
                 <Loading isPending={isPending} />

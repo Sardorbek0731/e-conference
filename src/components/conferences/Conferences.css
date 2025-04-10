@@ -37,7 +37,3 @@
 .conferencesColumn h1:hover {
   color: var(--main-color);
 }
-
-.conferencesColumn p {
-  font-size: 1.075rem;
-}

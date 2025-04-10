@@ -1,5 +1,4 @@
-import "./EditArticle.css";
-import Modal from "../../components/modal/Modal";
+import ArticleModal from "../../components/articleModal/ArticleModal";
 import { updateArticle } from "../../services/articleService";
 import { useEffect, useState } from "react";
 import { Timestamp } from "firebase/firestore";
@@ -96,7 +95,7 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
   };
 
   return (
-    <Modal
+    <ArticleModal
       modalTitle={"Maqolani tahrirlash"}
       modalBtnType={"Tahrirlash"}
       handeledButton={handleEdit}

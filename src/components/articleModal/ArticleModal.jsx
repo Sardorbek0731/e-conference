@@ -1,10 +1,10 @@
-import "./Modal.css";
+import "./ArticleModal.css";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import { icons } from "../../data/data";
 import { useRef } from "react";
 
-const Modal = ({
+const ArticleModal = ({
   modalTitle,
   modalBtnType,
   handeledButton,
@@ -232,4 +232,4 @@ const Modal = ({
   );
 };
 
-export default Modal;
+export default ArticleModal;

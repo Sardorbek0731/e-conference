@@ -25,9 +25,32 @@ function ManageConference() {
 
       setLoadingState((prevState) => ({ ...prevState, [id]: false }));
     } catch (error) {
-      console.error("Maqolani o‘chirishda xatolik:", error);
+      console.error("Konferensiyani o‘chirishda xatolik:", error);
       setLoadingState((prevState) => ({ ...prevState, [id]: false }));
     }
+  };
+
+  const handleEdit = (
+    id,
+    title,
+    article_ids,
+    number,
+    description,
+    addedTime,
+    createdAt
+  ) => {
+    localStorage.setItem(
+      "editConference",
+      JSON.stringify({
+        id,
+        title,
+        article_ids,
+        number,
+        description,
+        addedTime,
+        createdAt,
+      })
+    );
   };
 
   if (!JSON.parse(localStorage.getItem("logined"))) {
@@ -65,38 +88,71 @@ function ManageConference() {
           {isPending ? (
             <Loading isPending={isPending} />
           ) : (
-            data.map(({ id, title, number, addedTime }) => (
-              <div className="manageItem" key={id}>
-                <h1 className="manageConference-title">{title}</h1>
-                <h1 className="manageConference-author">{number}</h1>
-                <h1 className="manageConference-createdAt">{addedTime}</h1>
-                <div className="manageButtons">
-                  <button
-                    className="manageEditButton"
-                    onClick={() => setOpenEditConference(true)}
-                    disabled={loadingState[id]}
-                  >
-                    <img src={icons.edit} alt="Edit" />
-                  </button>
-                  <button
-                    className="manageDeleteButton"
-                    onClick={() => handleDelete(id)}
-                    disabled={loadingState[id]}
-                  >
-                    {loadingState[id] ? (
-                      <span className="loading centreLoading"></span>
-                    ) : (
-                      <img src={icons.trash} alt="Delete" />
-                    )}
-                  </button>
+            data.map(
+              ({
+                id,
+                title,
+                article_ids,
+                number,
+                description,
+                addedTime,
+                createdAt,
+              }) => (
+                <div className="manageItem" key={id}>
+                  <h1 className="manageConference-title">{title}</h1>
+                  <h1 className="manageConference-author">{number}</h1>
+                  <h1 className="manageConference-createdAt">{addedTime}</h1>
+                  <div className="manageButtons">
+                    <button
+                      className="manageEditButton"
+                      onClick={() => {
+                        handleEdit(
+                          id,
+                          title,
+                          article_ids,
+                          number,
+                          description,
+                          addedTime,
+                          createdAt
+                        );
+                        setOpenEditConference(true);
+                      }}
+                      disabled={loadingState[id]}
+                    >
+                      <img src={icons.edit} alt="Edit" />
+                    </button>
+                    <button
+                      className="manageDeleteButton"
+                      onClick={() => handleDelete(id)}
+                      disabled={loadingState[id]}
+                    >
+                      {loadingState[id] ? (
+                        <span className="loading centreLoading"></span>
+                      ) : (
+                        <img src={icons.trash} alt="Delete" />
+                      )}
+                    </button>
+                  </div>
                 </div>
-              </div>
-            ))
+              )
+            )
           )}
         </div>
       </div>
-      {openAddConference && <AddConference />}
-      {openEditConference && <EditConference />}
+      {openAddConference && (
+        <AddConference
+          setOpenAddConference={setOpenAddConference}
+          fetchArticles={fetchArticles}
+          plusIcon={icons.circlePlus}
+        />
+      )}
+      {openEditConference && (
+        <EditConference
+          setOpenEditConference={setOpenEditConference}
+          fetchArticles={fetchArticles}
+          editIcon={icons.edit}
+        />
+      )}
     </section>
   );
 }
