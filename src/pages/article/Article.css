@@ -56,8 +56,7 @@
   transition: all 0.3s;
   border: 2px solid #ff3700;
   color: white;
-  padding-left: 0.75rem;
-  padding-right: 0.75rem;
+  padding: 0 0.9rem;
 }
 .articlePage-zenodo:hover {
   background-color: white;

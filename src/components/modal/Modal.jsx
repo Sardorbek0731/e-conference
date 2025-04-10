@@ -221,6 +221,7 @@ const Modal = ({
                 onClick={closeModal}
                 disabled={isPending}
               >
+                <img src={icons.circleCancel} alt="Cancel Add Article" />
                 Bekor qilish
               </button>
             </div>

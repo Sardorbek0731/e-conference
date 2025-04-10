@@ -1,11 +1,10 @@
 .conferences {
-  margin-top: 2rem;
-  margin-bottom: 5rem;
+  margin: 2rem 0;
 }
 
 .conferencesList {
   position: relative;
-  min-height: 20rem;
+  min-height: 15rem;
 }
 
 .conferencesItem {
@@ -21,20 +20,24 @@
 }
 
 .conferencesItem img {
-  width: 10rem;
-  height: 10rem;
-  margin-right: 1rem;
+  width: 14rem;
+  height: auto;
+  margin-right: 2rem;
   border-radius: 0.1rem;
 }
 
 .conferencesColumn h1 {
   line-height: 1;
   margin-bottom: 1rem;
-  font-size: 1.4rem;
+  font-size: 1.5rem;
   font-weight: 600;
   transition: all 0.3s;
   color: black;
 }
 .conferencesColumn h1:hover {
   color: var(--main-color);
+}
+
+.conferencesColumn p {
+  font-size: 1.075rem;
 }
