@@ -30,8 +30,11 @@ function EditConference({ setOpenEditConference, fetchArticles, editIcon }) {
 
     if (
       title.trim().length >= 3 &&
+      number.trim().length > 0 &&
       description.replace(/<[^>]+>/g, "").trim().length &&
-      (title.trim() !== editData.title || description !== editData.description)
+      (title.trim() !== editData.title ||
+        number.trim() !== editData.number ||
+        description !== editData.description)
     ) {
       setEditButtonDisabled(false);
     } else {

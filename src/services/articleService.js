@@ -5,15 +5,47 @@ import { addDoc } from "firebase/firestore";
 import { getDocs } from "firebase/firestore";
 import { getDoc } from "firebase/firestore";
 import { deleteDoc } from "firebase/firestore";
+import { query, orderBy, limit, startAfter } from "firebase/firestore";
 
 export const addArticle = async (article) => {
   const docRef = await addDoc(collection(db, "articles"), article);
   return docRef.id;
 };
 
-export const getArticles = async () => {
-  const querySnapshot = await getDocs(collection(db, "articles"));
-  return querySnapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+export const getArticles = async (startIndex = 0, pageSize = 15) => {
+  try {
+    const articlesRef = collection(db, "articles");
+    const orderedQuery = query(articlesRef, orderBy("createdAt", "desc"));
+
+    let cursorDoc = null;
+
+    if (startIndex > 0) {
+      const cursorQuery = query(orderedQuery, limit(startIndex));
+      const cursorSnap = await getDocs(cursorQuery);
+      cursorDoc = cursorSnap.docs[cursorSnap.docs.length - 1];
+    }
+
+    const paginatedQuery = cursorDoc
+      ? query(
+          articlesRef,
+          orderBy("createdAt", "desc"),
+          startAfter(cursorDoc),
+          limit(pageSize)
+        )
+      : query(articlesRef, orderBy("createdAt", "desc"), limit(pageSize));
+
+    const querySnapshot = await getDocs(paginatedQuery);
+
+    const articles = querySnapshot.docs.map((doc) => ({
+      id: doc.id,
+      ...doc.data(),
+    }));
+
+    return articles;
+  } catch (error) {
+    console.error("Pagination error:", error);
+    return [];
+  }
 };
 
 export const getArticleById = async (articleId) => {

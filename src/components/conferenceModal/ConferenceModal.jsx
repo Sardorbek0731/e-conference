@@ -23,8 +23,8 @@ const ConferenceModal = ({
 }) => {
   const closeModal = () => {
     setIsOpenModal(false);
-    if (modalTitle === "Maqolani tahrirlash") {
-      localStorage.removeItem("editArticle");
+    if (modalTitle === "Konferensiya tahrirlash") {
+      localStorage.removeItem("editConference");
     }
   };
 
@@ -58,6 +58,20 @@ const ConferenceModal = ({
                 onChange={(e) => {
                   setTitle(e.target.value);
                   checkButton(e.target.value, description, number, articleIDS);
+                }}
+              />
+            </label>
+
+            <label className="modalLabel">
+              Soni:
+              <input
+                type="text"
+                className="modalInput titleInput"
+                placeholder="Soni..."
+                value={number}
+                onChange={(e) => {
+                  setNumber(e.target.value);
+                  checkButton(title, description, e.target.value, articleIDS);
                 }}
               />
             </label>

@@ -71,7 +71,7 @@ function Conference() {
           <div className="conferenceItem" key={conference.id}>
             <h1>{conference.title}</h1>
             <div
-              className="articleContent"
+              className="conferenceContent"
               dangerouslySetInnerHTML={{ __html: conference.description }}
             ></div>
             <div className="articleCards">

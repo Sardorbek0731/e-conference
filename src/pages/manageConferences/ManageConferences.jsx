@@ -6,7 +6,7 @@ import EditConference from "../../components/editConference/EditConference";
 import { icons } from "../../data/data";
 import { useState } from "react";
 import { useFetch } from "../../hooks/useFetch";
-import { deleteArticle } from "../../services/articleService";
+import { deleteConference } from "../../services/conferenceService";
 import { getConferences } from "../../services/conferenceService";
 import { NavLink } from "react-router-dom";
 
@@ -20,7 +20,7 @@ function ManageConference() {
     try {
       setLoadingState((prevState) => ({ ...prevState, [id]: true }));
 
-      await deleteArticle(id);
+      await deleteConference(id);
       await fetchArticles();
 
       setLoadingState((prevState) => ({ ...prevState, [id]: false }));

@@ -11,7 +11,7 @@
   display: flex;
   align-items: flex-start;
   padding-bottom: 3rem;
-  border-bottom: 1px dashed rgba(0, 0, 0, 0.6);
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.5);
   margin-bottom: 3rem;
 }
 .conferencesItem:last-child {
@@ -22,18 +22,49 @@
 .conferencesItem img {
   width: 14rem;
   height: auto;
-  margin-right: 2rem;
+  margin-right: 2.5rem;
   border-radius: 0.1rem;
 }
 
 .conferencesColumn h1 {
   line-height: 1;
-  margin-bottom: 1rem;
-  font-size: 1.5rem;
+  margin-bottom: 1.3rem;
+  font-size: 1.3rem;
   font-weight: 600;
   transition: all 0.3s;
   color: black;
 }
 .conferencesColumn h1:hover {
   color: var(--main-color);
+}
+
+.conferencesDescription {
+  margin-bottom: 1.3rem;
+}
+
+.conferencesDescription p {
+  font-size: 1.1rem;
+}
+
+.loadMore {
+  color: black;
+  position: relative;
+  transition: all 0.3s;
+}
+.loadMore::after {
+  overflow: hidden;
+  position: absolute;
+  content: "";
+  bottom: -0.5rem;
+  left: 0;
+  height: 2px;
+  width: 0;
+  background-color: var(--main-color);
+  transition: all 0.3s;
+}
+.loadMore:hover {
+  color: var(--main-color);
+}
+.loadMore:hover::after {
+  width: 60%;
 }

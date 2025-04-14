@@ -14,6 +14,7 @@ const AddConference = ({ setOpenAddConference, fetchArticles, plusIcon }) => {
   const checkAddButton = (title, description, number, articleIDS) => {
     if (
       title.trim().length >= 3 &&
+      number.trim().length > 0 &&
       description.replace(/<[^>]+>/g, "").trim().length >= 3
     ) {
       setAddButtonDisabled(false);

@@ -5,9 +5,20 @@
 }
 
 .conferenceItem {
-  margin: 3rem 0;
+  margin: 2rem 0 3rem 0;
 }
 
-.articleCards {
-  margin-top: 3rem;
+.conferenceItem h1 {
+  text-align: center;
+  color: var(--main-color);
+  margin-bottom: 2rem;
+  font-size: 1.8rem;
+}
+
+.conferenceContent p {
+  font-size: 1.25rem;
+  text-align: justify;
+  margin-bottom: 3rem;
+  padding-bottom: 3rem;
+  border-bottom: 1px dashed rgba(0, 0, 0, 0.5);
 }

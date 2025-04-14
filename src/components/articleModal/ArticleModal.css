@@ -79,9 +79,8 @@
 .authorAdd,
 .modalLabel {
   width: 100%;
-  font-size: 1.1rem;
+  font-size: 1rem;
   margin-bottom: 1rem;
-  color: var(--main-color);
 }
 
 .authorAddBtn {

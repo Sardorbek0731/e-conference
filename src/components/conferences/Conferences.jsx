@@ -47,9 +47,12 @@ function Conferences() {
                   <h1>{conference.title}</h1>
                 </NavLink>
                 <div
-                  className="articleContent"
+                  className="conferencesDescription"
                   dangerouslySetInnerHTML={{ __html: conference.description }}
                 ></div>
+                <NavLink className="loadMore" to={"/" + conference.id}>
+                  Load More
+                </NavLink>
               </div>
             </div>
           ))
