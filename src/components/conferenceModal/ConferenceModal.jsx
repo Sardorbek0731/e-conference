@@ -1,4 +1,5 @@
 import "./ConferenceModal.css";
+import "../../components/modal/Modal.css";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import { icons } from "../../data/data";
@@ -26,6 +27,28 @@ const ConferenceModal = ({
     if (modalTitle === "Konferensiya tahrirlash") {
       localStorage.removeItem("editConference");
     }
+  };
+
+  const addArticleInput = () => {
+    const last = articleIDS[articleIDS.length - 1];
+    if (articleIDS.length === 0 || (last && last.trim().length >= 3)) {
+      const updated = [...articleIDS, ""];
+      setArticleIDS(updated);
+      checkButton(title, description, number, updated);
+    }
+  };
+
+  const handleArticleChange = (index, value) => {
+    const updated = [...articleIDS];
+    updated[index] = value;
+    setArticleIDS(updated);
+    checkButton(title, description, number, updated);
+  };
+
+  const deleteArticleInput = (index) => {
+    const updated = articleIDS.filter((_, i) => i !== index);
+    setArticleIDS(updated);
+    checkButton(title, description, number, updated);
   };
 
   return (
@@ -75,6 +98,51 @@ const ConferenceModal = ({
                 }}
               />
             </label>
+
+            <div className="optionInput">
+              Maqola:
+              <button
+                type="button"
+                className={`optionInput-addBtn ${
+                  articleIDS.length === 0 ||
+                  articleIDS[articleIDS.length - 1].trim().length >= 3
+                    ? ""
+                    : "optionInput-addBtn--disabled"
+                }`}
+                onClick={addArticleInput}
+                disabled={
+                  articleIDS.length !== 0 &&
+                  articleIDS[articleIDS.length - 1].trim().length < 3
+                }
+              >
+                <img src={icons.plus} alt="Add Article" />
+              </button>
+            </div>
+
+            {articleIDS.length > 0 && (
+              <div className="optionInput-list">
+                {articleIDS.map((item, index) => (
+                  <div className="optionInput-row" key={index}>
+                    <input
+                      type="text"
+                      className="modalInput"
+                      placeholder={`Maqola ${index + 1}`}
+                      value={item}
+                      onChange={(e) =>
+                        handleArticleChange(index, e.target.value)
+                      }
+                    />
+                    <button
+                      type="button"
+                      className="optionInput-deleteBtn"
+                      onClick={() => deleteArticleInput(index)}
+                    >
+                      <img src={icons.cancel} alt="Delete Article" />
+                    </button>
+                  </div>
+                ))}
+              </div>
+            )}
 
             <ReactQuill
               className="modalEditor"

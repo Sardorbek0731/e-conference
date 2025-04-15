@@ -72,13 +72,12 @@ function EditArticle({ setOpenEditArticle, fetchArticles, editIcon }) {
     );
 
     const getPDF = await setPDF.json();
-    setPdfURL(getPDF.url || pdfURL);
 
     try {
       await updateArticle(articleId, {
         authors,
         title,
-        pdfURL,
+        pdfURL: getPDF.url || pdfURL,
         pdfName,
         image: "test",
         createdAt: new Timestamp(createdAt.seconds, createdAt.nanoseconds),

@@ -1,4 +1,5 @@
 import "./ArticleModal.css";
+import "../../components/modal/Modal.css";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import { icons } from "../../data/data";
@@ -91,15 +92,15 @@ const ArticleModal = ({
           </div>
 
           <form className="modalForm">
-            <div className="authorAdd">
+            <div className="optionInput">
               Muallif:
               <button
                 type="button"
-                className={`authorAddBtn ${
+                className={`optionInput-addBtn ${
                   authors.length === 0 ||
                   authors[authors.length - 1].trim().length >= 3
                     ? ""
-                    : "disabledAuthorAddBtn"
+                    : "optionInput-addBtn--disabled"
                 }`}
                 onClick={addAuthorInput}
                 disabled={
@@ -112,25 +113,24 @@ const ArticleModal = ({
             </div>
 
             {authors.length > 0 && (
-              <div className="authorInputs">
-                {authors.map((author, index) => (
-                  <div className="authorInputRow" key={index}>
+              <div className="optionInput-list">
+                {authors.map((item, index) => (
+                  <div className="optionInput-row" key={index}>
                     <input
                       type="text"
                       className="modalInput"
                       placeholder={`Muallif ${index + 1}`}
-                      value={author}
+                      value={item}
                       onChange={(e) =>
                         handleAuthorChange(index, e.target.value)
                       }
                     />
-
                     <button
                       type="button"
-                      className="authorDelete"
+                      className="optionInput-deleteBtn"
                       onClick={() => deleteAuthorInput(index)}
                     >
-                      <img src={icons.cancel} alt="Author Delete" />
+                      <img src={icons.cancel} alt="Delete Author" />
                     </button>
                   </div>
                 ))}
