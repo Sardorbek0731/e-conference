@@ -3,12 +3,14 @@ import "../../components/modal/Modal.css";
 import "react-quill/dist/quill.snow.css";
 import ReactQuill from "react-quill";
 import { icons } from "../../data/data";
+import { useFetch } from "../../hooks/useFetch";
+import { getArticles } from "../../services/articleService";
 
 const ConferenceModal = ({
   modalTitle,
   modalBtnType,
   handeledButton,
-  isPending,
+  modalIsPending,
   disabledButton,
   iconType,
   checkButton,
@@ -22,6 +24,8 @@ const ConferenceModal = ({
   articleIDS,
   setArticleIDS,
 }) => {
+  const { data, isPending, error, fetchArticles } = useFetch(getArticles);
+
   const closeModal = () => {
     setIsOpenModal(false);
     if (modalTitle === "Konferensiya tahrirlash") {
@@ -29,7 +33,7 @@ const ConferenceModal = ({
     }
   };
 
-  const addArticleInput = () => {
+  const addArticleIDInput = () => {
     const last = articleIDS[articleIDS.length - 1];
     if (articleIDS.length === 0 || (last && last.trim().length >= 3)) {
       const updated = [...articleIDS, ""];
@@ -38,14 +42,14 @@ const ConferenceModal = ({
     }
   };
 
-  const handleArticleChange = (index, value) => {
+  const handleArticleIDChange = (index, value) => {
     const updated = [...articleIDS];
     updated[index] = value;
     setArticleIDS(updated);
     checkButton(title, description, number, updated);
   };
 
-  const deleteArticleInput = (index) => {
+  const deleteArticleIDInput = (index) => {
     const updated = articleIDS.filter((_, i) => i !== index);
     setArticleIDS(updated);
     checkButton(title, description, number, updated);
@@ -64,7 +68,7 @@ const ConferenceModal = ({
             <button
               className="modalClose"
               onClick={closeModal}
-              disabled={isPending}
+              disabled={modalIsPending}
             >
               <img src={icons.cancel} alt="Close Modal" />
             </button>
@@ -109,7 +113,7 @@ const ConferenceModal = ({
                     ? ""
                     : "optionInput-addBtn--disabled"
                 }`}
-                onClick={addArticleInput}
+                onClick={addArticleIDInput}
                 disabled={
                   articleIDS.length !== 0 &&
                   articleIDS[articleIDS.length - 1].trim().length < 3
@@ -129,13 +133,13 @@ const ConferenceModal = ({
                       placeholder={`Maqola ${index + 1}`}
                       value={item}
                       onChange={(e) =>
-                        handleArticleChange(index, e.target.value)
+                        handleArticleIDChange(index, e.target.value)
                       }
                     />
                     <button
                       type="button"
                       className="optionInput-deleteBtn"
-                      onClick={() => deleteArticleInput(index)}
+                      onClick={() => deleteArticleIDInput(index)}
                     >
                       <img src={icons.cancel} alt="Delete Article" />
                     </button>
@@ -162,9 +166,9 @@ const ConferenceModal = ({
                 }`}
                 type="submit"
                 onClick={handeledButton}
-                disabled={isPending || disabledButton}
+                disabled={modalIsPending || disabledButton}
               >
-                {isPending ? (
+                {modalIsPending ? (
                   <span className="loading"></span>
                 ) : (
                   <img src={iconType} alt="Plus Icon" />
@@ -175,7 +179,7 @@ const ConferenceModal = ({
               <button
                 className="modalCancel"
                 onClick={closeModal}
-                disabled={isPending}
+                disabled={modalIsPending}
               >
                 <img src={icons.circleCancel} alt="Cancel Add Article" />
                 Bekor qilish

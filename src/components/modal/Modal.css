@@ -133,6 +133,7 @@
 .optionInput-row {
   display: flex;
   align-items: center;
+  position: relative;
   margin-bottom: 0.5rem;
 }
 
@@ -145,12 +146,12 @@
   display: flex;
   align-items: center;
   justify-content: center;
-  width: 2.3rem;
-  height: 2.3rem;
+  width: 2.1rem;
+  height: 2.1rem;
   background-color: rgb(255, 91, 91);
   transition: all 0.3s;
   margin-left: 0.5rem;
-  border-radius: 0.6rem;
+  border-radius: 0.5rem;
 }
 
 .optionInput-deleteBtn:hover {
@@ -158,8 +159,8 @@
 }
 
 .optionInput-deleteBtn img {
-  width: 0.8rem;
-  height: 0.8rem;
+  width: 0.7rem;
+  height: 0.7rem;
 }
 
 .modalEditor {

@@ -4,17 +4,23 @@ import { useState } from "react";
 
 const AddConference = ({ setOpenAddConference, fetchArticles, plusIcon }) => {
   const [addButtonDisabled, setAddButtonDisabled] = useState(true);
-  const [isPending, setIsPending] = useState(false);
+  const [modalIsPending, setModalIsPending] = useState(false);
 
   const [title, setTitle] = useState("");
   const [description, setDescription] = useState("");
   const [number, setNumber] = useState("");
-  const [articleIDS, setArticleIDS] = useState("");
+  const [articleIDS, setArticleIDS] = useState([]);
 
   const checkAddButton = (title, description, number, articleIDS) => {
+    const trimmedArticleIDS = articleIDS.filter((a) => a.trim().length >= 3);
+
+    const numberValue = parseInt(number);
+
     if (
       title.trim().length >= 3 &&
-      number.trim().length > 0 &&
+      !isNaN(numberValue) &&
+      numberValue >= 0 &&
+      trimmedArticleIDS.length > 0 &&
       description.replace(/<[^>]+>/g, "").trim().length >= 3
     ) {
       setAddButtonDisabled(false);
@@ -25,7 +31,7 @@ const AddConference = ({ setOpenAddConference, fetchArticles, plusIcon }) => {
 
   const handleSubmit = async (e) => {
     e.preventDefault();
-    setIsPending(true);
+    setModalIsPending(true);
 
     try {
       await addConference({
@@ -41,7 +47,7 @@ const AddConference = ({ setOpenAddConference, fetchArticles, plusIcon }) => {
     } catch (err) {
       console.error("Konferensiyani qo'shishda xatolik:", err);
     } finally {
-      setIsPending(false);
+      setModalIsPending(false);
     }
   };
 
@@ -50,7 +56,7 @@ const AddConference = ({ setOpenAddConference, fetchArticles, plusIcon }) => {
       modalTitle={"Konferensiya qo'shish"}
       modalBtnType={"Qo'shish"}
       handeledButton={handleSubmit}
-      isPending={isPending}
+      modalIsPending={modalIsPending}
       disabledButton={addButtonDisabled}
       iconType={plusIcon}
       checkButton={checkAddButton}
