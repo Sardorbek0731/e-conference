@@ -76,7 +76,7 @@ const ConferenceModal = ({
 
           <form className="modalForm">
             <label className="modalLabel">
-              Sarlavha:
+              Sarlavhawfeffef:
               <input
                 type="text"
                 className="modalInput titleInput"
